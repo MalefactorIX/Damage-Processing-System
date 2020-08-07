@@ -219,7 +219,7 @@ default
             integer aux=llListFindList(auxdata,[id]);
             if(aux<0)
             {
-                string ochan="0x"+llGetSubString(llMD5String((string)oid,0),0,3);
+                string ochan="0x"+llGetSubString(llMD5String((string)oid,0),0,1);
                 auxdata+=[oid,id,ochan];//New data
                 if(oid==o)llRegionSay(staticchan,"stat");//Polls DPS stats for owner
                 //llSay(0, "Added "+llKey2Name(oid)+" with "+(string)((integer)ochan));
