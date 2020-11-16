@@ -87,23 +87,23 @@
 ## **Assists**
 ####    [Movement]
 All form of movement assistance is disallowed excluding those provided via the DPS system. This includes but is not limited to...
-    - Hard fall cancelling
-    - Dashing/Dodgerolls
-    - Jetpacks/Boostpacks/Boostpads
-    - Prejump Disabling or Nimble 
+   - Hard fall cancelling
+   - Dashing/Dodgerolls
+   - Jetpacks/Boostpacks/Boostpads
+   - Prejump Disabling or Nimble 
     
 ####    [Weapons]
 All forms of weapon assistance is disallowed. This includes but is not limited to...  
-    - [Trigger botting] is Having the weapon fire independently from user input.
-    - [Trigger locking/Smart Scope] is Having the weapon's trigger lock on to a target to fire automatically when aimed.
-    - [Aim botting] is Having the weapon aim independently from user input.
-    - [Aim locking] is Having the viewer/client/weapon lock on to avatar position independent from user input. 
+- [Trigger botting] is Having the weapon fire independently from user input.
+- [Trigger locking/Smart Scope] is Having the weapon's trigger lock on to a target to fire automatically when aimed.
+- [Aim botting] is Having the weapon aim independently from user input.
+- [Aim locking] is Having the viewer/client/weapon lock on to avatar position independent from user input. 
     
 ####    [Client]
 All forms of visual assistance is disallowed. This includes but is not limited to...
-    - Sight HUDs/Nametag on hover
-    - Hitboxes, ARC, Wireframe, or similar client-enabled features.
-    - Weapons or devices which mark the position of an avatar.
+- Sight HUDs/Nametag on hover
+- Hitboxes, ARC, Wireframe, or similar client-enabled features.
+- Weapons or devices which mark the position of an avatar.
     
 ## **Glossary**
    - [Direct AT] AT Damage dealt by the source of the collision
