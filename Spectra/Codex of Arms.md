@@ -71,7 +71,7 @@
     - Mine must be naturally visible to an avatar within 10 meters of it. It must have some part of it visible that can be identified as a mine.
     - Mines may not have a detection radius exceeding 3 meters. This sensor may use IFF or group-safe detection,
     - Mines must detonate on physical contact with any person, including the group using it.
-    - Mines not move once placed. They are no longer mines at that point; They are drones.
+    - Mines may not move once placed. They are no longer mines at that point; They are drones.
 
 ####    [Vehicles]
 - Must be compliant with all LBA restrictions
