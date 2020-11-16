@@ -10,7 +10,7 @@
 
    Participants should ask administration if they may use or test gear that may be outside the guidelines. Administration can opt to not enforce rules as long as participants agree to not be disruptive and other participants don't take issue with what is being used. Our goal is primarily to target disruptive behavior, as such these rules may not always be enforced as written. It's the spirit of the rule we seek to uphold, not so much the letter of it.
 
-   Rules are likely to change in response to developments within the region. However changes will no go into effect in the middle of any combat event.
+   Rules are likely to change in response to developments within the region. However changes will not go into effect in the middle of any combat event.
     
 ## **Weapons**
     
