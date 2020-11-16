@@ -42,7 +42,7 @@
     - If explosion radius exceeds 5 meters, damage must be reduced by at least 10 per meter after 3 meters.
 - Minimum reload time for any explosive launcher is 5 second per projectile.
 - Proximity AT damage must fall off by at least 20% of the initial amount per meter from the center of the blast.
-- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [15 second] cooldown. This is reduced to 5 seconds for explosives that much be drawn.
+- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [15 second] cooldown. This is reduced to 5 seconds for explosives that must be drawn.
 - Seeking Munitions must follow the guidelines ![here](https://github.com/MalefactorIX/SLMC-Seeker-2020)
     - They may not target infantry-class units.
 
