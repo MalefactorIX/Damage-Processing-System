@@ -94,10 +94,10 @@ All form of movement assistance is disallowed excluding those provided via the D
     
 ####    [Weapons]
 All forms of weapon assistance is disallowed. This includes but is not limited to...  
-    - Trigger botting - Having the weapon fire independently from user input.
-    - Trigger locking/Smart Scope - Having the weapon's trigger lock on to a target to fire automatically when aimed.
-    - Aim botting - Having the weapon aim independently from user input.
-    - Aim locking - Having the viewer/client/weapon lock on to avatar position independent from user input. 
+    - [Trigger botting] is Having the weapon fire independently from user input.
+    - [Trigger locking/Smart Scope] is Having the weapon's trigger lock on to a target to fire automatically when aimed.
+    - [Aim botting] is Having the weapon aim independently from user input.
+    - [Aim locking] is Having the viewer/client/weapon lock on to avatar position independent from user input. 
     
 ####    [Client]
 All forms of visual assistance is disallowed. This includes but is not limited to...
@@ -106,18 +106,18 @@ All forms of visual assistance is disallowed. This includes but is not limited t
     - Weapons or devices which mark the position of an avatar.
     
 ## **Glossary**
-   [Direct AT] - AT Damage dealt by the source of the collision
-   [Proximity AT] - AT Damage dealt in an area around the source.
-   [Projectile] - A physical, movable object with a traceable and interruptible path.
-   [Legacy AT] - (Primbashing, Collision-Based AT) AT which works by repeatedly bombarding an object with prims.
-   [LBA] - Short for “Listen-Based Armor” which largely replaced how objects were to take damage in the LLCS combat community. 
-   [LBA HEX] - Refers to v2 LBA format which has objects define a unique channel based on their object keys.
-   [LBA NON-HEX] - Refers to v1 LBA format which uses a fixed channel.
-   [HARDPOINT] - Weapon/Utility mount. Weapons and utilities such as flares, ADS, smoke launcher, etc consume a hardpoint slot.
-   [DPM] - Damage Per Minute. How much damage a weapon can put out within 60 seconds - This includes reloads or other forms of downtime and is a metric of a weapon's 'sustainable' damage output.
-   [DPS] - 
-        [DAMAGE PER SECOND] Similar to DPM but over the course of a single second, typically used for calculating a weapon's damage output while disregarding any downtime. This is mostly used to calculate a weapon's 'burst' damage output.
-        [DAMAGE PROCESSING SYSTEM] The metered combat system.
-   [Tank] - A ground vehicle that is relatively slow but features high burst damage and decent armor.
-   [Mech] - A ground vehicle that is more maneuverable than a tank but is typically weaker defensively. They can be small or large.
-   [Fortified] - Ignores LBA damage less than 5 and is immune to legacy AT. Typically associated with tanks and barricades.
+   - [Direct AT] AT Damage dealt by the source of the collision
+   - [Proximity AT] AT Damage dealt in an area around the source.
+   - [Projectile] A physical, movable object with a traceable and interruptible path.
+   - [Legacy AT] (Primbashing, Collision-Based AT) AT which works by repeatedly bombarding an object with prims.
+   - [LBA] Short for “Listen-Based Armor” which largely replaced how objects were to take damage in the LLCS combat community. 
+   - [LBA HEX] Refers to v2 LBA format which has objects define a unique channel based on their object keys.
+   - [LBA NON-HEX] Refers to v1 LBA format which uses a fixed channel.
+   - [HARDPOINT] Weapon/Utility mount. Weapons and utilities such as flares, ADS, smoke launcher, etc consume a hardpoint slot.
+   - [DPM] Damage Per Minute. How much damage a weapon can put out within 60 seconds - This includes reloads or other forms of downtime and is a metric of a weapon's 'sustainable' damage output.
+   - [DPS] 
+        - [DAMAGE PER SECOND] Similar to DPM but over the course of a single second, typically used for calculating a weapon's damage output while disregarding any downtime. This is mostly used to calculate a weapon's 'burst' damage output.
+        - [DAMAGE PROCESSING SYSTEM] The metered combat system.
+   - [Tank] A ground vehicle that is relatively slow but features high burst damage and decent armor.
+   - [Mech] A ground vehicle that is more maneuverable than a tank but is typically weaker defensively. They can be small or large.
+   - [Fortified] Ignores LBA damage less than 5 and is immune to legacy AT. Typically associated with tanks and barricades.
