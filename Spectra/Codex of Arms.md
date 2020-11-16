@@ -1,21 +1,21 @@
-Rules are broken into 3 categories:
+**Rules are broken into 3 categories**
 1. Administration
 2. Weapons and Utilities
 3. Assists
 
--=Administration=-
+**-=Administration=-**
     All offenders should be notified and cited of their infractions. Depending on the severity of the offense, a citation may not arrive until after enforcement - if at all.
 
     Those who wish to oversee the actions of their members will be granted that opportunity, if deemed fit. As such, OiCs may not be immediately granted this status upon request and can be refused if they are found unfit for the role. In addition, individual offenders may not redirect administrative proxies during citations. They are to comply with any requests or they will be considered non-compliant and will be removed from the region.
 
     Participants should ask administration if they may use or test gear that may be outside the guidelines. Administration can opt to not enforce rules as long as participants agree to not be disruptive and other participants don't take issue with what is being used. Our goal is primarily to target disruptive behavior, as such these rules may not always be enforced as written. It's the spirit of the rule we seek to uphold, not so much the letter of it.
 
-    Rules are likely to change in response to developments within the region. Terms in [brackets] are subject to review for allowance.
+    Rules are likely to change in response to developments within the region. Terms in [*brackets*] are subject to review for allowance.
     
--=Weapons=-
+**-=Weapons=-**
 
     [Projectiles]
-- Must be labeled properly, ie. "Smooth Criminal" is not a valid name for a bullet. This is so administration can quickly identify a projectile's type, purpose, and origin.
+- Must be labeled properly, ie. "*Smooth Criminal*" is not a valid name for a bullet. This is so administration can quickly identify a projectile's type, purpose, and origin.
 - May not exceed 200m/s
 - May not exceed 5 meters in length and 0.05 meters in width, Example: 5.0x0.05x0.05
     - Some omissions may be made for explosive projectiles or vehicle rounds.
@@ -33,7 +33,7 @@ Rules are broken into 3 categories:
 - Minimum acceptable reload time is 2.5 seconds + 0.5 seconds for every 10 rounds above 30.
 
     [Explosives]
-- May not exceed 100m/s
+- Rockets, Grenades, or similar may not exceed 100m/s
     - Tank shells are excluded from this rule.
 - May not use collision-based (legacy) AT. All relevant objects are required to take LBA damage.
 - Lingering effects such as [ gas, flashbangs, or  fire ] will not be permitted at this time.
@@ -41,8 +41,8 @@ Rules are broken into 3 categories:
     - If explosion radius exceeds 5 meters, damage must be reduced by at least 10 per meter after 3 meters.
 - Minimum reload time for any explosive launcher is 5 second per projectile.
 - Proximity AT damage must fall off by at least 20% of the initial amount per meter from the center of the blast.
-- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [15 second] cooldown.
-- Seeking Munitions must follow the guidelines here: https://github.com/MalefactorIX/SLMC-Seeker-2020
+- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [15 second] cooldown. This is reduced to 5 seconds for explosives that much be drawn.
+- Seeking Munitions must follow the guidelines ![here](https://github.com/MalefactorIX/SLMC-Seeker-2020)
     - They may not target infantry-class units.
 
     [Melee]
@@ -82,7 +82,7 @@ Rules are broken into 3 categories:
 - Air vehicles must take damage from collisions. 
 - Tanks are permitted to be Fortified (See Glossary)
 
--=Assists=-
+**-=Assists=-**
     [Movement]
 All form of movement assistance is disallowed excluding those provided via the DPS system. This includes but is not limited to...
     - Hard fall cancelling
@@ -103,7 +103,7 @@ All forms of visual assistance is disallowed. This includes but is not limited t
     - Hitboxes, ARC, Wireframe, or similar client-enabled features.
     - Weapons or devices which mark the position of an avatar.
     
--=Glossary=-
+**-=Glossary=-**
     [Direct AT] - AT Damage dealt by the source of the collision
     [Proximity AT] - AT Damage dealt in an area around the source.
     [Projectile] - A physical, movable object with a traceable and interruptible path.
