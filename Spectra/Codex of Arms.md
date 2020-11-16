@@ -33,8 +33,9 @@
 - Minimum acceptable reload time is 2.5 seconds + 0.5 seconds for every 10 rounds above 30.
 
 ####    [Explosives]
-- Rockets, Grenades, or similar may not exceed 100m/s
+- Launched Rockets, Grenades, or similar may not exceed 100m/s
     - Tank shells are excluded from this rule.
+- Thrown Grenades may not exceed 50m/s, excluding gravity.
 - May not use collision-based (legacy) AT. All relevant objects are required to take LBA damage.
 - Lingering effects such as [ gas, flashbangs, or  fire ] will not be permitted at this time.
 - Explosive radius may not exceed 10 meters and must be raycasted from epicenter.
@@ -60,9 +61,9 @@
 ####    [Deployables/Mines]
 - All deployables must support LBA damage.
 - Barricades will be permitted use and may not exceed 100 HP and may be Fortified (See Glossary).
-- Riot Shields are will be permitted use and exceed 50 HP.
+- Riot Shields are will be permitted use and may not exceed 25 HP.
     - Shield must drop if the user attempts to shoot from it and must have a minimum 2s cooldown before it can be raised again.
-- A single person is limited to [ 3 ] mines, remote explosives (ie. C4), or offensive devices at a time.
+- A single person is limited to [ 5 ] mines, remote explosives (ie. C4), or offensive devices at a time.
     - All devices in this category must support LBA and only have 1 HP. It is not required to display LBA set-text or health.
 - Mines...
     - Placing a new mine must despawn or move the eldest one if the previous limit is exceeded.
@@ -70,6 +71,7 @@
     - Mine must be naturally visible to an avatar within 10 meters of it. It must have some part of it visible that can be identified as a mine.
     - Mines may not have a detection radius exceeding 3 meters. This sensor may use IFF or group-safe detection,
     - Mines must detonate on physical contact with any person, including the group using it.
+    - Mines not move once placed. They are no longer mines at that point; They are drones.
 
 ####    [Vehicles]
 - Must be compliant with all LBA restrictions
