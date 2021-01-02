@@ -73,7 +73,7 @@ state boomed
             vector tpos=llDetectedPos(d);
             list ray=llCastRay(tpos,vel,[RC_REJECT_TYPES,RC_REJECT_AGENTS]);
             if(llList2Vector(ray,1)==ZERO_VECTOR)
-                llRegionSayTo(o,chan,"dmg,"+llDetectedName(d)+","+(string)(base_damage-(falloff*llVecDist(tpos,vel)))+","+(string)llDetectedKey(0)+",blast");
+                llRegionSayTo(o,chan,"dmg,"+llDetectedName(d)+","+(string)(base_damage-(falloff*llVecDist(tpos,vel)))+","+(string)llDetectedKey(0));
         }
         llSleep(1.0);
         llDie();
