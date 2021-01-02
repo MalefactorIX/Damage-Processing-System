@@ -6,7 +6,7 @@ boom(vector pos)
 {
     llSetLinkPrimitiveParamsFast(-1,[PRIM_PHYSICS,0,PRIM_PHANTOM,1,PRIM_COLOR,-1,ZERO_VECTOR,0.0,PRIM_GLOW,-1,0.0]);
     llLinkParticleSystem(-1,[]);
-    list ray=llCastRay(pos,pos-(vel*0.075),[]);
+    list ray=llCastRay(pos-(vel*0.075),pos+(vel*0.075),[]);
     vector raypos=llList2Vector(ray,1);
     if(raypos)llSetRegionPos(vel=raypos);
     else vel=pos;
@@ -72,7 +72,8 @@ state boomed
             key hit=llDetectedKey(d);
             vector tpos=llDetectedPos(d);
             list ray=llCastRay(tpos,vel,[RC_REJECT_TYPES,RC_REJECT_AGENTS]);
-            if(llList2Vector(ray,1)==ZERO_VECTOR)llRegionSayTo(o,chan,"dmg,"+llDetectedName(d)+","+(string)(base_damage-(falloff*llVecDist(tpos,vel)))+","+(string)llDetectedKey(0));
+            if(llList2Vector(ray,1)==ZERO_VECTOR)
+                llRegionSayTo(o,chan,"dmg,"+llDetectedName(d)+","+(string)(base_damage-(falloff*llVecDist(tpos,vel)))+","+(string)llDetectedKey(0)+",blast");
         }
         llSleep(1.0);
         llDie();
