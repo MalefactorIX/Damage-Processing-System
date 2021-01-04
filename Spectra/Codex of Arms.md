@@ -37,7 +37,11 @@
     - Tank shells are excluded from this rule.
 - Thrown Grenades may not exceed 50m/s, excluding gravity.
 - May not use collision-based (legacy) AT. All relevant objects are required to take LBA damage.
-- Lingering effects such as [ gas, flashbangs, or  fire ] will not be permitted at this time.
+- Lingering effects such as [Flashbangs, Caging Devices, etc] will not be permitted.
+- Lingering Damage effects such as flames, gas, etc must not be immediately lethal and must possess the potential of survival.
+   - Example 1: Fire should deal reduced damage to avatars that are standing still or crouching. The total damage for this should be less than 100 for the entire duration of the burning effect.
+   - Example 2: Gas DOTs should be limited ot the AOE of the actual blast and therefore non-lethal once an avatar exits the radius.
+   - For inquiry or other allowances, please contact an administrative proxy.
 - Explosive radius may not exceed 10 meters and must be raycasted from epicenter.
     - If explosion radius exceeds 5 meters, damage must be reduced by at least 10 per meter after 3 meters.
 - Minimum reload time for any explosive launcher is 5 second per projectile.
