@@ -1,4 +1,4 @@
-##Welcome
+## Welcome
 ### -=Hub Areas/Landing Points/Spawns=-
 All hub areas or areas marked as spawns are a [CEASE FIRE] area. Discharging any weapon within or into these areas with the intent to kill someone in it or from it will not be allowed.
 Sitting around in the hub and shitposting will be treated as an act of hostility and will be treated the same way. Requests to remove such individuals will be granted. We have a minimum level of conduct expected of all visitors.
