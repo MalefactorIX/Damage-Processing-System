@@ -10,7 +10,9 @@ All non-player controlled avatars (Bots or Scripted Agents) will be banned on si
 In order to enforce fair play, our combat parcel is access-only. However, usually within 30 seconds our region monitor will add you automatically to the access list.
 This monitor handles enforcement of our blacklist against problematic equipment or attachments, and you will be notified and denied access until the offending items are removed.
 If you are found to not be wearing any problematic item, you may see this message: 
+    
     [00:00:01]  You have been issued a pass good for 2880 minutes
+    
 This means you are able to enter the combat parcel. This system updates every 30 seconds so if you are notified of an item and remove it, it will automatically add you to the access list without further input.
 
 In addition to equipment restrictions, you are required to join the region's Experience in order to participate.
