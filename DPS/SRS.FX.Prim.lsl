@@ -1,4 +1,4 @@
-//User an emitter at least 5 cubic meters in size (5,5,5)
+//User an emitter at least 125 cubic meters in size (5,5,5)
 key id;//Rezzer UUID
 string trail="ef728e1e-4122-560e-7dcf-3e9525f8068d";// - Wavy
 string puff="8738201d-ec3d-288a-7d65-031211f9fee7";//- Smoke puff
