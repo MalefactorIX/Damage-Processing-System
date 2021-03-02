@@ -81,14 +81,16 @@
 
 ####    [Vehicles]
 - Must be compliant with all LBA restrictions
-- Ground Vehicles must have a description ending in ",VEH"
-- Air Vehicles must have a description ending in "AIR"
-- Air Vehicles may not engage units below the Aegis Barrier while it is online.
 - Maximum LBA damage for any vehicle-mounted weapon is 300 DPM.
     - A heavy vehicle (100+ HP) may have up to 4 hardpoints (See Glossary for Details)
-    - A light vehicle (50 or Less HP) may have up to 2 hard points.
-- Air vehicles must take damage from collisions. 
+    - A light vehicle (100 or Less HP) may have up to 2 hard points.
+- Ground Vehicles must have a description ending in ",VEH"
 - Tanks are permitted to be Fortified (See Glossary)
+- Air Vehicles must have a description ending in "AIR"
+- Air Vehicles may not engage units below the Aegis Barrier while it is online.
+- Air vehicles must take damage from collisions. 
+- Air Vehicles with camera-tracked steering may only accelerated in the direction they are facing.
+- Air Vehicles with camera-tracked steering may only have forward-firing weapons.
 
 ## **Assists**
 ####    [Movement]
