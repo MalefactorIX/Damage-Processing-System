@@ -89,7 +89,7 @@
 - Air Vehicles must have a description ending in "AIR"
 - Air Vehicles may not engage units below the Aegis Barrier while it is online.
 - Air vehicles must take damage from collisions. 
-- Air Vehicles with camera-tracked steering may only accelerated in the direction they are facing.
+- Air Vehicles with camera-tracked steering may only accelerate in the direction they are facing.
 - Air Vehicles with camera-tracked steering may only have forward-firing weapons.
 
 ## **Assists**
