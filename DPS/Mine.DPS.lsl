@@ -99,7 +99,7 @@ key o;
 integer los(vector start, vector target, key id)
 {
     string data=llToLower(llKey2Name(id));
-    list parse=llParseStringKeppNulls(data,"","emp");
+    list parse=llParseStringKeepNulls(data,"","emp");
     if(llGetListLength(parse)>1)return 1;
     list ray=llCastRay(start,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_MAX_HITS,1]);
     if(llList2Vector(ray,1)==ZERO_VECTOR||llList2Key(ray,0)==me)return 1;
