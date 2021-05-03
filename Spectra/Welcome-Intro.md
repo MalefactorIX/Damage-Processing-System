@@ -1,13 +1,13 @@
 ## Welcome
 ### -=Hub Areas/Landing Points/Spawns=-
-All hub areas or areas marked as spawns are a [CEASE FIRE] area. Discharging any weapon within or into these areas with the intent to kill someone in it or from it will not be allowed.
-Sitting around in the hub and shitposting will be treated as an act of hostility and will be treated the same way. Requests to remove such individuals will be granted. We have a minimum level of conduct expected of all visitors.
+All non-combat areas or areas marked as spawns are a [CEASE FIRE] area. Discharging any weapon within or into these areas with the intent to kill someone in it or from it will not be allowed.
+Sitting around and shitposting will be treated as an act of hostility and will be treated the same way. Requests to remove such individuals will be granted. We have a minimum level of conduct expected of all visitors.
 
-Members of the same team/group are not permitted to intentionally engage each other. Those who do not have permission to set home in the properly marked spawn locations are not permitted to fight.
+During combat, members of the same team/group are not permitted to intentionally engage each other. Those who do not have permission to set home in the properly marked spawn locations are not permitted to fight.
 All non-player controlled avatars (Bots or Scripted Agents) will be banned on sight and without warning.
 
 ### -=Access=-
-In order to enforce fair play, our combat parcel is access-only. However, usually within 30 seconds our region monitor will add you automatically to the access list.
+In order to maintain region stability, our main parcels are access-only. However, usually within 30 seconds our region monitor will add you automatically to the access list.
 This monitor handles enforcement of our blacklist against problematic equipment or attachments, and you will be notified and denied access until the offending items are removed.
 If you are found to not be wearing any problematic item, you may see this message: 
     
