@@ -3,19 +3,7 @@
 All non-combat areas or areas marked as spawns are a [CEASE FIRE] area. Discharging any weapon within or into these areas with the intent to kill someone in it or from it will not be allowed.
 Sitting around and shitposting will be treated as an act of hostility and will be treated the same way. Requests to remove such individuals will be granted. We have a minimum level of conduct expected of all visitors.
 
-During combat, members of the same team/group are not permitted to intentionally engage each other. Those who do not have permission to set home in the properly marked spawn locations are not permitted to fight.
-All non-player controlled avatars (Bots or Scripted Agents) will be banned on sight and without warning.
-
-### -=Access=-
-In order to maintain region stability, our main parcels are access-only. However, usually within 30 seconds our region monitor will add you automatically to the access list.
-This monitor handles enforcement of our blacklist against problematic equipment or attachments, and you will be notified and denied access until the offending items are removed.
-If you are found to not be wearing any problematic item, you may see this message: 
-    
-    [00:00:01]  You have been issued a pass good for 2880 minutes
-    
-This means you are able to enter the combat parcel. This system updates every 30 seconds so if you are notified of an item and remove it, it will automatically add you to the access list without further input.
-
-In addition to equipment restrictions, you are required to join the region's Experience in order to participate.
+During combat, members of the same team/group are not permitted to intentionally engage each other. Those who do not have permission to set home in the properly marked spawn locations are not permitted to fight for that side.
 
 ### -=Major Guidelines=-
 Harboring individuals who have committed offenses against these guidelines is also grounds to receive the same punishment: You being banned, without appeal, indefinitely. In addition, you will be reported for violating the SecondLife TOS where it may apply.
