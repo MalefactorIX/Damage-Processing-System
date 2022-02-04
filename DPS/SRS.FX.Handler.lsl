@@ -1,6 +1,6 @@
 //Tracer FX Parameters
-vector color=<1.0,0.75,0.5>;
-string fxprim="[L3]P43B.FX";
+vector color=<0.5,0.5,1.0>;
+string fxprim="[TK]Teravolt.FX";
 string obj;
 integer obchan=-1;
 key objkey;
@@ -11,10 +11,12 @@ fxupdate()//Run on state_entry and attach/on_rez
     objkey="";
     llRegionSay(obchan,"die");
 }
-hitfx(string pos)
+hitfx(vector pos,vector start)
 {
-    llRegionSayTo(objkey,obchan,pos);
-    llLinkParticleSystem(beamfx,beam+[PSYS_SRC_TARGET_KEY,objkey,PSYS_SRC_MAX_AGE,0.2]);
+    //if(pos==ZERO_VECTOR)return;//Breaks for some reason idk, don't care in a perfect world this should always be false
+    float dist=llVecDist(start,pos);
+    llRegionSayTo(objkey,obchan,(string)pos);
+    llLinkParticleSystem(beamfx,beam+[PSYS_SRC_TARGET_KEY,objkey,PSYS_PART_MAX_AGE,((dist/200.0)*0.1)+0.05]);
 }
 purge(integer hex,key targ, string name,string fdmg)
 {
@@ -22,8 +24,8 @@ purge(integer hex,key targ, string name,string fdmg)
     if(hex)llRegionSayTo(targ,hex,(string)targ+","+fdmg);
     else llRegionSayTo(targ,-500,(string)targ+",damage,"+fdmg);
 }
-integer flip;//Coinflip
-float range=150.0;//How far before LBA no longer triggers
+integer flip;
+float range=100.0;//How far before LBA no longer triggers
 rcshot()
 {
     rotation rot=llGetCameraRot();
@@ -33,7 +35,7 @@ rcshot()
     vector hit=llList2Vector(ray,1);
     if(hit)
     {
-        if(objkey)hitfx((string)hit);
+        if(objkey)hitfx(hit,pos);
         if(llVecDist(pos,hit)<range)
         {
             if(flip=!flip)
@@ -45,18 +47,60 @@ rcshot()
                 {
                     integer hex=(integer)("0x" + llGetSubString(llMD5String(tid,0), 0, 3));
                     if(llGetSubString(desc,0,5)!="LBA.v.")hex=0;
-                    string fmg="1";
-                    if(llList2String(llCSV2List(desc),-1)=="NPC")fmg="3";
+                    string fmg="2";
+                    if(llList2String(llCSV2List(desc),-1)=="NPC")fmg="5";
                     //llSay(0,(string)hex);
                     purge(hex,tid,llKey2Name(tid),fmg);
                 }
             }
         }
     }
-    else if(epos.x<255.0&&epos.y<255.0)
+    else if(objkey)hitfx(regionend(epos,pos),pos);
+}
+vector regionend(vector dest,vector init)//Note, this method may not work with values in excess of 509
+{
+    vector norm=llVecNorm(dest-init);
+    float x=llFabs(dest.x);
+    float y=llFabs(dest.y);
+    vector inter;
+    float b;//Total distance to walk back
+    if(x>y)
     {
-        if(objkey)hitfx((string)epos);
+        if(dest.x>0.0)b=dest.x-255.0;
+        else b=dest.x;
+        //Cross multiply, if a/b = c/d, then a*d=c*b is also true
+        //We should assume norm.x (or 'A') is 1.0 at all times, if not then C is 1.0, and we need to solve for D.
+        //norm.x/b = 1.0/???
+        //Then we get, norm.x*??? = b. Divide b by norm.x
+        if(norm.x<1.0)
+        {
+            if(norm.x)b=b/norm.x;//Is it possible to do this to a vector and skip a few steps?
+            else //Improbable, yes. Impossible? Not sure.
+            {
+                llOwnerSay("You should not be seeing this. If you are, tell the creator. (X)");
+                return ZERO_VECTOR;
+            }
+        }
+        inter=<dest.x-(b*norm.x),dest.y-(b*norm.y),dest.z-(b*norm.z)>;//Then we let the math work from there
     }
+    else //Same shit, different axis
+    {
+        if(dest.y>0.0)b=dest.y-255.0;
+        else b=dest.y;
+        if(norm.y<1.0)
+        {
+            if(norm.y)b=b/norm.y;
+            else //Improbable, yes. Impossible? Not sure.
+            {
+                llOwnerSay("You should not be seeing this. If you are, tell the creator. (Y)");
+                return ZERO_VECTOR;
+            }
+        }
+        inter=<dest.x-(b*norm.x),dest.y-(b*norm.y),dest.z-(b*norm.z)>;
+    }
+    //llOwnerSay((string)norm+"|"+(string)dest+"|"+(string)b+"|"+(string)inter+"|"+(string)llVecNorm(inter-init));
+    //First and Last values should be the same, and the 'inter' value must be between <0,0,z> and <255,255,z>
+    return inter;
 }
 colorchange()
 {
@@ -105,10 +149,10 @@ colorchange()
              PSYS_PART_END_COLOR,color,
              PSYS_PART_START_GLOW,0.2,
              PSYS_PART_END_GLOW,0.2,
-             PSYS_PART_START_SCALE,<0.5,5.3,5.0>,
-             PSYS_PART_END_SCALE,<0.5,5.1,5.0>,
-             PSYS_PART_MAX_AGE,0.3,
-             PSYS_SRC_MAX_AGE,0.0,
+             PSYS_PART_START_SCALE,<1.0,5.5,5.0>,
+             PSYS_PART_END_SCALE,<1.0,5.5,5.0>,
+             //PSYS_PART_MAX_AGE,0.3,
+             PSYS_SRC_MAX_AGE,0.1,
              PSYS_SRC_ACCEL,<0.0,0.0,0.0>,
              PSYS_SRC_BURST_PART_COUNT,1,
              PSYS_SRC_BURST_RADIUS,0.1,
