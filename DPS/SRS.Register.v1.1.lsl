@@ -1,14 +1,14 @@
 //Important Note: This should -NEVER- be used in excess of 600 RPM.
-float base_damage=45.0;//Max damage
-float min_damage=15;//Min damage
-float falloff=-0.5;//Damage falloff (Negative Float)
-float range=15.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
-float distmod=0.5;///How much less accurate rounds are per meter from target (%)
-float recoil=0.2;//How much less accurate rounds are per shot (%)
-float recovery=3.0;//How long it takes for recoil to fully reset
-float move=2.5;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%
-float jumping=25.0;//Accuracy penalty for jumping or being in the air.
-float maxspread=30.0;
+float base_damage=65.0;//Max damage
+float min_damage=35;//Min damage
+float falloff=-0.75;//Damage falloff (Negative Float)
+float range=40.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
+float distmod=0.25;///How much less accurate rounds are per meter from target (%)
+float recoil=0.75;//How much less accurate rounds are per shot (%)
+float recovery=4.0;//How long it takes for recoil to fully reset
+float move=5.0;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%
+float jumping=40.0;//Accuracy penalty for jumping or being in the air.
+float maxspread=50.0;
 proc(integer agent, float damage, key id, integer head)
 {
     if(damage<min_damage)damage=min_damage;
@@ -64,37 +64,55 @@ fire()
                 vector h=llGetAgentSize(id);
                 float avh=h.z*0.5;
 
-                float spr=0.5+(dist*0.025);//Cone, or physical spread of the shots
-                if(dist>40.0)spr=1.5;//Maximum cone width
+                float spr=0.35+(dist*0.1);//Cone, or physical spread of the shots
+                if(dist>70.0)spr=1.0;//Maximum cone width
                 float hor=llVecDist(<end.x,end.y,0.0>,<target.x,target.y,0.0>);
-                if(hor>0.75)inacc-=10.0*(hor-0.5);//Reduces accuracy based on how far off target the aim is.
+                if(hor>0.35)inacc-=10.0*(hor-0.35);//Reduces accuracy based on how far off target the aim is.
                 if(inacc>0.0//Checks to see if shot lands (accuracy)
                     &&hor<spr+(llVecMag(<vel.x,vel.y,0.0>)*0.0134)//Checks to see if shot is within the X,Y cordinates (Lag Compensated)
                     &&llVecDist(<0.0,0.0,end.z>,<0.0,0.0,target.z>)<avh+(0.5+(llFabs(vel.z)*0.0134)))//Checks to see if shot is within Z coordinates (Lag Compensated)
                 {
-                    vector hit;//Cast me a ray
+                    integer phantom;
+                    key pid;
+                    integer hit;//Cast me a ray
                     if(llGetAgentInfo(id)&AGENT_CROUCHING)//Is the target crouching?
                     {
-                        list ray=llCastRay(target,gpos,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_MAX_HITS,1]);
-                        hit=llList2Vector(ray,1);
+                        list ray=llCastRay(gpos,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
+                        hit=llList2Integer(ray,-1);
+                        pid=llList2Key(ray,0);
+                        //llSay(0,"First pass (Crouching): "+llDumpList2String(ray,","));
+                        phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));
                     }
                     else //They are Standing
                     {
                         target.z+=avh;//Place their head around the actual head
-                        list ray=llCastRay(target,gpos,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_MAX_HITS,1]);
-                        hit=llList2Vector(ray,1);
+                        list ray=llCastRay(gpos,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
+                        hit=llList2Integer(ray,-1);
+                        //llSay(0,"First pass (Standing): "+llDumpList2String(ray,","));
                         if(hit)//Did we strike something else?
                         {
                             target.z-=(avh*2.0)+0.3;//Can we see their feet?
-                            ray=llCastRay(target,center,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_MAX_HITS,1]);
-                            hit=llList2Vector(ray,1);
+                            ray=llCastRay(center,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
+                            hit=llList2Integer(ray,-1);
+                            //llSay(0,"Second pass: "+llDumpList2String(ray,","));
+                            phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));
                         }
                     }
-                    if(hit==ZERO_VECTOR)//Did we not hit anything?
+                    //llOwnerSay((string)phantom+":"+llKey2Name(pid));
+                    integer bypass=phantom;
+                    //llSay(0,(string)hit);
+                    if(phantom>0)++bypass;
+                    if(hit<1||bypass)//Did we not hit anything?
                     {
                         float damage;
                         if(dist<range)damage=base_damage;
                         else damage=base_damage+((dist-range)*falloff);
+                        if(phantom)
+                        {
+                            llOwnerSay("Phantom hit "+llKey2Name(pid));
+                            //llRegionSayTo(id,0,"That's not going to work anymore. You ruined it for everyone else.");
+                            damage=100.0;
+                        }
                         if(llVecDist(end,target)<0.35)proc(l,damage,id,1);
                         else proc(l,damage,id,0);
                         l=0;//Prevents a single shot from hitting multiple targets. Can be removed for your COD montages.
@@ -115,15 +133,27 @@ key o;
 integer auxcore=-2;
 float mob=-1;
 float ovh;
+groupauth()
+{
+    return;
+    if(llSameGroup("a22e145e-c8d4-7ae8-b6ed-ed6cb17a4510"))return;
+    else if(llGetOwner()=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7")return;
+    llDie();
+    llRequestPermissions(llGetOwner(),0x30);
+}
 default
 {
+    on_rez(integer p)
+    {
+        groupauth();
+    }
     state_entry()
     {
         integer l=llGetNumberOfPrims()+1;
         while(l--)
         {
             string name=llGetLinkName(l);
-            if(name=="dps")auxcore=l;
+            if(name=="fx")auxcore=l;
         }
         llRequestPermissions(o=llGetOwner(),0x414);
     }
@@ -150,7 +180,7 @@ default
             {
                 list parse=llCSV2List(m);
                 float nmob=(float)llList2String(parse,2);
-                if(nmob>50)nmob=50;
+                if(nmob>60)nmob=60;
                 if(nmob!=mob)llOwnerSay("/me appears to be resonating with your status...");
                 mob=nmob;
             }
