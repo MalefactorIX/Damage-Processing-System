@@ -1,18 +1,18 @@
 //Important Note: This should -NEVER- be used in excess of 600 RPM.
-float base_damage=65.0;//Max damage
-float min_damage=35;//Min damage
+float base_damage=45.0;//Max damage
+float min_damage=27;//Min damage
 float falloff=-0.75;//Damage falloff (Negative Float)
 float range=40.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
 float distmod=0.25;///How much less accurate rounds are per meter from target (%)
 float recoil=0.75;//How much less accurate rounds are per shot (%)
-float recovery=4.0;//How long it takes for recoil to fully reset
+float recovery=5.0;//How long it takes for recoil to fully reset
 float move=5.0;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%
 float jumping=40.0;//Accuracy penalty for jumping or being in the air.
 float maxspread=50.0;
 proc(integer agent, float damage, key id, integer head)
 {
     if(damage<min_damage)damage=min_damage;
-    if(head)damage*=1.5;
+    //if(head)damage*=1.5;//Moved to processor
     llMessageLinked(auxcore,0,llKey2Name(id)+","+(string)damage+","+(string)head+",0",id);
 
 }
@@ -64,7 +64,7 @@ fire()
                 vector h=llGetAgentSize(id);
                 float avh=h.z*0.5;
 
-                float spr=0.35+(dist*0.1);//Cone, or physical spread of the shots
+                float spr=0.35+(dist*0.01);//Cone, or physical spread of the shots
                 if(dist>70.0)spr=1.0;//Maximum cone width
                 float hor=llVecDist(<end.x,end.y,0.0>,<target.x,target.y,0.0>);
                 if(hor>0.35)inacc-=10.0*(hor-0.35);//Reduces accuracy based on how far off target the aim is.
@@ -74,44 +74,38 @@ fire()
                 {
                     integer phantom;
                     key pid;
-                    integer hit;//Cast me a ray
+                    vector hit;//Cast me a ray
                     if(llGetAgentInfo(id)&AGENT_CROUCHING)//Is the target crouching?
                     {
                         list ray=llCastRay(gpos,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
-                        hit=llList2Integer(ray,-1);
+                        hit=llList2Vector(ray,1);
                         pid=llList2Key(ray,0);
-                        //llSay(0,"First pass (Crouching): "+llDumpList2String(ray,","));
-                        phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));
+                        phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));//Is someone being an ass?
                     }
                     else //They are Standing
                     {
                         target.z+=avh;//Place their head around the actual head
                         list ray=llCastRay(gpos,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
-                        hit=llList2Integer(ray,-1);
-                        //llSay(0,"First pass (Standing): "+llDumpList2String(ray,","));
+                        hit=llList2Vector(ray,1);
                         if(hit)//Did we strike something else?
                         {
                             target.z-=(avh*2.0)+0.3;//Can we see their feet?
                             ray=llCastRay(center,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
-                            hit=llList2Integer(ray,-1);
-                            //llSay(0,"Second pass: "+llDumpList2String(ray,","));
-                            phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));
+                            hit=llList2Vector(ray,1);
+                            phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));//Is it someone being a fucking asshole?
                         }
                     }
-                    //llOwnerSay((string)phantom+":"+llKey2Name(pid));
-                    integer bypass=phantom;
-                    //llSay(0,(string)hit);
-                    if(phantom>0)++bypass;
-                    if(hit<1||bypass)//Did we not hit anything?
+                    //llOwnerSay((string)phantom+":"+llKey2Name(pid));//Debug phantom hits
+                    if(hit==ZERO_VECTOR||phantom)//Did we not hit anything?
                     {
                         float damage;
                         if(dist<range)damage=base_damage;
                         else damage=base_damage+((dist-range)*falloff);
-                        if(phantom)
+                        if(phantom)//Someone is being a fucking asshole
                         {
                             llOwnerSay("Phantom hit "+llKey2Name(pid));
-                            //llRegionSayTo(id,0,"That's not going to work anymore. You ruined it for everyone else.");
-                            damage=100.0;
+                            //llRegionSayTo(id,0,"Next time try making a raycast blocker that isn't phantom, asshole.");
+                            damage=100.0;//Fuck 'em
                         }
                         if(llVecDist(end,target)<0.35)proc(l,damage,id,1);
                         else proc(l,damage,id,0);
