@@ -1,17 +1,17 @@
 //Settings
-string prim="[Spectra]OpenSource.DPS";//Damage Prim for DPS
+string prim="[Devkit]1911.Bullet.DPS";//Damage Prim for DPS
 float expose=1.25;//Damage multiplier for Exposed targets
 float resist=0.75;//Damage multiplier for Resisting targets
 float pen=0.5;//Armor Penetration (1.0 = No Penetration)
 list auxdata;//Used for storing AUX usage
 integer externalinput;//Does this weapon have an external component (ie. Grenades)?
-integer sync=-10283;//Channel weapons listen to for syncing
+integer sync=-10283;//Channel weapopns listen to for syncing
 integer staticchan=-10284;//Channel meters listen to for syncing
 integer hitmarker=-1991;//Channel hitmarker listens to
-string url="https://docs.google.com/document/d/1iMQlpjIERBsW8a34vt6pt6H7G7nFW9u9y7a4E3qGTno/edit";//URL for google doc
+string url="https://raw.githubusercontent.com/MalefactorIX/Damage-Processing-System/master/DPS/VersionAuth/Series%20A1";//URL for doc
 //
 list agents;
-string aspect;
+string aspect="devkit";//Used to flag damage values under certain conditions
 float armorcheck(string parse)//Returns armor value for armored avatars
 {
     integer boot=llSubStringIndex(parse,"armor");
@@ -38,14 +38,14 @@ proc(string name, float damage, key id, integer head, integer ex)
         }
     }
     //
-    if(head)//Headshot cooldown for automatic weapons
+    if(head)
     {
         float hit=llGetTimeOfDay();
-        if(llFabs(hit-lhit)>0.5)
+        if(llFabs(hit-lhit)>0.5)//Puts a cooldown on headshots to keep automatic weapons from face-raping people.
         {
+            damage*=1.5;//Headshot modifier
             lhit=hit;
         }
-        else damage*=0.75;
     }
     damage+=pdam;//Scale
     integer aux=llListFindList(auxdata,[id]);
@@ -168,7 +168,7 @@ boot()
     llTakeControls(CONTROL_ML_LBUTTON,1,1);
     //llOwnerSay("System now online.");
 }
-string ver="PR v1.01";
+string ver="Devkit 4-17";
 string oname;
 integer mychan;
 integer exchan;
@@ -186,6 +186,9 @@ default
     }
     state_entry()
     {
+        prim=llGetInventoryName(INVENTORY_OBJECT,0);
+        if(prim=="")prim="INVALID_NAME_NO_OBJECT";
+        llOwnerSay("[DEV KIT NOTICE] Damage prim set to ["+prim+"]. If this is incorrect, make sure there is only 1 object in the link this script is inside of and then reset this script");
         mychan=(integer)("0x" + llGetSubString(llMD5String(o=llGetOwner(),0), 0, 2));
         oname=llGetObjectName();
         auxdata=[];
@@ -195,16 +198,12 @@ default
     }
     http_response(key request_id, integer status, list metadata, string body)
     {
-        list parse=llParseString2List(body,["VER208"],[""]);
+        list parse=llCSV2List(body);
         body="";
         //integer usable=16384-llStringLength(llList2String(parse,0));
         llSetObjectName("DPS Processor");
         if(llGetListLength(parse)>1)
         {
-            parse=llDeleteSubList(parse,0,0);
-            parse=llParseString2List((string)parse,["\">"],[""]);
-            parse=llDeleteSubList(parse,1,-1);
-            parse=llParseString2List((string)parse,["-"],[""]);
             integer p=llListFindList(parse,[ver]);
             if(p>-1)
             {
@@ -257,11 +256,11 @@ default
             //llSay(0,name+" ["+llKey2Name(llGetOwnerKey(id))+"]: "+message);
             key oid=llGetOwnerKey(id);
             //if(id==oid||oid==o)return;
-            integer aux=llListFindList(auxdata,[id]);
-            if(aux<0)
+            integer aux=llListFindList(auxdata,[oid]);//Owner_UUID Parameter
+            if(aux<0)//Owner not found
             {
                 string ochan="0x"+llGetSubString(llMD5String((string)oid,0),0,3);
-                auxdata+=[oid,id,ochan];//New data
+                auxdata+=[oid,id,ochan];//New data: Written as Owner_ID,AUX_ID,AUX_Channel
                 if(oid==o)
                 {
                     llRegionSay(staticchan,"stat");//Polls DPS stats for owner
@@ -271,15 +270,15 @@ default
                 //llSay(0,llDumpList2String(auxdata," | "));
                 //llOwnerSay("AUX Data added for "+llKey2Name(oid));
             }
-            else if(llList2Key(auxdata,aux)!=id)
+            else if(llList2Key(auxdata,aux+1)!=id)//Aux UUID does not match registered AUX ID (reattach or relog)
             {
                 if(oid==o)
                 {
                     llRegionSay(staticchan,"stat");//Polls DPS stats for owner
                     oaux=id;
                 }
-                auxdata=llListReplaceList(auxdata,[id],aux,aux);//Update data
-                //llOwnerSay("AUX Data updated for "+llKey2Name(oid));
+                auxdata=llListReplaceList(auxdata,[id],aux+1,aux+1);//Update data
+                //llOwnerSay("AUX Data updated for "+llKey2Name(oid)+" on channel "+(string)llList2Integer(auxdata,aux+2));
             }
         }
         else if(chan==exchan)
@@ -319,8 +318,8 @@ default
                 float prow=(float)llList2String(parse,0);
                 if(prow>60)prow=60;
                 //float dura=1.0+(prow/100.0);
-                pdam=prow*0.5;
-                aspect=llList2String(parse,-1);
+                pdam=prow*0.25;
+                //aspect=llList2String(parse,-1);
                 //dur=(string)llFloor(basedur*dura);
             }
         }
