@@ -63,7 +63,7 @@ fire()//SRS Firing Pattern
                 vector h=llGetAgentSize(id);
                 float avh=h.z*0.5;
 
-                float spr=0.35+(dist*0.1);//Cone, or physical spread of the shots
+                float spr=0.35+(dist*0.01);//Cone, or physical spread of the shots
                 if(dist>70.0)spr=1.0;//Maximum cone width
                 float hor=llVecDist(<end.x,end.y,0.0>,<target.x,target.y,0.0>);
                 if(hor>0.35)inacc-=10.0*(hor-0.35);//Reduces accuracy based on how far off target the aim is.
