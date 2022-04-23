@@ -5,19 +5,18 @@ float falloff=-0.75;//Damage falloff (Negative Float)
 float range=40.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
 float distmod=0.25;///How much less accurate rounds are per meter from target (%)
 float recoil=0.75;//How much less accurate rounds are per shot (%)
-float recovery=5.0;//How long it takes for recoil to fully reset
+float recovery=4.0;//How long it takes for recoil to fully reset
 float move=5.0;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%
 float jumping=40.0;//Accuracy penalty for jumping or being in the air.
 float maxspread=50.0;
-proc(integer agent, float damage, key id, integer head)
+proc(float damage, key id, integer head)
 {
     if(damage<min_damage)damage=min_damage;
-    //if(head)damage*=1.5;//Moved to processor
     llMessageLinked(auxcore,0,llKey2Name(id)+","+(string)damage+","+(string)head+",0",id);
 
 }
 float spread;//Do not edit.
-fire()
+fire()//SRS Firing Pattern
 {
     if(spread>0.0)//This part handles recoil reduction
     {
@@ -64,7 +63,7 @@ fire()
                 vector h=llGetAgentSize(id);
                 float avh=h.z*0.5;
 
-                float spr=0.35+(dist*0.01);//Cone, or physical spread of the shots
+                float spr=0.35+(dist*0.1);//Cone, or physical spread of the shots
                 if(dist>70.0)spr=1.0;//Maximum cone width
                 float hor=llVecDist(<end.x,end.y,0.0>,<target.x,target.y,0.0>);
                 if(hor>0.35)inacc-=10.0*(hor-0.35);//Reduces accuracy based on how far off target the aim is.
@@ -80,7 +79,7 @@ fire()
                         list ray=llCastRay(gpos,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
                         hit=llList2Vector(ray,1);
                         pid=llList2Key(ray,0);
-                        phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));//Is someone being an ass?
+                        phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));
                     }
                     else //They are Standing
                     {
@@ -92,23 +91,24 @@ fire()
                             target.z-=(avh*2.0)+0.3;//Can we see their feet?
                             ray=llCastRay(center,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
                             hit=llList2Vector(ray,1);
-                            phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));//Is it someone being a fucking asshole?
+                            phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));
                         }
                     }
-                    //llOwnerSay((string)phantom+":"+llKey2Name(pid));//Debug phantom hits
-                    if(hit==ZERO_VECTOR||phantom)//Did we not hit anything?
+                    //llOwnerSay((string)phantom+":"+llKey2Name(pid));
+                    integer bypass=phantom;
+                    if(hit==ZERO_VECTOR||bypass)//Did we not hit anything?
                     {
                         float damage;
                         if(dist<range)damage=base_damage;
                         else damage=base_damage+((dist-range)*falloff);
-                        if(phantom)//Someone is being a fucking asshole
+                        if(phantom)
                         {
                             llOwnerSay("Phantom hit "+llKey2Name(pid));
-                            //llRegionSayTo(id,0,"Next time try making a raycast blocker that isn't phantom, asshole.");
-                            damage=100.0;//Fuck 'em
+                            //llRegionSayTo(id,0,"That's not going to work anymore. You ruined it for everyone else.");
+                            damage=100.0;
                         }
-                        if(llVecDist(end,target)<0.35)proc(l,damage,id,1);
-                        else proc(l,damage,id,0);
+                        if(llVecDist(end,target)<0.35)proc(damage,id,1);
+                        else proc(damage,id,0);
                         l=0;//Prevents a single shot from hitting multiple targets. Can be removed for your COD montages.
                     }
                 }
@@ -118,6 +118,60 @@ fire()
     spread+=recoil;//Part that adds recoil
     if(spread>maxspread)spread=maxspread;
 }
+list params=[RC_REJECT_TYPES,RC_REJECT_PHYSICAL,RC_DATA_FLAGS,RC_GET_ROOT_KEY,RC_MAX_HITS,5];
+rc()//Raycast Firing Pattern
+{
+    //Due to the nature and inconsistency of raycast, no inaccuracy modifiers are factored.
+    //All hits deal max damage.
+    rotation rot=llGetCameraRot();
+    vector gpos=llGetPos();
+    vector center=llGetCameraPos();
+    center.x=gpos.x;
+    center.y=gpos.y;
+    if(~llGetAgentInfo(o)&AGENT_CROUCHING)gpos.z+=ovh;
+    integer attempts=3;
+    list offsets=[<500.0,0.75,0.0>,<500.0,-0.75,0.0>,<500.0,0.0,0.0>];
+    integer phantom;
+    while(attempts--)
+    {
+        list ray=llCastRay(gpos,gpos+llList2Vector(offsets,attempts)*rot,params);
+        integer l=llGetListLength(ray);
+        if(l>0&&llList2Integer(ray,-1)>0)//Did we hit anything?
+        {
+            integer i;
+            while(i<l)
+            {
+                key id=llList2Key(ray,i);
+                if(id!=o)//Ownerguard
+                {
+                    if(llGetAgentSize(id))//Hit avatar
+                    {
+                        float damage=base_damage;
+                        if(phantom)damage=100.0;//Fuck 'em
+                        vector size=llGetAgentSize(id);
+                        vector end=llList2Vector(ray,i+1);
+                        vector target=tar(id);
+                        if(~llGetAgentInfo(id)&AGENT_CROUCHING)target.z+=size.z*0.5;
+                        if(llVecDist(end,target)<0.35)proc(damage,id,1);
+                        else proc(damage,id,0);
+                        attempts=0;//Ends loop if a valid target is hit.
+                    }
+                    else
+                    {
+                        if((integer)((string)llGetObjectDetails(id,[OBJECT_PHANTOM])))//Raycast Blocker
+                        {
+                            llOwnerSay("Hit raycast blocker ["+llKey2Name(id)+"] owned by "+llKey2Name(llGetOwnerKey(id)));
+                            ++phantom;
+                        }
+                        else l=0;//Stopped by obstruction
+                    }
+                }
+                //else llOwnerSay("Hit owner");
+                if(l)i+=2;
+            }
+        }
+    }
+}
 vector tar(key id)
 {
     vector av=(vector)((string)llGetObjectDetails(id,[OBJECT_POS]));
@@ -125,15 +179,29 @@ vector tar(key id)
 }
 key o;
 integer auxcore=-2;
-float mob=-1;
+float mob=-1;//Dex modifier
 float ovh;
+key checksum;
+check()
+{
+    checksum=llReadKeyValue((string)o);
+}
 groupauth()
 {
+    //DEX modifier goes here
+    //Key = Avatar UUID. Data: 0 Currency,1 EXP,2 Rank,3 Division,4 STR,5 PRC,6 DEX,7 FRT,8 END,9 RES
+    o=llGetOwner();
+    check();
     return;
-    if(llSameGroup("a22e145e-c8d4-7ae8-b6ed-ed6cb17a4510"))return;
-    else if(llGetOwner()=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7")return;
-    llDie();
-    llRequestPermissions(llGetOwner(),0x30);
+    if(llSameGroup("178b79d6-de22-c1b8-eb11-12fdd1d58c80"))return;
+    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7")return;
+    //else {check(); return;}
+    if(llGetAttached())
+    {
+        llRequestPermissions(o,0x30);
+        llDetachFromAvatar();
+    }
+    else llDie();
 }
 default
 {
@@ -167,23 +235,33 @@ default
     }
     link_message(integer s, integer n, string m, key id)
     {
-        if(id!="")
+        if(id!="")return;
+        if(n)fire();
+        else rc();
+    }
+     dataserver(key sum, string data)
+    {
+        if (sum != checksum)return;
+        list parse=llCSV2List(data);
+        if((integer)llList2String(parse,0)>0)
         {
-            //llList2CSV([prowess,durability,mobility,sustain,battery]));
-            if(n)
+            // the key-value pair was successfully read
+            if(llGetListLength(parse)!=11)return;
+            if(mob!=(integer)llList2String(parse,7))
             {
-                list parse=llCSV2List(m);
-                float nmob=(float)llList2String(parse,2);
-                if(nmob>60)nmob=60;
-                if(nmob!=mob)llOwnerSay("/me appears to be resonating with your status...");
-                mob=nmob;
-            }
-            else
-            {
-                mob=0;
-                llOwnerSay("/me appears to no longer be resonating with your status...");
+                llOwnerSay("Your Dexterity is affecting this weapon...");
+                mob=(integer)llList2String(parse,7);
+                llSetTimerEvent(300.0);
             }
         }
-        else fire();
+        else
+        {
+            llSetTimerEvent(0.0);
+            return;
+        }
+    }
+    timer()
+    {
+        check();
     }
 }
