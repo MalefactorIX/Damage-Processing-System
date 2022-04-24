@@ -104,7 +104,7 @@ fire()//SRS Firing Pattern
                         if(phantom)
                         {
                             llOwnerSay("Phantom hit "+llKey2Name(pid));
-                            //llRegionSayTo(id,0,"That's not going to work anymore. You ruined it for everyone else.");
+                            //llRegionSayTo(id,0,"Cheeky comment about raycast blocker goes here");
                             damage=100.0;
                         }
                         if(llVecDist(end,target)<0.35)proc(damage,id,1);
@@ -128,16 +128,15 @@ rc()//Raycast Firing Pattern
     vector center=llGetCameraPos();
     center.x=gpos.x;
     center.y=gpos.y;
-    if(~llGetAgentInfo(o)&AGENT_CROUCHING)gpos.z+=ovh;
     integer attempts=3;
     list offsets=[<500.0,0.75,0.0>,<500.0,-0.75,0.0>,<500.0,0.0,0.0>];
     integer phantom;
     while(attempts--)
     {
-        list ray=llCastRay(gpos,gpos+llList2Vector(offsets,attempts)*rot,params);
-        integer l=llGetListLength(ray);
-        if(l>0&&llList2Integer(ray,-1)>0)//Did we hit anything?
+        list ray=llCastRay(center,center+llList2Vector(offsets,attempts)*rot,params);
+        if(llList2Integer(ray,-1)>0)//Did we hit anything?
         {
+            integer l=llGetListLength(ray);
             integer i;
             while(i<l)
             {
@@ -151,12 +150,12 @@ rc()//Raycast Firing Pattern
                         vector size=llGetAgentSize(id);
                         vector end=llList2Vector(ray,i+1);
                         vector target=tar(id);
-                        if(~llGetAgentInfo(id)&AGENT_CROUCHING)target.z+=size.z*0.5;
-                        if(llVecDist(end,target)<0.35)proc(damage,id,1);
+                        if(~llGetAgentInfo(id)&AGENT_CROUCHING)target.z+=size.z*0.5;//Adjusts head height for standing avatars
+                        if(llVecDist(end,target)<0.35)proc(damage,id,1);//hed
                         else proc(damage,id,0);
                         attempts=0;//Ends loop if a valid target is hit.
                     }
-                    else
+                    else//Hit object/land
                     {
                         if((integer)((string)llGetObjectDetails(id,[OBJECT_PHANTOM])))//Raycast Blocker
                         {
@@ -186,15 +185,15 @@ check()
 {
     checksum=llReadKeyValue((string)o);
 }
-groupauth()
+groupauth()//Rewrite this shit
 {
     //DEX modifier goes here
     //Key = Avatar UUID. Data: 0 Currency,1 EXP,2 Rank,3 Division,4 STR,5 PRC,6 DEX,7 FRT,8 END,9 RES
     o=llGetOwner();
     check();
     return;
-    if(llSameGroup("178b79d6-de22-c1b8-eb11-12fdd1d58c80"))return;
-    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7")return;
+    if(llSameGroup("178b79d6-de22-c1b8-eb11-12fdd1d58c80")){check(); return;}
+    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7"){check(); return;}
     //else {check(); return;}
     if(llGetAttached())
     {
@@ -256,8 +255,8 @@ default
         }
         else
         {
+            mob=0;
             llSetTimerEvent(0.0);
-            return;
         }
     }
     timer()
