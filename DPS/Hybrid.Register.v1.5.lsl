@@ -1,5 +1,5 @@
 //Important Note: This should -NEVER- be used in excess of 600 RPM. It is too bloated to run any faster than that.
-//Most of the balancing for ranged weapons is contained within this script. Automatic, instant kill raycast with no strings attachs is dumb, stupid, and saying it's "semi-automatic" doesn't change that the fact you can instantly pop someone irregardless of distance in a single physics frame dipshit.
+//Most of the balancing for ranged weapons is contained within this script. Automatic, instant kill raycast with no strings attached is dumb, stupid, and saying it's "semi-automatic" doesn't change that the fact you can instantly pop someone irregardless of distance in a single physics frame dipshit.
 //Note to self: Replace all references to llKey2Name(llGetOwnerKey(id)) with SLURL profile links instead.
 float base_damage=45.0;//Max damage
 float min_damage=27;//Min damage
