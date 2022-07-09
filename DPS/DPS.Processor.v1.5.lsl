@@ -1,5 +1,5 @@
 //Settings
-string prim="[Devkit]1911.Bullet.DPS";//Damage Prim for DPS
+string prim="[TK]Teravolt.RC.DPS";//Damage Prim for DPS
 float expose=1.25;//Damage multiplier for Exposed targets
 float resist=0.75;//Damage multiplier for Resisting targets
 float pen=0.5;//Armor Penetration (1.0 = No Penetration)
@@ -11,7 +11,7 @@ integer hitmarker=-1991;//Channel hitmarker listens to
 string url="https://raw.githubusercontent.com/MalefactorIX/Damage-Processing-System/master/DPS/VersionAuth/Series%20A1";//URL for doc
 //
 list agents;
-string aspect="devkit";//Used to flag damage values under certain conditions
+string aspect="tek";//Damage flagging for meter interpretation
 float armorcheck(string parse)//Returns armor value for armored avatars
 {
     integer boot=llSubStringIndex(parse,"armor");
@@ -41,16 +41,16 @@ proc(string name, float damage, key id, integer head, integer ex)
     if(head)
     {
         float hit=llGetTimeOfDay();
-        if(llFabs(hit-lhit)>0.5)//Puts a cooldown on headshots to keep automatic weapons from face-raping people.
+        if(llFabs(hit-lhit)>0.5)
         {
-            damage*=1.5;//Headshot modifier
+            damage*=1.5;
             lhit=hit;
         }
     }
-    damage+=pdam;//Scale
     integer aux=llListFindList(auxdata,[id]);
     if(aux>-1)//Aux processing
     {
+        damage+=pdam;//Scale
         integer ochan=(integer)llList2String(auxdata,aux+2);
         //llSay(0,(string)ochan+" | "+llKey2Name(llList2String(auxdata,aux))+" | "+llKey2Name(llList2String(auxdata,aux+1))+" | "+llList2String(auxdata,aux+2));
         string aid=llList2String(auxdata,aux+1);
@@ -121,7 +121,7 @@ proc(string name, float damage, key id, integer head, integer ex)
         integer D=(integer)damage;
         string parse=(string)D+aparse;
         integer p=(integer)parse;
-        llRezObject(prim,llGetPos()+<0.0,0.0,4.0>,ZERO_VECTOR,ZERO_ROTATION,p);
+        llRezObject(prim,llGetPos()+<0.0,0.0,5.0>,ZERO_VECTOR,ZERO_ROTATION,p);
     }
 }
 text(string type, string name, string damage, integer head)
@@ -168,7 +168,7 @@ boot()
     llTakeControls(CONTROL_ML_LBUTTON,1,1);
     //llOwnerSay("System now online.");
 }
-string ver="Devkit 4-17";
+string ver="TKTera v1.1.3";
 string oname;
 integer mychan;
 integer exchan;
