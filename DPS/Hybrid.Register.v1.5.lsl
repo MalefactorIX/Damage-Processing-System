@@ -148,7 +148,7 @@ rc()//Raycast Firing Pattern
     vector center=llGetCameraPos();
     center.x=gpos.x;
     center.y=gpos.y;
-    integer attempts=3;
+    integer attempts=3;//RaYcAsT iS rElIaBlE gAiS, rEaLlY!
     list offsets=[<500.0,0.75,0.0>,<500.0,-0.75,0.0>,<500.0,0.0,0.0>];
     integer phantom;
     while(attempts--)
