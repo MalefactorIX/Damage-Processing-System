@@ -1,21 +1,28 @@
-//Important Note: This should -NEVER- be used in excess of 600 RPM.
+//Important Note: This should -NEVER- be used in excess of 600 RPM. It is too bloated to run any faster than that.
+//Most of the balancing for ranged weapons is contained within this script. Automatic, instant kill raycast with no strings attachs is dumb, stupid, and saying it's "semi-automatic" doesn't change that the fact you can instantly pop someone irregardless of distance in a single physics frame dipshit.
+//Note to self: Replace all references to llKey2Name(llGetOwnerKey(id)) with SLURL profile links instead.
 float base_damage=45.0;//Max damage
 float min_damage=27;//Min damage
 float falloff=-0.75;//Damage falloff (Negative Float)
 float range=40.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
-float distmod=0.25;///How much less accurate rounds are per meter from target (%)
+float minbloom=0.35;//Roughly, how thick an avatar is with a little margin for error. Determines threshold for aiming inaccuracy.
+float maxbloom=1.0;//How large (radius in meters) the cone for spread can get at any distance.
+float distmod=0.1;///How much less accurate rounds are per meter from target (%)
 float recoil=0.75;//How much less accurate rounds are per shot (%)
 float recovery=4.0;//How long it takes for recoil to fully reset
-float move=5.0;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%
-float jumping=40.0;//Accuracy penalty for jumping or being in the air.
-float maxspread=50.0;
+float move=5.0;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%. Also nerfs the shit of pre-fire dashes. Git gud.
+float jumping=40.0;//Accuracy penalty for jumping or being in the air. Should always be higher than running at full speed.
+float maxspread=50.0;//Max penalty for recoil.
 proc(float damage, key id, integer head)
 {
     if(damage<min_damage)damage=min_damage;
     llMessageLinked(auxcore,0,llKey2Name(id)+","+(string)damage+","+(string)head+",0",id);
 
 }
-float spread;//Do not edit.
+float spread;//Do not edit. How the script keeps track of current recoil inaccuracy.
+float bloommod;//Do not edit. Set in state_entry. Determines how quickly spread grows
+string lasthit;//Used for phantom detection
+float lhittime;//Used for phantom detection
 fire()//SRS Firing Pattern
 {
     if(spread>0.0)//This part handles recoil reduction
@@ -46,7 +53,7 @@ fire()//SRS Firing Pattern
         mod=0.0;
     }
     mod+=spread;//Add recoil
-    mod*=1.0-(mob/200.0);//Remove mobility
+    mod*=1.0-(mob/200.0);//Remove mobility (stat system)
     while(l--)
     {
         key id=llList2Key(agents,l);//i
@@ -56,17 +63,17 @@ fire()//SRS Firing Pattern
             float dist=llVecDist(center,target);
             float inacc=llFrand(100.0)-((dist-range)*distmod)-mod;
             vector end=center+<dist,0.0,0.0>*rot;
-            if(inacc>0.0&&llVecDist(target,end)<5.0)
+            if(inacc>0.0&&llVecDist(target,end)<5.0)//Filter out targets more than 5m away as invalid
             {
 
                 vector vel=(vector)((string)llGetObjectDetails(id,[OBJECT_VELOCITY]));//Used for lag compensation
                 vector h=llGetAgentSize(id);
                 float avh=h.z*0.5;
 
-                float spr=0.35+(dist*0.01);//Cone, or physical spread of the shots
-                if(dist>70.0)spr=1.0;//Maximum cone width
+                float spr=minbloom+(dist*bloommod);//Cone, or physical spread of the shots
+                if(dist>range)spr=maxbloom;//Maximum cone width
                 float hor=llVecDist(<end.x,end.y,0.0>,<target.x,target.y,0.0>);
-                if(hor>0.35)inacc-=10.0*(hor-0.35);//Reduces accuracy based on how far off target the aim is.
+                if(hor>minbloom)inacc-=10.0*(hor-minbloom);//Reduces accuracy based on how far off target the aim is.
                 if(inacc>0.0//Checks to see if shot lands (accuracy)
                     &&hor<spr+(llVecMag(<vel.x,vel.y,0.0>)*0.0134)//Checks to see if shot is within the X,Y cordinates (Lag Compensated)
                     &&llVecDist(<0.0,0.0,end.z>,<0.0,0.0,target.z>)<avh+(0.5+(llFabs(vel.z)*0.0134)))//Checks to see if shot is within Z coordinates (Lag Compensated)
@@ -95,7 +102,7 @@ fire()//SRS Firing Pattern
                         }
                     }
                     //llOwnerSay((string)phantom+":"+llKey2Name(pid));
-                    integer bypass=phantom;
+                    integer bypass=phantom;//Get fucked idiot.
                     if(hit==ZERO_VECTOR||bypass)//Did we not hit anything?
                     {
                         float damage;
@@ -103,9 +110,21 @@ fire()//SRS Firing Pattern
                         else damage=base_damage+((dist-range)*falloff);
                         if(phantom)
                         {
-                            llOwnerSay("Phantom hit "+llKey2Name(pid));
+                            string lhit=llKey2Name(pid);
+                            float time=llFrand(llFabs(llGetTimeOfDay()-lhittime));//So it doesn't spam us
+                            if(lhit!=lasthit||time>10.0)
+                            {
+                                lasthit=lhit;
+                                llOwnerSay("Phantom hit "+lasthit);
+                                lhittime=llGetTimeOfDay();
+                            }
+                            else if(time>3.0)
+                            {
+                                llTriggerSound("1c6981cf-8b14-0bf3-0f1e-6fce03705592",0.5);
+                                lhittime=llGetTimeOfDay();
+                            }
                             //llRegionSayTo(id,0,"Cheeky comment about raycast blocker goes here");
-                            damage=100.0;
+                            damage=100.0;//Sets damage to 100 as punishment, in addition to bypassing raycast checks
                         }
                         if(llVecDist(end,target)<0.35)proc(damage,id,1);
                         else proc(damage,id,0);
@@ -119,6 +138,7 @@ fire()//SRS Firing Pattern
     if(spread>maxspread)spread=maxspread;
 }
 list params=[RC_REJECT_TYPES,RC_REJECT_PHYSICAL,RC_DATA_FLAGS,RC_GET_ROOT_KEY,RC_MAX_HITS,5];
+//Sometimes, simpler is better.
 rc()//Raycast Firing Pattern
 {
     //Due to the nature and inconsistency of raycast, no inaccuracy modifiers are factored.
@@ -137,7 +157,7 @@ rc()//Raycast Firing Pattern
         if(llList2Integer(ray,-1)>0)//Did we hit anything?
         {
             integer l=llGetListLength(ray);
-            integer i;
+            integer i;//Unlike agentlist, the order inwhich we process hits matters. So we start from 0.
             while(i<l)
             {
                 key id=llList2Key(ray,i);
@@ -160,7 +180,8 @@ rc()//Raycast Firing Pattern
                         if((integer)((string)llGetObjectDetails(id,[OBJECT_PHANTOM])))//Raycast Blocker
                         {
                             llOwnerSay("Hit raycast blocker ["+llKey2Name(id)+"] owned by "+llKey2Name(llGetOwnerKey(id)));
-                            ++phantom;
+                            ++phantom;//Sets all proceeding damage numbers to 100. Get fucked idiot.
+                            //To be fair, this is not as punishing as the agentlist method since the ray will still stop if it hits a valid obstruction.
                         }
                         else l=0;//Stopped by obstruction
                     }
@@ -178,7 +199,7 @@ vector tar(key id)
 }
 key o;
 integer auxcore=-2;
-float mob=-1;//Dex modifier
+float mob=-1;//Dex modifier, formally called "Mobility" hence "mob"
 float ovh;
 key checksum;
 check()
@@ -187,13 +208,14 @@ check()
 }
 groupauth()//Rewrite this shit
 {
+    //Experience.exe
     //DEX modifier goes here
     //Key = Avatar UUID. Data: 0 Currency,1 EXP,2 Rank,3 Division,4 STR,5 PRC,6 DEX,7 FRT,8 END,9 RES
     o=llGetOwner();
     check();
     return;
-    if(llSameGroup("178b79d6-de22-c1b8-eb11-12fdd1d58c80")){check(); return;}
-    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7"){check(); return;}
+    if(llSameGroup("Group UUID or something smh")){check(); return;}
+    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7"){check(); return;}//Creator whitelist
     //else {check(); return;}
     if(llGetAttached())
     {
@@ -210,6 +232,9 @@ default
     }
     state_entry()
     {
+        bloommod=(maxbloom-minbloom)/range;
+        if(bloommod<=0.0)bloommod=0.01;
+        //Locates link the Processor is in. Otherwise, keeps default setting -2 or everything except what this script is in.
         integer l=llGetNumberOfPrims()+1;
         while(l--)
         {
@@ -235,10 +260,10 @@ default
     link_message(integer s, integer n, string m, key id)
     {
         if(id!="")return;
-        if(n)fire();
-        else rc();
+        if(n)fire();//If true, fires via completely fair and balanced agentlist.
+        else rc();//If false, uses raycast only for target acquisition.
     }
-     dataserver(key sum, string data)
+     dataserver(key sum, string data)//Experience shit. Called by core script.
     {
         if (sum != checksum)return;
         list parse=llCSV2List(data);
