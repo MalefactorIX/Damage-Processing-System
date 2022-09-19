@@ -121,6 +121,8 @@ Infraction of these rules may result in immediate administrative action. This is
         9m = 1m Lethal, 10 Max LBA.  
         10m = Never Lethal, No LBA.  
     Explosives larger than 10m are disallowed.  
+    
+10) Unarmored aircraft must have a physical hitbox representative of their size and it must contain a valid LBA description.
 
 ██████████████████████████████████████████████
 
