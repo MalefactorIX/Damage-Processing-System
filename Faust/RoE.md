@@ -26,7 +26,7 @@ Section 8: Escalation / Tiers
 
 This notecard will go over rules in detail for the Faust Infernium sim, as well as our weapon tiers. There are not many rules that will result in a ban - this is a policy from older times that we are working to restore - but there are a few. They will be noted as such. While it would be preferred that no rule could do so, there are some that result in an unavoidable need for such a reaction - griefing severely enough to prevent removal via normal methods can result in this, for example. If you feel you have been unjustly banned, contact relevant high command within Faust in order to appeal. Few bans are not able to be appealed, but some may be enforced for a length of time.
 
-Our primary enforcement method is Escalation. Usually, this is reciprocal - you pull out a Tier 2 set, we'll employ our Tier 2. However, punitive Escalation exists for rule-breakers, so please be aware of this before you begin to flaunt rules.
+Our primary enforcement method is Escalation. Usually, this is reciprocal - you pull out a Tier 2 set, we'll employ our Tier 2. However, punitive Escalation exists for rule-breakers, so please be aware of this before you begin to flaunt rules. In addition, equipment or conduct considered Tier 4 will result in administrative action.
 
 ██████████████████████████████████████████████
 
@@ -42,8 +42,7 @@ These rules govern the expected conduct of all participants.
 
 4) Non-combative personnel must declare their status. Otherwise, assume you will be shot on sight once in the combat arena.
 
-5) Follow all instructions given by region overseers. The heat is battle is not the time to debate regulations and any disputes will be discussed once combat operations cease.  Region overseers will either declare themselves or make themselves known upon request. Anyone who is a Ringleader, Viceroy, or Field Commander is permitted to fulfill this role.
-    - NOTE: Telling region moderation to contact another person will be treated as non-compliance.
+5) Follow all instructions given by region overseers. The heat is battle is not the time to debate regulations and any disputes will be discussed once combat operations cease.  Region overseers will either declare themselves or make themselves known upon request. Anyone who is a Ringleader, Viceroy, or Field Commander is permitted to fulfill this role. NOTE: Telling region moderation to contact another person will be treated as non-compliance.
 
 6) Keep explicit behavior and conduct off the sim. 
 
@@ -56,11 +55,11 @@ Infraction of these rules may result in immediate administrative action. This is
 1) "Flashbangs" or similar blinding effects such as smoke must be reasonable. Don't include overtly loud noises or rapidly flashing colors and the like. Blinding effects may only last for 10 seconds and those that track avatars must be raycasted.
 
 2) Grenades, Rockets, Etc...
-    - May not exceed a 5 meter radius. 
-    - May not deal more than a maximum of 50 LBA to targets on a direct impact. 
-    - May not deal more than 25 proximity LBA damage.
-    - Explosives without a raycast check are NOT allowed.
-    - Must have a 5s cooldown per explosive fired or thrown.
+    2a) May not exceed a 5 meter radius. 
+    2b) May not deal more than a maximum of 50 LBA to targets on a direct impact. 
+    2c) May not deal more than 25 proximity LBA damage.
+    2d) Explosives without a raycast check are NOT allowed.
+    2e) Must have a 5s cooldown per explosive fired or thrown.
 
 3) Proximity fuses (detonates in proximity to player) are not allowed for infantry weapons.
 
@@ -82,11 +81,9 @@ Infraction of these rules may result in immediate administrative action. This is
 
 12) Grapple hooks are allowed. Avatar velocity may not exceed 5m/s and range may not exceed 30m. 10s cooldown after disengaged.
 
-13) Weapons, either intentionally or otherwise, that kill through physics/prims are not allowed.
-    - ie. "Penetrator" rounds, or non-raycast explosives and melee attacks.
+13) Weapons, either intentionally or otherwise, that kill through physics/prims are not allowed, ie. "Penetrator" rounds, or non-raycast explosives and melee attacks.
     
-14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots.
-    - Grenades which interfere with the intended function of interceptors are disallowed. Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose.
+14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots. Grenades which interfere with the intended function of interceptors are disallowed. Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose.
 
 15.) Any lingering effect (smoke, gas, fire, flash, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affect target dies.
 
@@ -99,15 +96,14 @@ Infraction of these rules may result in immediate administrative action. This is
 
 2) All vehicles must be destructible by LBA. Tanks are permitted to ignore collision damage, or LBA damage that is 5 or less.
 
-3) Ground armor may not exceed 250HP for tanks or mechs, and 125 HP for armored infantry units.
-     - Anything in excess of these values will be considered Tier 3. Permitted until double the listed values
+3) Ground armor may not exceed 250HP for tanks or mechs, and 125 HP for armored infantry units. Anything in excess of these values will be considered Tier 3. Permitted until double the listed values
 
 4) Aerial vehicles should have the following HP Values:
-    - Light Craft (Fighters): Unarmored, or up to 25HP
-    - Medium Craft (Gunships): Up to 100HP
-    - Heavy Craft (Fleet): Up to 500HP
-    - All armored aircraft may not exceed a top speed of 40m/s. Unarmored is allowed up to 80m/s.
-    - Anything in excess of these values will be considered Tier 3. Permitted until double the listed values.
+    4a) Light Craft (Fighters): Unarmored, or up to 25HP.
+    4b) Medium Craft (Gunships): Up to 100HP.
+    4c) Heavy Craft (Fleet): Up to 500HP.
+    4d) All armored aircraft may not exceed a top speed of 40m/s. Unarmored is allowed up to 80m/s.
+    4e) Anything in excess of these values will be considered Tier 3. Permitted until double the listed values.
 
 5) No absurdly excessive weaponry may be used in any vehicle - this is harder to quantify, so you will be informed if you need to tone things back. Use infantry guidelines as a benchmark for compliance.
 
@@ -119,11 +115,11 @@ Infraction of these rules may result in immediate administrative action. This is
 
 9) Any explosive with a radius larger than 5m must deal partial damage. The lethal radius must be reduced by 1m per meter in excess of 5m. Maximum LBA damage must also be reduced by 10 per meter in excess of 5m.
     Easier to understand than it sounds:
-        6m = 4m Lethal, 40 Max LBA
-        7m = 3m Lethal, 30 Max LBA
-        8m = 2m Lethal, 20 Max LBA
-        9m = 1m Lethal, 10 Max LBA
-        10m = Never Lethal, No LBA
+        6m = 4m Lethal, 40 Max LBA.
+        7m = 3m Lethal, 30 Max LBA.
+        8m = 2m Lethal, 20 Max LBA.
+        9m = 1m Lethal, 10 Max LBA.
+        10m = Never Lethal, No LBA.
     Explosives larger than 10m are disallowed.
 
 ██████████████████████████████████████████████
@@ -162,9 +158,7 @@ All closed-source, agentlist-based raycast weapons will be disallowed. This incl
 They must follow all regulations which govern raycast weapons and will be subject to higher scrutiny.
 
 [Guidelines]
-Raycast weapons are allowed, but must suffer from some form of inaccuracy or damage reduction with range and/or movement.
-    - Weapons firing in excess of 400 RPM must deal partial damage and cannot be lethal on a single-shot level.
-    - Weapons firing in excess of 600 RPM will not be permitted.
+Raycast weapons are allowed, but must suffer from some form of inaccuracy or damage reduction with range and/or movement. Weapons firing in excess of 300 RPM must deal partial damage and cannot be lethal on a single-shot level. Weapons firing in excess of 600 RPM will not be permitted.
 Raycast weapons will also have the open-source review requirement in cases where it is suspected of non-compliance or the distributor cannot be trusted to provide credible testimony of its function
 Note: Hybrid Raycast rounds also must be compliant with these regulations in order to be permitted.
 
@@ -179,9 +173,9 @@ You will be notified of any non-compliant equipment should it be deemed necessar
 ### S E C T I O N 8: E S C A L A T I O N
 
 Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.
-Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc
-Tier 2: Advanced Technology - Vehicles, Light Artillery, Rockets, MGLs, Etc
-Tier 3: War Crimes - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Stalinium Vehicles), Etc
+Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc.
+Tier 2: Advanced Technology - Vehicles, Light Artillery, Rockets, MGLs, Etc.
+Tier 3: War Crimes - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Stalinium Vehicles), Etc.
 
 Any escalation beyond T3 is considered Tier 4 - Which is an estate ban.
 
