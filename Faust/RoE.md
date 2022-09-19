@@ -11,14 +11,14 @@
 
 Table of Contents
 
-Section 1) Introduction.
-Section 2) General Rules.
-Section 3) Infantry Rules.
-Section 4) Vehicle Rules.
-Section 5) Raid Rules.
-Section 6) Banned Equipment.
-Section 7) Hitscan Weapons / AgentList.
-Section 8) Escalation / Tiers.
+Section 1) Introduction.  
+Section 2) General Rules.  
+Section 3) Infantry Rules.  
+Section 4) Vehicle Rules.  
+Section 5) Raid Rules.  
+Section 6) Banned Equipment.  
+Section 7) Hitscan Weapons / AgentList.  
+Section 8) Escalation / Tiers.  
 
 ██████████████████████████████████████████████
 
@@ -50,7 +50,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 3: I N F A N T R Y  R U L E S###
+### S E C T I O N 3: I N F A N T R Y  R U L E S
 
 1) "Flashbangs" or similar blinding effects such as smoke must be reasonable. Don't include overtly loud noises or rapidly flashing colors and the like. Blinding effects may only last for 10 seconds and those that track avatars must be raycasted.
 
@@ -85,7 +85,7 @@ Infraction of these rules may result in immediate administrative action. This is
     
 14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots. Grenades which interfere with the intended function of interceptors are disallowed. Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose.
 
-15.) Any lingering effect (smoke, gas, fire, flash, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affect target dies.
+15) Any lingering effect (smoke, gas, fire, flash, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affect target dies.
 
 
 ██████████████████████████████████████████████
