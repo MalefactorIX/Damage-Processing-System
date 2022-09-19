@@ -22,7 +22,7 @@ Section 8: Escalation / Tiers
 
 ██████████████████████████████████████████████
 
-###S E C T I O N 1: I N T R O D U C T I O N###
+### S E C T I O N 1: I N T R O D U C T I O N
 
 This notecard will go over rules in detail for the Faust Infernium sim, as well as our weapon tiers. There are not many rules that will result in a ban - this is a policy from older times that we are working to restore - but there are a few. They will be noted as such. While it would be preferred that no rule could do so, there are some that result in an unavoidable need for such a reaction - griefing severely enough to prevent removal via normal methods can result in this, for example. If you feel you have been unjustly banned, contact relevant high command within Faust in order to appeal. Few bans are not able to be appealed, but some may be enforced for a length of time.
 
@@ -30,7 +30,7 @@ Our primary enforcement method is Escalation. Usually, this is reciprocal - you 
 
 ██████████████████████████████████████████████
 
-###S E C T I O N 2: G E N E R A L  R U L E S###
+### S E C T I O N 2: G E N E R A L  R U L E S
 
 These rules govern the expected conduct of all participants.
 
@@ -51,7 +51,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-###S E C T I O N 3: I N F A N T R Y  R U L E S###
+### S E C T I O N 3: I N F A N T R Y  R U L E S###
 
 1) "Flashbangs" or similar blinding effects such as smoke must be reasonable. Don't include overtly loud noises or rapidly flashing colors and the like. Blinding effects may only last for 10 seconds and those that track avatars must be raycasted.
 
@@ -93,7 +93,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-###S E C T I O N 4: V E H I C L E  R U L E S###
+### S E C T I O N 4: V E H I C L E  R U L E S###
 
 1) You may have a maximum of 2 air vehicles, and 2 ground vehicles per side.
 
@@ -128,7 +128,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-###S E C T I O N 5: R A I D  R U L E S###
+### S E C T I O N 5: R A I D  R U L E S
 
 1) There are no rules governing the declaration or prior announcement of a raid, nor are their any regulations limiting the amount of personnel you may deploy to the field. However, the attacker:defender ratio is considered when it determining the appropriate weapon tiers and types that are being deployed.
 
@@ -142,7 +142,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-###S E C T I O N 6: B A N N E D  E Q U I P M E N T###
+### S E C T I O N 6: B A N N E D  E Q U I P M E N T###
 
 Below is a list of equipment that may not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
 
@@ -156,7 +156,7 @@ Commercial and Tkoi-related VelTech products are disallowed.
 
 ██████████████████████████████████████████████
 
-###S E C T I O N 7: H I T S C A N  W E A P O N S / A G E N T L I S T###
+### S E C T I O N 7: H I T S C A N  W E A P O N S / A G E N T L I S T
 
 All closed-source, agentlist-based raycast weapons will be disallowed. This includes equipment which functions in a similar principle (widecast).
 They must follow all regulations which govern raycast weapons and will be subject to higher scrutiny.
@@ -176,7 +176,7 @@ You will be notified of any non-compliant equipment should it be deemed necessar
 
 ██████████████████████████████████████████████
 
-###S E C T I O N 8: E S C A L A T I O N###
+### S E C T I O N 8: E S C A L A T I O N
 
 Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.
 Tier 1: Basic Equipment
