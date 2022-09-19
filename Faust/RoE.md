@@ -87,6 +87,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 15) Any lingering effect (smoke, gas, fire, flash, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affect target dies.
 
+16) All deployables, including mines, are required to take LBA damage.
 
 ██████████████████████████████████████████████
 
