@@ -54,12 +54,12 @@ Infraction of these rules may result in immediate administrative action. This is
 
 1) "Flashbangs" or similar blinding effects such as smoke must be reasonable. Don't include overtly loud noises or rapidly flashing colors and the like. Blinding effects may only last for 10 seconds and those that track avatars must be raycasted.
 
-2) Grenades, Rockets, Etc...
-    2a) May not exceed a 5 meter radius. 
-    2b) May not deal more than a maximum of 50 LBA to targets on a direct impact. 
-    2c) May not deal more than 25 proximity LBA damage.
-    2d) Explosives without a raycast check are NOT allowed.
-    2e) Must have a 5s cooldown per explosive fired or thrown.
+2) Grenades, Rockets, Etc...  
+    2a) May not exceed a 5 meter radius.  
+    2b) May not deal more than a maximum of 50 LBA to targets on a direct impact.  
+    2c) May not deal more than 25 proximity LBA damage.  
+    2d) Explosives without a raycast check are NOT allowed.  
+    2e) Must have a 5s cooldown per explosive fired or thrown.  
 
 3) Proximity fuses (detonates in proximity to player) are not allowed for infantry weapons.
 
@@ -98,12 +98,12 @@ Infraction of these rules may result in immediate administrative action. This is
 
 3) Ground armor may not exceed 250HP for tanks or mechs, and 125 HP for armored infantry units. Anything in excess of these values will be considered Tier 3. Permitted until double the listed values
 
-4) Aerial vehicles should have the following HP Values:
-    4a) Light Craft (Fighters): Unarmored, or up to 25HP.
-    4b) Medium Craft (Gunships): Up to 100HP.
-    4c) Heavy Craft (Fleet): Up to 500HP.
-    4d) All armored aircraft may not exceed a top speed of 40m/s. Unarmored is allowed up to 80m/s.
-    4e) Anything in excess of these values will be considered Tier 3. Permitted until double the listed values.
+4) Aerial vehicles should have the following HP Values:  
+    4a) Light Craft (Fighters): Unarmored, or up to 25HP.  
+    4b) Medium Craft (Gunships): Up to 100HP.  
+    4c) Heavy Craft (Fleet): Up to 500HP.  
+    4d) All armored aircraft may not exceed a top speed of 40m/s. Unarmored is allowed up to 80m/s.  
+    4e) Anything in excess of these values will be considered Tier 3. Permitted until double the listed values.  
 
 5) No absurdly excessive weaponry may be used in any vehicle - this is harder to quantify, so you will be informed if you need to tone things back. Use infantry guidelines as a benchmark for compliance.
 
