@@ -113,14 +113,14 @@ Infraction of these rules may result in immediate administrative action. This is
 
 8) Maximum Combat Height for aerial vehicles is 1000m.
 
-9) Any explosive with a radius larger than 5m must deal partial damage. The lethal radius must be reduced by 1m per meter in excess of 5m. Maximum LBA damage must also be reduced by 10 per meter in excess of 5m.
-    Easier to understand than it sounds:
-        6m = 4m Lethal, 40 Max LBA.
-        7m = 3m Lethal, 30 Max LBA.
-        8m = 2m Lethal, 20 Max LBA.
-        9m = 1m Lethal, 10 Max LBA.
-        10m = Never Lethal, No LBA.
-    Explosives larger than 10m are disallowed.
+9) Any explosive with a radius larger than 5m must deal partial damage. The lethal radius must be reduced by 1m per meter in excess of 5m. Maximum LBA damage must also be reduced by 10 per meter in excess of 5m.  
+    Easier to understand than it sounds:  
+        6m = 4m Lethal, 40 Max LBA.  
+        7m = 3m Lethal, 30 Max LBA.  
+        8m = 2m Lethal, 20 Max LBA.  
+        9m = 1m Lethal, 10 Max LBA.  
+        10m = Never Lethal, No LBA.  
+    Explosives larger than 10m are disallowed.  
 
 ██████████████████████████████████████████████
 
@@ -142,13 +142,12 @@ Infraction of these rules may result in immediate administrative action. This is
 
 Below is a list of equipment that may not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
 
-All equipment from defunct military organizations (Coercion, 2142, etc) are disallowed.
-All commercial CSF weapons are disallowed.
-Any object that reflects damage of any type or retaliates in similar form is disallowed.
-Any objects which restrict normal avatar movement or control are disallowed. This includes objects which stall or obstruct vehicle movement through targetted means.
-Self-regenerating health systems are disallowed.
-Commercial and Tkoi-related VelTech products are disallowed.
-
+All equipment from defunct military organizations (Coercion, 2142, etc) are disallowed.  
+All commercial CSF weapons are disallowed.  
+Any object that reflects damage of any type or retaliates in similar form is disallowed.  
+Any objects which restrict normal avatar movement or control are disallowed. This includes objects which stall or obstruct vehicle movement through targetted means.  
+Self-regenerating health systems are disallowed.  
+Commercial and Tkoi-related VelTech products are disallowed.  
 
 ██████████████████████████████████████████████
 
@@ -159,7 +158,7 @@ They must follow all regulations which govern raycast weapons and will be subjec
 
 [Guidelines]
 Raycast weapons are allowed, but must suffer from some form of inaccuracy or damage reduction with range and/or movement. Weapons firing in excess of 300 RPM must deal partial damage and cannot be lethal on a single-shot level. Weapons firing in excess of 600 RPM will not be permitted.
-Raycast weapons will also have the open-source review requirement in cases where it is suspected of non-compliance or the distributor cannot be trusted to provide credible testimony of its function
+Raycast weapons will also have the open-source review requirement in cases where it is suspected of non-compliance or the distributor cannot be trusted to provide credible testimony of its function.  
 Note: Hybrid Raycast rounds also must be compliant with these regulations in order to be permitted.
 
 [If you fail compliance]
@@ -172,10 +171,10 @@ You will be notified of any non-compliant equipment should it be deemed necessar
 
 ### S E C T I O N 8: E S C A L A T I O N
 
-Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.
-Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc.
-Tier 2: Advanced Technology - Vehicles, Light Artillery, Rockets, MGLs, Etc.
-Tier 3: War Crimes - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Stalinium Vehicles), Etc.
+Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.  
+Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc.  
+Tier 2: Advanced Technology - Vehicles, Light Artillery, Rockets, MGLs, Etc.  
+Tier 3: War Crimes - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Stalinium Vehicles), Etc.  
 
 Any escalation beyond T3 is considered Tier 4 - Which is an estate ban.
 
