@@ -93,7 +93,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 4: V E H I C L E  R U L E S###
+### S E C T I O N 4: V E H I C L E  R U L E S
 
 1) You may have a maximum of 2 air vehicles, and 2 ground vehicles per side.
 
@@ -142,7 +142,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 6: B A N N E D  E Q U I P M E N T###
+### S E C T I O N 6: B A N N E D  E Q U I P M E N T
 
 Below is a list of equipment that may not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
 
