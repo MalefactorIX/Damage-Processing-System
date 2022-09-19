@@ -179,12 +179,9 @@ You will be notified of any non-compliant equipment should it be deemed necessar
 ### S E C T I O N 8: E S C A L A T I O N
 
 Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.
-Tier 1: Basic Equipment
-    - Rifles, Hand Grenades, Etc
-Tier 2: Advanced Technology
-    - Vehicles, Light Artillery, Rockets, MGLs, Etc
-Tier 3: War Crimes
-    - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Stalinium Vehicles), Etc
+Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc
+Tier 2: Advanced Technology - Vehicles, Light Artillery, Rockets, MGLs, Etc
+Tier 3: War Crimes - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Stalinium Vehicles), Etc
 
 Any escalation beyond T3 is considered Tier 4 - Which is an estate ban.
 
