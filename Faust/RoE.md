@@ -11,14 +11,14 @@
 
 Table of Contents
 
-Section 1: Introduction.
-Section 2: General Rules.
-Section 3: Infantry Rules.
-Section 4: Vehicle Rules.
-Section 5: Raid Rules.
-Section 6: Banned Equipment.
-Section 7: Hitscan Weapons / AgentList.
-Section 8: Escalation / Tiers.
+Section 1) Introduction.
+Section 2) General Rules.
+Section 3) Infantry Rules.
+Section 4) Vehicle Rules.
+Section 5) Raid Rules.
+Section 6) Banned Equipment.
+Section 7) Hitscan Weapons / AgentList.
+Section 8) Escalation / Tiers.
 
 ██████████████████████████████████████████████
 
