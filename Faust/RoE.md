@@ -159,12 +159,12 @@ Commercial and Tkoi-related VelTech products are disallowed.
 All closed-source, agentlist-based raycast weapons will be disallowed. This includes equipment which functions in a similar principle (widecast).
 They must follow all regulations which govern raycast weapons and will be subject to higher scrutiny.
 
-[Guidelines]
+[Guidelines]  
 Raycast weapons are allowed, but must suffer from some form of inaccuracy or damage reduction with range and/or movement. Weapons firing in excess of 300 RPM must deal partial damage and cannot be lethal on a single-shot level. Weapons firing in excess of 600 RPM will not be permitted.
-Raycast weapons will also have the open-source review requirement in cases where it is suspected of non-compliance or the distributor cannot be trusted to provide credible testimony of its function.  
+Raycast weapons will also have the open-source review requirement in cases where it is suspected of non-compliance or the distributor cannot be trusted to provide credible testimony of its function.   
 Note: Hybrid Raycast rounds also must be compliant with these regulations in order to be permitted.
 
-[If you fail compliance]
+[If you fail compliance]  
 If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment which is an immediate combat ban. If your weapon is considered non-compliant, you can request a view of the affected equipment and this section will be updated accordingly.
 
 You will be notified of any non-compliant equipment should it be deemed necessary.
