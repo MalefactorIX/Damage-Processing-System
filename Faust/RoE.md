@@ -165,7 +165,7 @@ Raycast weapons will also have the open-source review requirement in cases where
 Note: Hybrid Raycast rounds also must be compliant with these regulations in order to be permitted.
 
 [If you fail compliance]  
-If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment which is an immediate combat ban. If your weapon is considered non-compliant, you can request a view of the affected equipment and this section will be updated accordingly.
+If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment which is an immediate combat ban. If your weapon is considered non-compliant, you can request a review of the affected equipment and this section will be updated accordingly.
 
 You will be notified of any non-compliant equipment should it be deemed necessary.
 
