@@ -24,7 +24,7 @@ Section 8) Escalation / Tiers.
 
 ### S E C T I O N 1: I N T R O D U C T I O N
 
-This notecard will go over rules in detail for the Faust Infernium sim, as well as our weapon tiers. There are not many rules that will result in a ban - this is a policy from older times that we are working to restore - but there are a few. They will be noted as such. While it would be preferred that no rule could do so, there are some that result in an unavoidable need for such a reaction - griefing severely enough to prevent removal via normal methods can result in this, for example. If you feel you have been unjustly banned, contact relevant high command within Faust in order to appeal. Few bans are not able to be appealed, but some may be enforced for a length of time.
+This documentation will go over rules in detail for the Faust Infernium sim, as well as our weapon tiers. There are not many rules that will result in a ban, but many serves as our expectations for equipment balance in our region. While we will make an effort to avoid immediate administrative action, there are some offenses that will result in an unavoidable need for such a reaction. If you feel you have been unjustly banned, contact relevant high command within Faust in order to appeal.
 
 Our primary enforcement method is Escalation. Usually, this is reciprocal - you pull out a Tier 2 set, we'll employ our Tier 2. However, punitive Escalation exists for rule-breakers, so please be aware of this before you begin to flaunt rules. In addition, equipment or conduct considered Tier 4 will result in administrative action.
 
