@@ -37,16 +37,16 @@
     - Tank shells are excluded from this rule.
 - Thrown Grenades may not exceed 50m/s, excluding gravity.
 - May not use collision-based (legacy) AT. All relevant objects are required to take LBA damage.
-- Lingering effects such as [Flashbangs, Caging Devices, etc] will not be permitted.
+- Lingering effects such as [Flashbangs, Caging Devices (Ice), etc] will not be permitted.
 - Lingering Damage effects such as flames, gas, etc must not be immediately lethal and must possess the potential of survival.
    - Example 1: Fire should deal reduced damage to avatars that are standing still or crouching. The total damage for this should be less than 100 for the entire duration of the burning effect.
    - Example 2: Gas DOTs should be limited ot the AOE of the actual blast and therefore non-lethal once an avatar exits the radius.
-   - For inquiry or other allowances, please contact an administrative proxy.
+   - For inquiry or other allowances, please contact an administrator.
 - Explosive radius may not exceed 10 meters and must be raycasted from epicenter.
     - If explosion radius exceeds 5 meters, damage must be reduced by at least 10 per meter after 3 meters.
 - Minimum reload time for any explosive launcher is 5 second per projectile.
 - Proximity AT damage must fall off by at least 20% of the initial amount per meter from the center of the blast.
-- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [15 second] cooldown. If the explosive must be drawn before being fired/thrown, this is reduced to 5 seconds.
+- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [5 second] cooldown. If the explosive must be drawn before being fired/thrown, this is reduced to 3.5 seconds.
 - Infantry-launched Explosives may not be immediately lethal either via damage reduction or by explosion type if their cooldown timer is less than 15 seconds. This applies strictly to LLCS damage. If the explosive must be drawn before being fired/thrown, this is reduced to 5 seconds.
 - Seeking Munitions must follow the guidelines ![here](https://github.com/MalefactorIX/SLMC-Seeker-2020)
     - They may not target infantry-class units.
@@ -54,19 +54,20 @@
 
 ####    [Melee]
 - All melee weapons must perform line-of-sight checks.
-- Offhand melee weapons, or melee weapons which can be used at any time, are limited to 3 meters and must have a [2 second] cooldown after use.
-- Dedicated melee weapons, or melee weapons which are required to be drawn, are limited to 5 meters and much have a [1 second] cooldown between swings.
+- Offhand melee weapons, or melee weapons which can be used at any time, are limited to 5 meters and must have a [0.5 second] cooldown after use.
+- Dedicated melee weapons, or melee weapons which are required to be drawn, are limited to 7 meters and much have a [1 second] cooldown between swings.
 - May not do more than [5 LBA] a swing to standard LBA objects.
 
 ####    [LBA/Listen-Based Health]
 - LBA Objects are required to support LBA's hex or non-hex format.
 - LBA Objects may not throttle damage. All damage received must immediately take effect. 
-    - Directional Modifiers from LBHD are not factored into this rule.
-- No avatar-wielded weapon may deal more than 9 LBA per second of reload. Example: 45 LBA for 5 second reload.
+    - Directional Modifiers from LBHD/LBAD are NOT considered violations of this rule.
+- No avatar-wielded weapon may deal more than 7 LBA per second of reload. Example: 35 LBA for 5 second reload.
 
 ####    [Deployables/Mines]
 - All deployables must support LBA damage.
-- Barricades will be permitted use and may not exceed 100 HP and may be Fortified (See Glossary).
+- Barricades will be permitted but may not exceed 100 HP.
+   - Fortified structures are permitted up to 50 HP (See Glossary).
 - Riot Shields are will be permitted use and may not exceed 25 HP.
     - Shield must drop if the user attempts to shoot from it and must have a minimum 2s cooldown before it can be raised again.
 - A single person is limited to [ 5 ] mines, remote explosives (ie. C4), or offensive devices at a time.
@@ -87,18 +88,18 @@
 - Ground Vehicles must have a description ending in ",VEH"
 - Tanks are permitted to be Fortified (See Glossary)
 - Air Vehicles must have a description ending in "AIR"
-- Air Vehicles may not engage units below the Aegis Barrier while it is online.
 - Air vehicles must take damage from collisions. 
 - Air Vehicles with camera-tracked steering may only accelerate in the direction they are facing.
-- Air Vehicles with camera-tracked steering may only have forward-firing weapons.
+- Air Vehicles with camera-tracked steering may only have forward-firing weapons(within about 35 degrees.
 
 ## **Assists**
 ####    [Movement]
-All form of movement assistance is disallowed excluding those provided via the DPS system. This includes but is not limited to...
-   - Hard fall cancelling
-   - Dashing/Dodgerolls
+- All forms of movement assistance is disallowed excluding dodge/dash bursts. This includes but is not limited to...
+   - Hard fall cancelling, Prejump Disabling, Nimble
    - Jetpacks/Boostpacks/Boostpads
-   - Prejump Disabling or Nimble 
+   - Grapples, Double Jumps, Etc
+- Dash/Dodge systems must have a 5s cooldown and must not displace the avatar more than 5 meters.
+   - Movement must be strictly horizonal (X/Y).
     
 ####    [Weapons]
 All forms of weapon assistance is disallowed. This includes but is not limited to...  
@@ -109,9 +110,8 @@ All forms of weapon assistance is disallowed. This includes but is not limited t
     
 ####    [Client]
 All forms of visual assistance is disallowed. This includes but is not limited to...
-- Sight HUDs/Nametag on hover
+- Sight HUDs, Nametags on hover, Combat Features, Etc
 - Hitboxes, ARC, Wireframe, or similar client-enabled features.
-- Weapons or devices which mark the position of an avatar.
     
 ## **Glossary**
    - [Direct AT] AT Damage dealt by the source of the collision
@@ -125,7 +125,7 @@ All forms of visual assistance is disallowed. This includes but is not limited t
    - [DPM] Damage Per Minute. How much damage a weapon can put out within 60 seconds - This includes reloads or other forms of downtime and is a metric of a weapon's 'sustainable' damage output.
    - [DPS] 
         - [DAMAGE PER SECOND] Similar to DPM but over the course of a single second, typically used for calculating a weapon's damage output while disregarding any downtime. This is mostly used to calculate a weapon's 'burst' damage output.
-        - [DAMAGE PROCESSING SYSTEM] The metered combat system.
+        - [DAMAGE PROCESSING SYSTEM] The metered combat and raycasting system.
    - [Tank] A ground vehicle that is relatively slow but features high burst damage and decent armor.
    - [Mech] A ground vehicle that is more maneuverable than a tank but is typically weaker defensively. They can be small or large.
    - [Fortified] Ignores LBA damage less than 5 and is immune to legacy AT. Typically associated with tanks and barricades.
