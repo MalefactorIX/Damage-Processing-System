@@ -1,131 +1,160 @@
-## **Rules are broken into 3 categories**
-1. Administration
-2. Weapons and Utilities
-3. Assists
+██████████████████████████████████████████████
 
-## **Administration**
-   All offenders should be notified and cited of their infractions. Depending on the severity of the offense, a citation may not arrive until after enforcement, if at all.
+Table of Contents
 
-   Those who wish to oversee the actions of their members will be granted that opportunity, if deemed fit. As such, OiCs may not be immediately granted this status upon request and can be refused if they are found unfit for the role. In addition, individual offenders may not redirect administrative proxies during citations. They are to comply with any requests or they will be considered non-compliant and will be removed from the region.
+Section 1) Introduction.  
+Section 2) General Rules.  
+Section 3) Infantry Rules.  
+Section 4) Vehicle Rules.  
+Section 5) Raid Rules.  
+Section 6) Banned Equipment.  
+Section 7) Hitscan Weapons / AgentList.  
 
-   Participants should ask administration if they may use or test gear that may be outside the guidelines. Administration can opt to not enforce rules as long as participants agree to not be disruptive and other participants don't take issue with what is being used. Our goal is primarily to target disruptive behavior, as such these rules may not always be enforced as written. It's the spirit of the rule we seek to uphold, not so much the letter of it.
+██████████████████████████████████████████████
 
-   Rules are likely to change in response to developments within the region. However changes will not go into effect in the middle of any combat event.
+### S E C T I O N 1: I N T R O D U C T I O N
+
+This documentation will go over rules in detail for UWU's combat arenas. There are not many rules that will result in a ban, but many serves as our expectations for equipment balance in our region. While we will make an effort to avoid immediate administrative action, there are some offenses that will result in an unavoidable need for such a reaction. If you feel you have been unjustly banned, contact relevant administrative parties in order to appeal.
+
+██████████████████████████████████████████████
+
+### S E C T I O N 2: G E N E R A L  R U L E S
+
+These rules govern the expected conduct of all participants.
+
+1) Excessive black-screening, intentional or otherwise, will not be tolerated. Going into the opposing designated spawn areas is prohibited.
+
+2) Excessive flaming and generally toxic behavior will not be tolerated. We're here to have fun and shoot each other. If you're getting too invested into this and becoming angry, take a step back. If you feel a fight has turned nasty, contact the OIC and talk about ways to fix it. Both sides of a conflict should be having fun, and if one or both is not, something needs to be fixed.
+
+3) Use of features disablde by region settings (ie. flight) is strictly prohibited.
+
+4) Non-combative personnel must declare their status. Otherwise, assume you will be shot on sight once inside the combat arena.
+
+5) Follow all instructions given by region overseers. The heat is battle is not the time to debate regulations and any disputes will be discussed once combat operations cease.  Region overseers will either declare themselves or make themselves known upon request. NOTE: Telling region moderation to contact another person will be treated as non-compliance.
+
+6) Keep explicit behavior and conduct off the sim during combat sessions. 
+
+Infraction of these rules may result in immediate administrative action. This is your only warning.
+
+██████████████████████████████████████████████
+
+### S E C T I O N 3: I N F A N T R Y  R U L E S
+
+1) "Flashbangs" or similar blinding effects are disallowed. This is due to health and safety concerns.
+
+2) Grenades, Rockets, Etc...  
+    2a) May not exceed a 5 meter radius.  
+    2b) May not deal more than a maximum of 50 LBA to targets on a direct impact.  
+    2c) May not deal more than 25 proximity LBA damage.  
+    2d) Explosives without a raycast check are NOT allowed.  
+    2e) Must have a 5s cooldown per explosive fired or thrown.  
+
+3) The following types of fuses are allowed for thrown or projectile explosives: Timed, Distance, or Impact.
+   3a) Proximity fuses (detonates in proximity to player) are not allowed for infantry weapons.
+
+4) Automatic weapons cannot fire explosive rounds.
+
+5) Seekers must comply with these guidelines: https://github.com/MalefactorIX/SLMC-Seeker-2020 . Minimum lock-on time is 2 seconds.
+
+6) Infantry weapons may not exceed a fire-rate of 1200 RPM. Projectiles should not exceed 200m/s. Explosive projectiles (excluding vehicles) should not exceed 120m/s.
+
+7) Ammunition per clip/magazine may not exceed 200 rounds, and reload times no less than 5 seconds for clips/magazines that exceed 100 rounds.
+
+8) Bullet sizes may not exceed 5 meters in length and 0.05 meters in width. Tank shells or the equivalent is allowed to be up to 0.2m in width.
+
+9) Movement enhancers (dodge rolls, dash, slides) are allowed, but may not exceed a 5 meter dash and may only occur on a 5 second cooldown. Mid-air dashing is only allowed with dedicated melee weapons.
+
+10) Omnidirectional Jump packs and Jet packs are not allowed. We do allow a double jump (10s cooldown) or short-range boost packs with only vertical acceleration (10s cooldown after landing).
+
+11) Enhancers or features that disable pre-jump or landing animations are disallowed. Dashes are allowed to break the landing state.
+
+12) Grapple hooks are allowed. Avatar velocity may not exceed 5m/s and range may not exceed 30m. 10s cooldown after disengaged.
+
+13) Weapons, either intentionally or otherwise, that kill through physics/prims are not allowed, ie. "Penetrator" rounds, or non-raycast explosives and melee attacks.
     
-## **Weapons**
+14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots. Grenades which interfere with the intended function of interceptors are disallowed. Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose.
+
+15) Any lingering effect (smoke, gas, fire, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affect target dies.
+
+16) All deployables, including mines, are required to take LBA damage.
+
+██████████████████████████████████████████████
+
+### S E C T I O N 4: V E H I C L E  R U L E S
+
+1) You may have a maximum of 2 air vehicles, and 2 ground vehicles per side.
+
+2) All vehicles must be destructible by LBA. Tanks are permitted to ignore collision damage, or LBA damage that is 5 or less.
+
+3) Ground armor may not exceed 250HP for tanks or mechs, and 50 HP for armored infantry units.
+
+4) Aerial vehicles should have the following HP Values:  
+    4a) Light Craft (Fighters): Unarmored, or up to 25HP.  
+    4b) Medium Craft (Gunships): Up to 100HP.  
+    4c) Heavy Craft (Fleet): Up to 500HP.  
+    4d) All armored aircraft may not exceed a top speed of 40m/s. Unarmored is allowed up to 80m/s.  
+
+5) No absurdly excessive weaponry may be used in any vehicle - this is harder to quantify, so you will be informed if you need to tone things back. Use infantry guidelines as a benchmark for compliance.
+
+6) All health systems must have an open and public github page for references. You must be able to provide the sourcecode for your health system. Private systems will not be permitted.
+
+7) All health systems must be at least 90% accurate regardless of region latency. Systems found to be throttling or repeatedly failing to take damage will be disallowed.
+
+8) Maximum Combat Height for aerial vehicles is 1000m.
+
+9) Any explosive with a radius larger than 5m must deal partial damage. The lethal radius must be reduced by 1m per meter in excess of 5m. Maximum LBA damage must also be reduced by 10 per meter in excess of 5m.  
+    Easier to understand than it sounds:  
+        6m = 4m Lethal, 40 Max LBA.  
+        7m = 3m Lethal, 30 Max LBA.  
+        8m = 2m Lethal, 20 Max LBA.  
+        9m = 1m Lethal, 10 Max LBA.  
+        10m = Never Lethal, No LBA.  
+    Explosives larger than 10m are disallowed.  
     
-#### [Projectiles]
-- Must be labeled properly, ie. "*Smooth Criminal*" is not a valid name for a bullet. This is so administration can quickly identify a projectile's type, purpose, and origin.
-- May not exceed 200m/s
-- May not exceed 5 meters in length and 0.05 meters in width, Example: 5.0x0.05x0.05
-    - Some omissions may be made for explosive projectiles or vehicle rounds.
+10) Unarmored aircraft must have a physical hitbox representative of their size and it must contain a valid LBA description.
 
-#### [Raycast Weapons]
-- All raycast weapons are to be vetted by administration before they're permitted use. This is to make sure fair play is maintained between the varying types that may be present.
-- Standard line-of-sight checks for things like melee weapons or explosives are regulated in the MELEE and EXPLOSIVES categories.
-- For automatic weapons, their LBA damage can be designed to trigger at set intervals instead of every round to prevent flooding LBA parsers with low damage values. 
-    - For standard ROF automatics (600 RPM or lower), it will be every other round.
-    - Weapons exceeding 600 RPM will not be allowed deal LBA damage with their bullets.
+██████████████████████████████████████████████
 
-####    [Ammo]
-- Weapons with a rate of fire exceeding 900 RPM are limited to 30 rounds with a minimum of 3 seconds of reload.
-- Weapons may not exceed 100 rounds per reload unless otherwise permitted.
-- Minimum acceptable reload time is 2.5 seconds + 0.5 seconds for every 10 rounds above 30.
+### S E C T I O N 5: R A I D  R U L E S
 
-####    [Explosives]
-- Launched Rockets, Grenades, or similar may not exceed 100m/s
-    - Tank shells are excluded from this rule.
-- Thrown Grenades may not exceed 50m/s, excluding gravity.
-- May not use collision-based (legacy) AT. All relevant objects are required to take LBA damage.
-- Lingering effects such as [Flashbangs, Caging Devices (Ice), etc] will not be permitted.
-- Lingering Damage effects such as flames, gas, etc must not be immediately lethal and must possess the potential of survival.
-   - Example 1: Fire should deal reduced damage to avatars that are standing still or crouching. The total damage for this should be less than 100 for the entire duration of the burning effect.
-   - Example 2: Gas DOTs should be limited ot the AOE of the actual blast and therefore non-lethal once an avatar exits the radius.
-   - For inquiry or other allowances, please contact an administrator.
-- Explosive radius may not exceed 10 meters and must be raycasted from epicenter.
-    - If explosion radius exceeds 5 meters, damage must be reduced by at least 10 per meter after 3 meters.
-- Minimum reload time for any explosive launcher is 5 second per projectile.
-- Proximity AT damage must fall off by at least 20% of the initial amount per meter from the center of the blast.
-- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [5 second] cooldown. If the explosive must be drawn before being fired/thrown, this is reduced to 3.5 seconds.
-- Infantry-launched Explosives may not be immediately lethal either via damage reduction or by explosion type if their cooldown timer is less than 15 seconds. This applies strictly to LLCS damage. If the explosive must be drawn before being fired/thrown, this is reduced to 5 seconds.
-- Seeking Munitions must follow the guidelines ![here](https://github.com/MalefactorIX/SLMC-Seeker-2020)
-    - They may not target infantry-class units.
-- You may stock up to 2 of any type of non-seeking explosive projectile. The minimum delay between each use must be 1 second. Cooldown must start/reset which each successful use of the weapon.
+1) There are no rules governing the declaration or prior announcement of a raid, nor are their any regulations limiting the amount of personnel you may deploy to the field. However, the attacker:defender ratio is considered when it determining the appropriate weapon tiers and types that are being deployed.
 
-####    [Melee]
-- All melee weapons must perform line-of-sight checks.
-- Offhand melee weapons, or melee weapons which can be used at any time, are limited to 5 meters and must have a [0.5 second] cooldown after use.
-- Dedicated melee weapons, or melee weapons which are required to be drawn, are limited to 7 meters and much have a [1 second] cooldown between swings.
-- May not do more than [5 LBA] a swing to standard LBA objects.
+2) A group may attack once per day. Raids which persist for an excess amount of time may be terminated by the defending OIC. You can request for additional raid opportunities after your first for that day if desired. Raids are recognized as being organized efforts by at least 3 attackers for a minimum duration of 30 minutes.
 
-####    [LBA/Listen-Based Health]
-- LBA Objects are required to support LBA's hex or non-hex format.
-- LBA Objects may not throttle damage. All damage received must immediately take effect. 
-    - Directional Modifiers from LBHD/LBAD are NOT considered violations of this rule.
-- No avatar-wielded weapon may deal more than 7 LBA per second of reload. Example: 35 LBA for 5 second reload.
+3) Assume things not mentioned in this ruleset are disallowed unless otherwise advised by region moderation. Even if something is disallowed, we may make a temporary exception if requested.
 
-####    [Deployables/Mines]
-- All deployables must support LBA damage.
-- Barricades will be permitted but may not exceed 100 HP.
-   - Fortified structures are permitted up to 50 HP (See Glossary).
-- Riot Shields are will be permitted use and may not exceed 25 HP.
-    - Shield must drop if the user attempts to shoot from it and must have a minimum 2s cooldown before it can be raised again.
-- A single person is limited to [ 5 ] mines, remote explosives (ie. C4), or offensive devices at a time.
-    - All devices in this category must support LBA and only have 1 HP. It is not required to display LBA set-text or health.
-- Mines...
-    - Placing a new mine must despawn or move the eldest one if the previous limit is exceeded.
-    - Mine may not embed itself into an object or terrain to the point it cannot be detected with basic line-of-sight checks.
-    - Mine must be naturally visible to an avatar within 10 meters of it. It must have some part of it visible that can be identified as a mine.
-    - Mines may not have a detection radius exceeding 3 meters. This sensor may use IFF or group-safe detection,
-    - Mines must detonate on physical contact with any person, including the group using it.
-    - Mines may not move once placed. They are no longer mines at that point; They are drones.
+4) Spawn zones are clearly marked. Do not enter the opposing spawn zones. This includes being on top of said structures. You are otherwise authorized to shoot at any location you are being shot from.
 
-####    [Vehicles]
-- Must be compliant with all LBA restrictions
-- Maximum LBA damage for any vehicle-mounted weapon is 300 DPM.
-    - A heavy vehicle (100+ HP) may have up to 4 hardpoints (See Glossary for Details)
-    - A light vehicle (100 or Less HP) may have up to 2 hard points.
-- Ground Vehicles must have a description ending in ",VEH"
-- Tanks are permitted to be Fortified (See Glossary)
-- Air Vehicles must have a description ending in "AIR"
-- Air vehicles must take damage from collisions. 
-- Air Vehicles with camera-tracked steering may only accelerate in the direction they are facing.
-- Air Vehicles with camera-tracked steering may only have forward-firing weapons(within about 35 degrees.
+5) We will attempt to identify your OiC and our OiC will make themselves known. It is expected that OiCs prioritize communication of issues over combat during any  given combat event. Repeated failure to acknowledge or refusal to follow instructions given by the defending OiC will result in revocation of this status and all offenses will be handled directly with the offender(s). You may also be disallowed from serving as oppositional OiC if this becomes a repeat issue.
 
-## **Assists**
-####    [Movement]
-- All forms of movement assistance is disallowed excluding dodge/dash bursts. This includes but is not limited to...
-   - Hard fall cancelling, Prejump Disabling, Nimble
-   - Jetpacks/Boostpacks/Boostpads
-   - Grapples, Double Jumps, Etc
-- Dash/Dodge systems must have a 5s cooldown and must not displace the avatar more than 5 meters.
-   - Movement must be strictly horizonal (X/Y).
-    
-####    [Weapons]
-All forms of weapon assistance is disallowed. This includes but is not limited to...  
-- [Trigger botting] is Having the weapon fire independently from user input.
-- [Trigger locking/Smart Scope] is Having the weapon's trigger lock on to a target to fire automatically when aimed.
-- [Aim botting] is Having the weapon aim independently from user input.
-- [Aim locking] is Having the viewer/client/weapon lock on to avatar position independent from user input. 
-    
-####    [Client]
-All forms of visual assistance is disallowed. This includes but is not limited to...
-- Sight HUDs, Nametags on hover, Combat Features, Etc
-- Hitboxes, ARC, Wireframe, or similar client-enabled features.
-    
-## **Glossary**
-   - [Direct AT] AT Damage dealt by the source of the collision
-   - [Proximity AT] AT Damage dealt in an area around the source.
-   - [Projectile] A physical, movable object with a traceable and interruptible path.
-   - [Legacy AT] (Primbashing, Collision-Based AT) AT which works by repeatedly bombarding an object with prims.
-   - [LBA] Short for “Listen-Based Armor” which largely replaced how objects were to take damage in the LLCS combat community. 
-   - [LBA HEX] Refers to v2 LBA format which has objects define a unique channel based on their object keys.
-   - [LBA NON-HEX] Refers to v1 LBA format which uses a fixed channel.
-   - [HARDPOINT] Weapon/Utility mount. Weapons and utilities such as flares, ADS, smoke launcher, etc consume a hardpoint slot.
-   - [DPM] Damage Per Minute. How much damage a weapon can put out within 60 seconds - This includes reloads or other forms of downtime and is a metric of a weapon's 'sustainable' damage output.
-   - [DPS] 
-        - [DAMAGE PER SECOND] Similar to DPM but over the course of a single second, typically used for calculating a weapon's damage output while disregarding any downtime. This is mostly used to calculate a weapon's 'burst' damage output.
-        - [DAMAGE PROCESSING SYSTEM] The metered combat and raycasting system.
-   - [Tank] A ground vehicle that is relatively slow but features high burst damage and decent armor.
-   - [Mech] A ground vehicle that is more maneuverable than a tank but is typically weaker defensively. They can be small or large.
-   - [Fortified] Ignores LBA damage less than 5 and is immune to legacy AT. Typically associated with tanks and barricades.
+██████████████████████████████████████████████
+
+### S E C T I O N 6: B A N N E D  E Q U I P M E N T
+
+Below is a list of equipment that may not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
+
+All equipment from defunct military organizations (Coercion, 2142, etc) are disallowed.  
+All commercial CSF weapons are disallowed.  
+Any object that reflects damage of any type or retaliates in similar form is disallowed.  
+Any objects which restrict normal avatar movement or control are disallowed. This includes objects which stall or obstruct vehicle movement through targetted means.  
+Self-regenerating health systems are disallowed.  
+Commercial and Tkoi-related VelTech products are disallowed.  
+
+██████████████████████████████████████████████
+
+### S E C T I O N 7: H I T S C A N  W E A P O N S / A G E N T L I S T
+
+All closed-source, agentlist-based raycast weapons will be disallowed. This includes equipment which functions in a similar principle (widecast).
+They must follow all regulations which govern raycast weapons and will be subject to higher scrutiny.
+
+[Guidelines]  
+Raycast weapons are allowed, but must suffer from some form of inaccuracy or damage reduction with range and/or movement. Weapons firing in excess of 300 RPM must deal partial damage and cannot be lethal on a single-shot level. Weapons firing in excess of 600 RPM will not be permitted.
+Raycast weapons will also have the open-source review requirement in cases where it is suspected of non-compliance or the distributor cannot be trusted to provide credible testimony of its function.   
+Note: Hybrid Raycast rounds also must be compliant with these regulations in order to be permitted.
+
+[If you fail compliance]  
+If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment which is an immediate combat ban. If your weapon is considered non-compliant, you can request a review of the affected equipment and this section will be updated accordingly.
+
+You will be notified of any non-compliant equipment should it be deemed necessary.
+
+██████████████████████████████████████████████
