@@ -62,7 +62,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 2) Grenades, Rockets, Etc...  
     2a) May not exceed a 5 meter radius.  
-    2b) May not deal more than a maximum of 50 LBA to targets on a direct impact.  
+    2b) May not deal more than a maximum of 35 LBA to targets on a direct impact.  
     2c) May not deal more than 25 proximity LBA damage.  
     2d) Explosives without a raycast check are NOT allowed.  
     2e) Must have a 5s cooldown per explosive fired or thrown.  
