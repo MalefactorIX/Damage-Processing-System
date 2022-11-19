@@ -3,22 +3,22 @@
 Table of Contents
 
 Section 1) Introduction.  
-Section 2) General Rules.  
-Section 3) Infantry Rules.  
-Section 4) Vehicle Rules.  
-Section 5) Raid Rules.  
-Section 6) Banned Equipment.  
-Section 7) Hitscan Weapons / AgentList.  
+Section 2) Conduct. 
+Section 3) Raid Guidelines.
+Section 4) Infantry Armaments.
+Section 5) Vehicle Armamments.
+Section 6) Hitscan Weapons / AgentList.  
+Section 7) Banned Equipment.  
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 1: I N T R O D U C T I O N
+### SECTION 1: INTRODUCTION
 
 This documentation will go over rules in detail for UWU's combat arenas. There are not many rules that will result in a ban, but many serves as our expectations for equipment balance in our region. While we will make an effort to avoid immediate administrative action, there are some offenses that will result in an unavoidable need for such a reaction. If you feel you have been unjustly banned, contact relevant administrative parties in order to appeal.
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 2: G E N E R A L  R U L E S
+### SECTION 2: CONDUCT
 
 These rules govern the expected conduct of all participants.
 
@@ -38,7 +38,21 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 3: I N F A N T R Y  R U L E S
+### SECTION 3: RAID GUIDELINES
+
+1) There are no rules governing the declaration or prior announcement of a raid, nor are their any regulations limiting the amount of personnel you may deploy to the field. However, the attacker:defender ratio is considered when it determining the appropriate weapon tiers and types that are being deployed.
+
+2) A group may attack once per day. Raids which persist for an excess amount of time may be terminated by the defending OIC. You can request for additional raid opportunities after your first for that day if desired. Raids are recognized as being organized efforts by at least 3 attackers for a minimum duration of 30 minutes.
+
+3) Assume things not mentioned in this ruleset are disallowed unless otherwise advised by region moderation. Even if something is disallowed, we may make a temporary exception if requested.
+
+4) Spawn zones are clearly marked. Do not enter the opposing spawn zones. This includes being on top of said structures. You are otherwise authorized to shoot at any location you are being shot from.
+
+5) We will attempt to identify your OiC and our OiC will make themselves known. It is expected that OiCs prioritize communication of issues over combat during any  given combat event. Repeated failure to acknowledge or refusal to follow instructions given by the defending OiC will result in revocation of this status and all offenses will be handled directly with the offender(s). You may also be disallowed from serving as oppositional OiC if this becomes a repeat issue.
+
+██████████████████████████████████████████████
+
+### SECTION 4: INFANTRY ARMAMENTS
 
 1) "Flashbangs" or similar blinding effects are disallowed. This is due to health and safety concerns as well as jank related to how they must function.
 
@@ -80,11 +94,13 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 4: V E H I C L E  R U L E S
+### SECTION 5: VEHICLE ARMAMENTS
+
+PREEMPTION: No, we don't expect tanks to fit in the station. No, we don't expect aircraft to be able to fly properly in the confines of a half-sim parcel. Both issues will be addressed at a later date. This just saves us some work for when it does.
 
 1) You may have a maximum of 2 air vehicles, and 2 ground vehicles per side.
 
-2) All vehicles must be destructible by LBA. Tanks are permitted to ignore collision damage, or LBA damage that is 5 or less.
+2) All vehicles must be destructible by LBA. Tanks are permitted to ignore collision damage, or LBA damage that is 5 or less. 
 
 3) Ground armor may not exceed 250HP for tanks or mechs, and 50 HP for armored infantry units.
 
@@ -94,13 +110,13 @@ Infraction of these rules may result in immediate administrative action. This is
     4c) Heavy Craft (Fleet): Up to 500HP.  
     4d) All armored aircraft may not exceed a top speed of 40m/s. Unarmored is allowed up to 80m/s.  
 
-5) No absurdly excessive weaponry may be used in any vehicle - this is harder to quantify, so you will be informed if you need to tone things back. Use infantry guidelines as a benchmark for compliance.
+5) No excessive weaponry may be used in any vehicle - Use infantry guidelines as a benchmark for compliance.
 
 6) All health systems must have an open and public github page for references. You must be able to provide the sourcecode for your health system. Private systems will not be permitted.
 
-7) All health systems must be at least 90% accurate regardless of region latency. Systems found to be throttling or repeatedly failing to take damage will be disallowed.
+7) All health systems must be at least 90% accurate regardless of region latency. Systems found to be throttling or repeatedly failing to take damage will be disallowed. Directional Armor is permitted provided all values add to 1 or more and the maxium resistance to any particular section does not exceed 50%. Inquire as needed.
 
-8) Maximum Combat Height for aerial vehicles is 1000m.
+8) Combat Height for aerial vehicles is between 800m and 1200m. Note: This will change later.
 
 9) Any explosive with a radius larger than 5m must deal partial damage. The lethal radius must be reduced by 1m per meter in excess of 5m. Maximum LBA damage must also be reduced by 10 per meter in excess of 5m.  
     Easier to understand than it sounds:  
@@ -115,34 +131,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 5: R A I D  R U L E S
-
-1) There are no rules governing the declaration or prior announcement of a raid, nor are their any regulations limiting the amount of personnel you may deploy to the field. However, the attacker:defender ratio is considered when it determining the appropriate weapon tiers and types that are being deployed.
-
-2) A group may attack once per day. Raids which persist for an excess amount of time may be terminated by the defending OIC. You can request for additional raid opportunities after your first for that day if desired. Raids are recognized as being organized efforts by at least 3 attackers for a minimum duration of 30 minutes.
-
-3) Assume things not mentioned in this ruleset are disallowed unless otherwise advised by region moderation. Even if something is disallowed, we may make a temporary exception if requested.
-
-4) Spawn zones are clearly marked. Do not enter the opposing spawn zones. This includes being on top of said structures. You are otherwise authorized to shoot at any location you are being shot from.
-
-5) We will attempt to identify your OiC and our OiC will make themselves known. It is expected that OiCs prioritize communication of issues over combat during any  given combat event. Repeated failure to acknowledge or refusal to follow instructions given by the defending OiC will result in revocation of this status and all offenses will be handled directly with the offender(s). You may also be disallowed from serving as oppositional OiC if this becomes a repeat issue.
-
-██████████████████████████████████████████████
-
-### S E C T I O N 6: B A N N E D  E Q U I P M E N T
-
-Below is a list of equipment that may not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
-
-All equipment from defunct military organizations (Coercion, 2142, etc) are disallowed.  
-All commercial CSF weapons are disallowed.  
-Any object that reflects damage of any type or retaliates in similar form is disallowed.  
-Any objects which restrict normal avatar movement or control are disallowed. This includes objects which stall or obstruct vehicle movement through targetted means.  
-Self-regenerating health systems are disallowed.  
-Commercial and Tkoi-related VelTech products are disallowed.  
-
-██████████████████████████████████████████████
-
-### S E C T I O N 7: H I T S C A N  W E A P O N S / A G E N T L I S T
+### SECTION 6: HITSCAN AND AGENTLIST GUIDELINES.
 
 All closed-source, agentlist-based raycast weapons will be disallowed. This includes equipment which functions in a similar principle (widecast).
 They must follow all regulations which govern raycast weapons and will be subject to higher scrutiny.
@@ -156,5 +145,18 @@ Note: Hybrid Raycast rounds also must be compliant with these regulations in ord
 If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as non-compliance. In extreme cases, it will be treated as an immediate combat ban. If your weapon is considered non-compliant, you can request a review of the affected equipment.
 
 You will be notified of any non-compliant equipment should it be deemed necessary.
+
+██████████████████████████████████████████████
+
+### SECTION 7: BANNED EQUIPMENT.
+
+Below is a list of equipment that may not be used under any circumstances. Some of this equipment as well as those that may not be listed will be automatically blacklisted by automated systems.
+
+All equipment from defunct military organizations (Coercion, 2142, etc) are disallowed.  
+All commercial CSF weapons are disallowed.  
+Any object that reflects damage of any type or retaliates in similar form is disallowed.  
+Any objects which restrict normal avatar movement or control are disallowed. This includes objects which stall or obstruct vehicle movement through targetted means.  
+Self-regenerating health systems are disallowed.  
+Commercial and Tkoi-related VelTech products are disallowed.  
 
 ██████████████████████████████████████████████
