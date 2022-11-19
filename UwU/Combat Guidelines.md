@@ -26,9 +26,9 @@ These rules govern the expected conduct of all participants.
 
 2) Excessive flaming and generally toxic behavior will not be tolerated. We're here to have fun and shoot each other. If you're getting too invested into this and becoming angry, take a step back. If you feel a fight has turned nasty, contact the OIC and talk about ways to fix it. Both sides of a conflict should be having fun, and if one or both is not, something needs to be fixed.
 
-3) Use of features disablde by region settings (ie. flight) is strictly prohibited.
+3) Use of features disabled by region settings (ie. flight) is strictly prohibited.
 
-4) Non-combative personnel must declare their status. Otherwise, assume you will be shot on sight once inside the combat arena.
+4) Non-combative personnel MUST declare their status. Otherwise, assume you will be shot on sight once inside the combat arena.
 
 5) Follow all instructions given by region overseers. The heat is battle is not the time to debate regulations and any disputes will be discussed once combat operations cease.  Region overseers will either declare themselves or make themselves known upon request. NOTE: Telling region moderation to contact another person will be treated as non-compliance.
 
@@ -40,7 +40,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ### S E C T I O N 3: I N F A N T R Y  R U L E S
 
-1) "Flashbangs" or similar blinding effects are disallowed. This is due to health and safety concerns.
+1) "Flashbangs" or similar blinding effects are disallowed. This is due to health and safety concerns as well as jank related to how they must function.
 
 2) Grenades, Rockets, Etc...  
     2a) May not exceed a 5 meter radius.  
@@ -52,29 +52,29 @@ Infraction of these rules may result in immediate administrative action. This is
 3) The following types of fuses are allowed for thrown or projectile explosives: Timed, Distance, or Impact.
    3a) Proximity fuses (detonates in proximity to player) are not allowed for infantry weapons.
 
-4) Automatic weapons cannot fire explosive rounds.
+4) Explosion ammunition is limited to grenades, rockets, and vehicle munitions. No explosive bullets are permitted.
 
 5) Seekers must comply with these guidelines: https://github.com/MalefactorIX/SLMC-Seeker-2020 . Minimum lock-on time is 2 seconds.
 
-6) Infantry weapons may not exceed a fire-rate of 1200 RPM. Projectiles should not exceed 200m/s. Explosive projectiles (excluding vehicles) should not exceed 120m/s.
+6) Infantry weapons may not exceed a fire-rate of 1200 RPM. Projectiles should not exceed 200m/s. Explosive projectiles (excluding vehicles) should not exceed 110m/s.
 
 7) Ammunition per clip/magazine may not exceed 200 rounds, and reload times no less than 5 seconds for clips/magazines that exceed 100 rounds.
 
 8) Bullet sizes may not exceed 5 meters in length and 0.05 meters in width. Tank shells or the equivalent is allowed to be up to 0.2m in width.
 
-9) Movement enhancers (dodge rolls, dash, slides) are allowed, but may not exceed a 5 meter dash and may only occur on a 5 second cooldown. Mid-air dashing is only allowed with dedicated melee weapons.
+9) Movement enhancers (dodge rolls, dash, slides) are allowed, but may not exceed a 5 meter dash and may only occur on a 5 second cooldown. Mid-air dashing is only allowed with dedicated melee weapons only.
 
-10) Omnidirectional Jump packs and Jet packs are not allowed. We do allow a double jump (10s cooldown) or short-range boost packs with only vertical acceleration (10s cooldown after landing).
+10) Omnidirectional Jump packs and Jet packs are not allowed. We do allow a double jump (10s cooldown) or short-range boost packs with only vertical acceleration (10s cooldown after landing). Note: This rule will change later.
 
-11) Enhancers or features that disable pre-jump or landing animations are disallowed. Dashes are allowed to break the landing state.
+11) Movement Enhancers or features that disable pre-jump or landing animations are disallowed. Dashes are allowed to break the landing state.
 
-12) Grapple hooks are allowed. Avatar velocity may not exceed 5m/s and range may not exceed 30m. 10s cooldown after disengaged.
+12) Grapple hooks or tether-movement systems are not allowed. Note: This rule will change later.
 
 13) Weapons, either intentionally or otherwise, that kill through physics/prims are not allowed, ie. "Penetrator" rounds, or non-raycast explosives and melee attacks.
     
-14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots. Grenades which interfere with the intended function of interceptors are disallowed. Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose.
+14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots. Grenades which interfere with the intended function of interceptors are disallowed. Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose of having them at all.
 
-15) Any lingering effect (smoke, gas, fire, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affect target dies.
+15) Any lingering effect (smoke, gas, fire, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affected target dies.
 
 16) All deployables, including mines, are required to take LBA damage.
 
@@ -148,12 +148,12 @@ All closed-source, agentlist-based raycast weapons will be disallowed. This incl
 They must follow all regulations which govern raycast weapons and will be subject to higher scrutiny.
 
 [Guidelines]  
-Raycast weapons are allowed, but must suffer from some form of inaccuracy or damage reduction with range and/or movement. Weapons firing in excess of 300 RPM must deal partial damage and cannot be lethal on a single-shot level. Weapons firing in excess of 600 RPM will not be permitted.
+Raycast weapons are allowed, but must suffer from some form of inaccuracy or damage reduction with range and/or movement. Weapons firing in excess of 120 RPM must deal partial damage and cannot be lethal on a single-shot level. Weapons firing in excess of 600 RPM will not be permitted. Ommissions can be made for skill-based mechanics like headshots, close-range shotguns, etc. Inquire accordingly.
 Raycast weapons will also have the open-source review requirement in cases where it is suspected of non-compliance or the distributor cannot be trusted to provide credible testimony of its function.   
 Note: Hybrid Raycast rounds also must be compliant with these regulations in order to be permitted.
 
 [If you fail compliance]  
-If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment which is an immediate combat ban. If your weapon is considered non-compliant, you can request a review of the affected equipment and this section will be updated accordingly.
+If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as non-compliance. In extreme cases, it will be treated as an immediate combat ban. If your weapon is considered non-compliant, you can request a review of the affected equipment.
 
 You will be notified of any non-compliant equipment should it be deemed necessary.
 
