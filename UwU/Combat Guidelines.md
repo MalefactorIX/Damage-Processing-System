@@ -3,11 +3,17 @@
 Table of Contents
 
 Section 1) Introduction.  
+
 Section 2) Conduct. 
+
 Section 3) Raid Guidelines.
+
 Section 4) Infantry Armaments.
+
 Section 5) Vehicle Armamments.
+
 Section 6) Hitscan Weapons / AgentList.  
+
 Section 7) Banned Equipment.  
 
 ██████████████████████████████████████████████
