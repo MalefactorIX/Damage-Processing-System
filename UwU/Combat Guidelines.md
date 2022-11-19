@@ -46,9 +46,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 3) Assume things not mentioned in this ruleset are disallowed unless otherwise advised by region moderation. Even if something is disallowed, we may make a temporary exception if requested.
 
-4) Spawn zones are clearly marked. Do not enter the opposing spawn zones. This includes being on top of said structures. You are otherwise authorized to shoot at any location you are being shot from.
-
-5) We will attempt to identify your OiC and our OiC will make themselves known. It is expected that OiCs prioritize communication of issues over combat during any  given combat event. Repeated failure to acknowledge or refusal to follow instructions given by the defending OiC will result in revocation of this status and all offenses will be handled directly with the offender(s). You may also be disallowed from serving as oppositional OiC if this becomes a repeat issue.
+4) We will attempt to identify your OiC and our OiC will make themselves known. It is expected that OiCs prioritize communication of issues over combat during any given combat operation. Repeated failure to acknowledge or refusal to follow instructions given by the defending OiC will result in revocation of this status and all offenses will be handled directly with the offender(s). You may also be disallowed from serving as oppositional OiC if this becomes a repeat issue. You are only expected to act on behalf of members for the faction you represent and are not responsible for 3rd parties or lonewolves.
 
 ██████████████████████████████████████████████
 
