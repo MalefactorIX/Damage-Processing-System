@@ -3,7 +3,7 @@
 //Note to self: Replace all references to llKey2Name(llGetOwnerKey(id)) with SLURL profile links instead.
 integer dps=1;//Toggles between using DPS (1) or RC (0)
 float rpm;
-boosh()
+boosh()//Link message delay was starting to piss me off.
 {
     rpm=llGetTimeOfDay();
     while(llGetColor(1)!=ZERO_VECTOR)
