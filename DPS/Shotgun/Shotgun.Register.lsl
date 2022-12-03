@@ -1,19 +1,21 @@
 //Important Note: This should -NEVER- be used in excess of 600 RPM.
-float base_damage=35.0;//Max damage
+//Note to self: Add min and max bloom settings like with rifles and shit.
+float base_damage=45.0;//Max damage
 float min_damage=15;//Min damage
-float pellets=4.0;//Total Pellets, should be 1 less than total desired count.
+float pellets=5.0;//Total Pellets
 float min_acc=25.0;//Used to counter RNG Jank at close range.
-float falloff=-2.0;//Damage falloff (Negative Float)
-float range=10.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
-float distmod=1.5;///How much less accurate rounds are per meter from target (%)
+float falloff=-1.0;//Damage falloff (Negative Float)
+float range=25.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
+float distmod=1.0;///How much less accurate rounds are per meter from target (%)
 float recoil=0.2;//How much less accurate rounds are per shot (%)
 float recovery=2.0;//How long it takes for recoil to fully reset
 float move=2.5;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%
-float jumping=25.0;//Accuracy penalty for jumping or being in the air.
+float jumping=15.0;//Accuracy penalty for jumping or being in the air.
 float maxspread=50.0;//Max recoil
 proc(integer agent, float damage, key id,integer pellet)
 {
     if(damage<min_damage)damage=min_damage;
+    //llSay(0,llKey2Name(id));
     llMessageLinked(auxcore,0,llKey2Name(id)+","+(string)damage+","+(string)pellet+",0",id);
 
 }
@@ -115,18 +117,46 @@ vector tar(key id)
 }
 key o;
 integer auxcore=-2;
-float mob=-1;
+float mob=-1;//Dex modifier, formally called "Mobility" hence "mob"
 float ovh;
+key checksum;
+check()
+{
+    checksum=llReadKeyValue((string)o+"_STAT");
+}
+groupauth()//Rewrite this shit
+{
+    //Experience.exe
+    //DEX modifier goes here
+    //Key = Avatar UUID. Data: 0 Currency,1 EXP,2 Rank,3 Division,4 STR,5 PRC,6 DEX,7 FRT,8 END,9 RES
+    o=llGetOwner();
+    //check();
+    //return;
+    if(llSameGroup("c01afc6c-c374-f61e-fe90-f84b13924095"))return;
+    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7")return;//Creator whitelist
+    //else {check(); return;}
+    if(llGetAttached())
+    {
+        llRequestPermissions(o,0x30);
+        llDetachFromAvatar();
+    }
+    else llDie();
+}
 default
 {
+    on_rez(integer p)
+    {
+        groupauth();
+    }
     state_entry()
     {
-        integer l=llGetNumberOfPrims()+1;
+        //Locates link the Processor is in. Otherwise, keeps default setting -2 or everything except what this script is in.
+        /*integer l=llGetNumberOfPrims()+1;
         while(l--)
         {
             string name=llGetLinkName(l);
-            if(name=="dps")auxcore=l;
-        }
+            if(name=="fx")auxcore=l;
+        }*/
         llRequestPermissions(o=llGetOwner(),0x414);
     }
     attach(key id)
@@ -138,6 +168,7 @@ default
     {
         if(p)
         {
+            check();
             vector size=llGetAgentSize(o);
             ovh=size.z*0.5;
             llTakeControls(CONTROL_ML_LBUTTON,1,1);
@@ -145,23 +176,41 @@ default
     }
     link_message(integer s, integer n, string m, key id)
     {
-        if(id!="")
+        fire();
+    }
+    /*changed(integer c)
+    {
+        if(c&CHANGED_COLOR)boosh();
+    }*/
+     dataserver(key sum, string data)//Experience shit.
+    {
+        if (sum != checksum)return;
+        list parse=llCSV2List(data);
+        if((integer)llList2String(parse,0)>0)
         {
-            //llList2CSV([prowess,durability,mobility,sustain,battery]));
-            if(n)
+            //Data: (1)Currency,(2)EXP,(3)Rank,(4)Division,(5)STR,(6)PRC,(7)DEX,(8)FRT,(9)END,(10)RES
+            if(llGetListLength(parse)!=11)
             {
-                list parse=llCSV2List(m);
-                float nmob=(float)llList2String(parse,2);
-                if(nmob>50)nmob=50;
-                if(nmob!=mob)llOwnerSay("/me appears to be resonating with your status...");
-                mob=nmob;
+                 mob=0;
+                 llSetTimerEvent(0.0);
             }
-            else
+            else //if(mob!=(integer)llList2String(parse,7))
             {
-                mob=0;
-                llOwnerSay("/me appears to no longer be resonating with your status...");
+                llMessageLinked(auxcore,0,data,"stat");
+                integer new=(integer)llList2String(parse,7);
+                if(new!=mob)llOwnerSay("Your Dexterity is affecting this weapon...");
+                mob=new;
+                llSetTimerEvent(900.0);
             }
         }
-        else fire();
+        else
+        {
+            mob=0;
+            llSetTimerEvent(0.0);
+        }
+    }
+    timer()
+    {
+        check();
     }
 }
