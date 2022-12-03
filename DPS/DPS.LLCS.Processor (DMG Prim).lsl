@@ -32,7 +32,7 @@ default
                     //(ﾉ´･ω･)ﾉ ﾐ ┸━┸
                     llSetStatus(STATUS_PHANTOM,0);
                     llResetTime();
-                    while(llGetTime()<4.0)
+                    while(llGetTime()<2.0)
                     {
                         llSetRegionPos(tar(id));
                     }
