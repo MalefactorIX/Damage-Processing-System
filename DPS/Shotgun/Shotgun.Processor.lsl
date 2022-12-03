@@ -1,5 +1,6 @@
 //Settings
-string prim="[FI]Hellshot.DPS";//Damage Prim for DPS
+string ver="UWUTR v1.0";
+string prim="[UWU]Trench Rifle.DPS";//Damage Prim for DPS
 float expose=1.25;//Damage multiplier for Exposed targets
 float resist=0.75;//Damage multiplier for Resisting targets
 list auxdata;//Used for storing AUX usage
@@ -38,10 +39,10 @@ proc(string name, float damage, key id, integer pellet, integer ex)
     }
     //
     float pen=0.1*(float)pellet;
-    damage+=pdam;//Scale
     integer aux=llListFindList(auxdata,[id]);
     if(aux>-1)//Aux processing
     {
+        damage+=pdam;//Scale
         integer ochan=(integer)llList2String(auxdata,aux+2);
         //llSay(0,(string)ochan+" | "+llKey2Name(llList2String(auxdata,aux))+" | "+llKey2Name(llList2String(auxdata,aux+1))+" | "+llList2String(auxdata,aux+2));
         string aid=llList2String(auxdata,aux+1);
@@ -127,15 +128,25 @@ proc(string name, float damage, key id, integer pellet, integer ex)
     {
         //LLCS Text
         damage*=pellet;
+        if(damage>100.0)damage=100.0;
         text("hit",name,(string)llFloor(damage));
-        float damage=damage*10.0;//Final damage
         //LLCS processing
+        integer tkey=1+(integer)("0x"+llGetSubString(llMD5String(id,0), 0, 1));
+        if(tkey<10)tkey*=10;
+        else if(tkey>99)tkey=llRound(tkey*0.1);
+        //llSay(0,(string)tkey);
+        if(tkey>99)
+        {
+            llOwnerSay("DPS ERROR: Unable to generate a validation code for "+name);
+            return;
+        }
         string aparse=(string)agent;
-        if(agent<10)aparse="00"+(string)agent;
-        else aparse="0"+(string)agent;
-        integer D=(integer)damage;
-        string parse=(string)D+aparse;
+        if(agent<10)aparse="0"+aparse;//Supports sims with up to 99 agents
+        //llSay(0,aparse);
+        string parse=(string)tkey+aparse+(string)((integer)damage);
+        //VVAADD...
         integer p=(integer)parse;
+        //llSay(0,parse);
         llRezObject(prim,llGetPos()+<0.0,0.0,4.0>,ZERO_VECTOR,ZERO_ROTATION,p);
     }
 }
@@ -182,7 +193,6 @@ boot()
     llTakeControls(CONTROL_ML_LBUTTON,1,1);
     //llOwnerSay("System now online.");
 }
-string ver="Hellshot Beta";
 string oname;
 integer mychan;
 integer exchan;
@@ -200,11 +210,14 @@ default
     }
     state_entry()
     {
+        prim=llGetInventoryName(INVENTORY_OBJECT,0);
+        if(prim=="")prim="INVALID_NAME_NO_OBJECT";
+        //llOwnerSay("Damage prim set to '"+prim+"]' If this is incorrect, make sure there is only 1 object in the link this script is inside of and then reset this script");
         mychan=(integer)("0x" + llGetSubString(llMD5String(o=llGetOwner(),0), 0, 2));
         oname=llGetObjectName();
         auxdata=[];
         dmode=llGetParcelFlags(<128.0,128.0,0.0>)&PARCEL_FLAG_ALLOW_DAMAGE;
-        llHTTPRequest(url, [HTTP_BODY_MAXLENGTH,2000], "");
+        llHTTPRequest(url, [HTTP_BODY_MAXLENGTH,6000], "");
 
     }
     http_response(key request_id, integer status, list metadata, string body)
@@ -236,7 +249,17 @@ default
     }
     link_message(integer s, integer n, string data, key id)
     {
-        if(id)
+        //Data: (1)Currency,(2)EXP,(3)Rank,(4)Division,(5)STR,(6)PRC,(7)DEX,(8)FRT,(9)END,(10)RES
+        if(id==(key)"stat")
+        {
+            list stats=llCSV2List(data);
+            float prc=(float)llList2String(stats,6);
+            if(prc>25)prc=25;
+            if(prc!=pdam)llOwnerSay("Your Precision is affecting this weapon...");
+            //float dura=1.0+(prow/100.0);
+            pdam=prc;
+        }
+        else if(id)
         {
             if(oaux)
             {
@@ -267,11 +290,11 @@ default
             //llSay(0,name+" ["+llKey2Name(llGetOwnerKey(id))+"]: "+message);
             key oid=llGetOwnerKey(id);
             //if(id==oid||oid==o)return;
-            integer aux=llListFindList(auxdata,[id]);
-            if(aux<0)
+            integer aux=llListFindList(auxdata,[oid]);//Owner_UUID Parameter
+            if(aux<0)//Owner not found
             {
                 string ochan="0x"+llGetSubString(llMD5String((string)oid,0),0,3);
-                auxdata+=[oid,id,ochan];//New data
+                auxdata+=[oid,id,ochan];//New data: Written as Owner_ID,AUX_ID,AUX_Channel
                 if(oid==o)
                 {
                     llRegionSay(staticchan,"stat");//Polls DPS stats for owner
@@ -281,15 +304,15 @@ default
                 //llSay(0,llDumpList2String(auxdata," | "));
                 //llOwnerSay("AUX Data added for "+llKey2Name(oid));
             }
-            else if(llList2Key(auxdata,aux)!=id)
+            else if(llList2Key(auxdata,aux+1)!=id)//Aux UUID does not match registered AUX ID (reattach or relog)
             {
                 if(oid==o)
                 {
                     llRegionSay(staticchan,"stat");//Polls DPS stats for owner
                     oaux=id;
                 }
-                auxdata=llListReplaceList(auxdata,[id],aux,aux);//Update data
-                //llOwnerSay("AUX Data updated for "+llKey2Name(oid));
+                auxdata=llListReplaceList(auxdata,[id],aux+1,aux+1);//Update data
+                //llOwnerSay("AUX Data updated for "+llKey2Name(oid)+" on channel "+(string)llList2Integer(auxdata,aux+2));
             }
         }
         else if(chan==exchan)
@@ -329,8 +352,8 @@ default
                 float prow=(float)llList2String(parse,0);
                 if(prow>60)prow=60;
                 //float dura=1.0+(prow/100.0);
-                pdam=prow*0.5;
-                aspect=llList2String(parse,-1);
+                pdam=prow*0.25;
+                //aspect=llList2String(parse,-1);
                 //dur=(string)llFloor(basedur*dura);
             }
         }
