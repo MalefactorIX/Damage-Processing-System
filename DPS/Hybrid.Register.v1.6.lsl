@@ -1,9 +1,26 @@
 //Important Note: This should -NEVER- be used in excess of 600 RPM. It is too bloated to run any faster than that.
-//Most of the balancing for ranged weapons is contained within this script. Automatic, instant kill raycast with no strings attached is dumb, stupid, and saying it's "semi-automatic" doesn't change that the fact you can instantly pop someone irregardless of distance in a single physics frame dipshit.
+//Most of the balancing for ranged weapons is contained within this script. Automatic, instant kill raycast with no strings attachs is dumb, stupid, and saying it's "semi-automatic" doesn't change that the fact you can instantly pop someone irregardless of distance in a single physics frame dipshit.
 //Note to self: Replace all references to llKey2Name(llGetOwnerKey(id)) with SLURL profile links instead.
-float base_damage=45.0;//Max damage
-float min_damage=27;//Min damage
-float falloff=-0.75;//Damage falloff (Negative Float)
+integer dps=1;//Toggles between using DPS (1) or RC (0)
+float rpm;
+boosh()
+{
+    rpm=llGetTimeOfDay();
+    while(llGetColor(1)!=ZERO_VECTOR)
+    {
+        float time=llGetTimeOfDay();
+        if(llFabs(time-rpm)>0.1)
+        {
+            rpm=time;
+            //llSay(0,"fire");
+            if(dps)fire();
+            else rc();
+        }
+    }
+}
+float base_damage=55.0;//Max damage
+float min_damage=35.0;//Min damage
+float falloff=-0.5;//Damage falloff (Negative Float)
 float range=40.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
 float minbloom=0.35;//Roughly, how thick an avatar is with a little margin for error. Determines threshold for aiming inaccuracy.
 float maxbloom=1.0;//How large (radius in meters) the cone for spread can get at any distance.
@@ -11,7 +28,7 @@ float distmod=0.1;///How much less accurate rounds are per meter from target (%)
 float recoil=0.75;//How much less accurate rounds are per shot (%)
 float recovery=4.0;//How long it takes for recoil to fully reset
 float move=5.0;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%. Also nerfs the shit of pre-fire dashes. Git gud.
-float jumping=40.0;//Accuracy penalty for jumping or being in the air. Should always be higher than running at full speed.
+float jumping=25.0;//Accuracy penalty for jumping or being in the air. Should always be higher than running at full speed.
 float maxspread=50.0;//Max penalty for recoil.
 proc(float damage, key id, integer head)
 {
@@ -165,14 +182,13 @@ rc()//Raycast Firing Pattern
                 {
                     if(llGetAgentSize(id))//Hit avatar
                     {
-                        float damage=base_damage;
-                        if(phantom)damage=100.0;//Fuck 'em
+                        //if(phantom)damage=100.0;//Fuck 'em
                         vector size=llGetAgentSize(id);
                         vector end=llList2Vector(ray,i+1);
                         vector target=tar(id);
                         if(~llGetAgentInfo(id)&AGENT_CROUCHING)target.z+=size.z*0.5;//Adjusts head height for standing avatars
-                        if(llVecDist(end,target)<0.35)proc(damage,id,1);//hed
-                        else proc(damage,id,0);
+                        if(llVecDist(end,target)<0.35)proc(base_damage,id,1);//hed
+                        else proc(base_damage,id,0);
                         attempts=0;//Ends loop if a valid target is hit.
                     }
                     else//Hit object/land
@@ -204,7 +220,7 @@ float ovh;
 key checksum;
 check()
 {
-    checksum=llReadKeyValue((string)o);
+    checksum=llReadKeyValue((string)o+"_STAT");
 }
 groupauth()//Rewrite this shit
 {
@@ -212,10 +228,10 @@ groupauth()//Rewrite this shit
     //DEX modifier goes here
     //Key = Avatar UUID. Data: 0 Currency,1 EXP,2 Rank,3 Division,4 STR,5 PRC,6 DEX,7 FRT,8 END,9 RES
     o=llGetOwner();
-    check();
-    return;
-    if(llSameGroup("Group UUID or something smh")){check(); return;}
-    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7"){check(); return;}//Creator whitelist
+    //check();
+    //return;
+    if(llSameGroup("c01afc6c-c374-f61e-fe90-f84b13924095"))return;
+    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7")return;//Creator whitelist
     //else {check(); return;}
     if(llGetAttached())
     {
@@ -252,6 +268,7 @@ default
     {
         if(p)
         {
+            check();
             vector size=llGetAgentSize(o);
             ovh=size.z*0.5;
             llTakeControls(CONTROL_ML_LBUTTON,1,1);
@@ -259,23 +276,33 @@ default
     }
     link_message(integer s, integer n, string m, key id)
     {
-        if(id!="")return;
-        if(n)fire();//If true, fires via completely fair and balanced agentlist.
-        else rc();//If false, uses raycast only for target acquisition.
+        if(id==(key)"dps")dps=n;
+        //if(n)fire();//If true, fires via completely fair and balanced agentlist.
+        //else rc();//If false, uses raycast only for target acquisition.
     }
-     dataserver(key sum, string data)//Experience shit. Called by core script.
+    changed(integer c)
+    {
+        if(c&CHANGED_COLOR)boosh();
+    }
+     dataserver(key sum, string data)//Experience shit.
     {
         if (sum != checksum)return;
         list parse=llCSV2List(data);
         if((integer)llList2String(parse,0)>0)
         {
-            // the key-value pair was successfully read
-            if(llGetListLength(parse)!=11)return;
-            if(mob!=(integer)llList2String(parse,7))
+            //Data: (1)Currency,(2)EXP,(3)Rank,(4)Division,(5)STR,(6)PRC,(7)DEX,(8)FRT,(9)END,(10)RES
+            if(llGetListLength(parse)!=11)
             {
-                llOwnerSay("Your Dexterity is affecting this weapon...");
-                mob=(integer)llList2String(parse,7);
-                llSetTimerEvent(300.0);
+                 mob=0;
+                 llSetTimerEvent(0.0);
+            }
+            else //if(mob!=(integer)llList2String(parse,7))
+            {
+                llMessageLinked(auxcore,0,data,"stat");
+                integer new=(integer)llList2String(parse,7);
+                if(new!=mob)llOwnerSay("Your Dexterity is affecting this weapon...");
+                mob=new;
+                llSetTimerEvent(900.0);
             }
         }
         else
