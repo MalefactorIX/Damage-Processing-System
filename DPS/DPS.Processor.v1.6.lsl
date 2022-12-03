@@ -1,5 +1,6 @@
 //Settings
-string prim="[TK]Teravolt.RC.DPS";//Damage Prim for DPS
+string ver="UWUTV v1.0";//Skill yourself
+string prim;//Damage Prim for DPS (Updated on boot but can be hardcoded here)
 float expose=1.25;//Damage multiplier for Exposed targets
 float resist=0.75;//Damage multiplier for Resisting targets
 float pen=0.5;//Armor Penetration (1.0 = No Penetration)
@@ -8,10 +9,10 @@ integer externalinput;//Does this weapon have an external component (ie. Grenade
 integer sync=-10283;//Channel weapopns listen to for syncing
 integer staticchan=-10284;//Channel meters listen to for syncing
 integer hitmarker=-1991;//Channel hitmarker listens to
-string url="https://raw.githubusercontent.com/MalefactorIX/Damage-Processing-System/master/DPS/VersionAuth/Series%20A1";//URL for doc
+string url="https://raw.githubusercontent.com/MalefactorIX/Damage-Processing-System/master/DPS/VersionAuth/Series%20A1";//URL for version auth
 //
 list agents;
-string aspect="tek";//Damage flagging for meter interpretation
+string aspect="tek";
 float armorcheck(string parse)//Returns armor value for armored avatars
 {
     integer boot=llSubStringIndex(parse,"armor");
@@ -50,7 +51,7 @@ proc(string name, float damage, key id, integer head, integer ex)
     integer aux=llListFindList(auxdata,[id]);
     if(aux>-1)//Aux processing
     {
-        damage+=pdam;//Scale
+        damage+=pdam;//Hey guys, remember when you could dump 50 points into Prowess and have 250 damage buckshot at any range? Yeah fuck that.
         integer ochan=(integer)llList2String(auxdata,aux+2);
         //llSay(0,(string)ochan+" | "+llKey2Name(llList2String(auxdata,aux))+" | "+llKey2Name(llList2String(auxdata,aux+1))+" | "+llList2String(auxdata,aux+2));
         string aid=llList2String(auxdata,aux+1);
@@ -111,16 +112,22 @@ proc(string name, float damage, key id, integer head, integer ex)
     else if(dmode)
     {
         //LLCS Text
-        if(head)text("crit",name,(string)llFloor(damage),1);//gottem
+        if(head)text("crit",name,(string)llFloor(damage),1);//skill issue
         else text("hit",name,(string)llFloor(damage),0);
-        float damage=damage*10.0;//Final damage
         //LLCS processing
+        integer tkey=1+(integer)("0x"+llGetSubString(llMD5String(id,0), 0, 1));
+        if(tkey<10)tkey*=10;
+        else if(tkey>99)tkey=llRound(tkey*0.1);
+        if(tkey>99)
+        {
+            llOwnerSay("DPS ERROR: Unable to generate a validation code for "+name);
+            return;
+        }
         string aparse=(string)agent;
-        if(agent<10)aparse="00"+(string)agent;
-        else aparse="0"+(string)agent;
-        integer D=(integer)damage;
-        string parse=(string)D+aparse;
+        if(agent<10)aparse="0"+aparse;//Supports sims with up to 99 agents
+        string parse=(string)tkey+aparse+(string)((integer)damage);//Note to self: Never put aparse at the start of the string 
         integer p=(integer)parse;
+        //Output Format: VVAADDDD...
         llRezObject(prim,llGetPos()+<0.0,0.0,5.0>,ZERO_VECTOR,ZERO_ROTATION,p);
     }
 }
@@ -168,7 +175,6 @@ boot()
     llTakeControls(CONTROL_ML_LBUTTON,1,1);
     //llOwnerSay("System now online.");
 }
-string ver="TKTera v1.1.3";
 string oname;
 integer mychan;
 integer exchan;
@@ -188,7 +194,7 @@ default
     {
         prim=llGetInventoryName(INVENTORY_OBJECT,0);
         if(prim=="")prim="INVALID_NAME_NO_OBJECT";
-        llOwnerSay("[DEV KIT NOTICE] Damage prim set to ["+prim+"]. If this is incorrect, make sure there is only 1 object in the link this script is inside of and then reset this script");
+        //llOwnerSay("Damage prim set to '"+prim+"]' If this is incorrect, make sure there is only 1 object in the link this script is inside of and then reset this script");
         mychan=(integer)("0x" + llGetSubString(llMD5String(o=llGetOwner(),0), 0, 2));
         oname=llGetObjectName();
         auxdata=[];
@@ -225,7 +231,16 @@ default
     }
     link_message(integer s, integer n, string data, key id)
     {
-        if(id)
+        //Data: (1)Currency,(2)EXP,(3)Rank,(4)Division,(5)STR,(6)PRC,(7)DEX,(8)FRT,(9)END,(10)RES
+        if(id==(key)"stat")
+        {
+            list stats=llCSV2List(data);
+            float prc=(float)llList2String(stats,6);
+            if(prc>25)prc=25;//No seriously, fuck that shit
+            if(prc!=pdam)llOwnerSay("Your Precision is affecting this weapon...");
+            pdam=prc;
+        }
+        else if(id)
         {
             if(oaux)
             {
