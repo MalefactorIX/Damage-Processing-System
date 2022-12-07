@@ -58,7 +58,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ### SECTION 4: INFANTRY ARMAMENTS
 
-1) "Flashbangs", binding or slow effects, or any effect that interferes with a avatar control are disallowed outside what is enabled through the DPS meter. This is due to health and safety concerns as well as jank related to how they must function. This guideline also forbids objects which target vehicles with this same effect.
+1) "Flashbangs", binding or slow effects, or any effect that interferes with avatar control are disallowed outside what is enabled through the DPS meter. This is due to health and safety concerns as well as jank related to how they must function. This guideline also forbids objects which target vehicles with this same effect.
 
 2) Grenades, Rockets, Etc...  
     2a) May not exceed a 5 meter radius.  
