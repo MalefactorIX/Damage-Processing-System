@@ -58,7 +58,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ### SECTION 4: INFANTRY ARMAMENTS
 
-1) "Flashbangs" or similar blinding effects are disallowed. This is due to health and safety concerns as well as jank related to how they must function.
+1) "Flashbangs", binding or slow effects, or any effect that interferes with a avatar control are disallowed outside what is enabled through the DPS meter. This is due to health and safety concerns as well as jank related to how they must function. This guideline also forbids objects which target vehicles with this same effect.
 
 2) Grenades, Rockets, Etc...  
     2a) May not exceed a 5 meter radius.  
@@ -68,7 +68,7 @@ Infraction of these rules may result in immediate administrative action. This is
     2e) Must have a 5s cooldown per explosive fired or thrown.  
 
 3) The following types of fuses are allowed for thrown or projectile explosives: Timed, Distance, or Impact.
-   3a) Proximity fuses (detonates in proximity to player) are not allowed for infantry weapons.
+   3a) Proximity fuses (detonates in proximity to player) or manual detonation fuses are not allowed for thrown infantry weapons.
 
 4) Explosion ammunition is limited to grenades, rockets, and vehicle munitions. No explosive bullets are permitted.
 
@@ -95,6 +95,8 @@ Infraction of these rules may result in immediate administrative action. This is
 15) Any lingering effect (smoke, gas, fire, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affected target dies.
 
 16) All deployables, including mines, are required to take LBA damage.
+
+17) Flamethrowers may not leave a lingering damaging effect (ie. Napalm) for more than 2s, that effect may not exceed 2m in radius, and all projectiles must be subject to normal gravity. They must also adhere to all previously mentioned guidelines.
 
 ██████████████████████████████████████████████
 
