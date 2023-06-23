@@ -93,11 +93,11 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ### S E C T I O N 4: V E H I C L E  R U L E S
 
-1) You may have a maximum of 2 air vehicles, and 2 ground vehicles per side.
+1) You may have a maximum of 2 air vehicles, and 2 ground vehicles per side. Vehicles are consider Tier 2 equipment.
 
 2) All vehicles must be destructible by LBA. Tanks are permitted to ignore collision damage, or LBA damage that is 5 or less.
 
-3) Ground armor may not exceed 250HP for tanks or mechs, and 125 HP for armored infantry units. Anything in excess of these values will be considered Tier 3. Permitted until double the listed values
+3) Ground armor may not exceed 250HP for heavily armored tanks or mechs, and 125 HP for light armored units. Anything in excess of these values will be considered Tier 3. Permitted until double the listed values
 
 4) Aerial vehicles should have the following HP Values:  
     4a) Light Craft (Fighters): Unarmored, or up to 25HP.  
@@ -133,7 +133,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 2) A group may attack once per day. Raids which persist for an excess amount of time may be terminated by the defending OIC. You can request for additional raid opportunities after your first for that day if desired. Raids are recognized as being organized efforts by at least 3 attackers for a minimum duration of 1 hour.
 
-3) Assume things not mentioned in this ruleset are disallowed unless otherwise advised by region moderation. Even if something is disallowed, we may make a temporary exception if requested.
+3) Assume things not mentioned in this ruleset are disallowed unless otherwise advised by region moderation. Even if something is disallowed, we may make a temporary exception if requested. Otherwise, such usage can be considered a Tier 3 deployment.
 
 4) Spawn zones are clearly marked. Do not enter the opposing spawn zones. This includes being on top of said structures. You are otherwise authorized to shoot at any location you are being shot from.
 
@@ -165,7 +165,7 @@ Raycast weapons will also have the open-source review requirement in cases where
 Note: Hybrid Raycast rounds also must be compliant with these regulations in order to be permitted.
 
 [If you fail compliance]  
-If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment which is an immediate combat ban. If your weapon is considered non-compliant, you can request a review of the affected equipment and this section will be updated accordingly.
+If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment. If your weapon is considered non-compliant, you can request a review of the affected equipment and this section will be updated accordingly.
 
 You will be notified of any non-compliant equipment should it be deemed necessary.
 
@@ -177,8 +177,7 @@ You will be notified of any non-compliant equipment should it be deemed necessar
 Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.  
 Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc.  
 Tier 2: Advanced Technology - Vehicles, Light Artillery, Rockets, MGLs, Etc.  
-Tier 3: War Crimes - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Stalinium Vehicles), Etc.  
-
-Any escalation beyond T3 is considered Tier 4 - Which is an estate ban.
+Tier 3: War Crimes - 100% Full-Auto Raycast, Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Stalinium Vehicles), Etc.  
+Tier 4: Nukes, Estate Ban.
 
 ██████████████████████████████████████████████
