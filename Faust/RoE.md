@@ -176,8 +176,11 @@ You will be notified of any non-compliant equipment should it be deemed necessar
 
 Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.  
 Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc.  Basic gruntwork.
+
 Tier 2: Advanced Technology - Raycast, Multi-Explosive Munitions, Vehicles, Light Artillery, Rockets, MGLs, Etc.  Meat and potatoes madmax romp.
+
 Tier 3: War Crimes - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Heavy Vehicles), Etc.  Popcorn is sold out.
+
 Tier 4: Nukes, Estate Ban.
 
 ██████████████████████████████████████████████
