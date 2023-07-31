@@ -52,7 +52,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ### S E C T I O N 3: I N F A N T R Y  R U L E S
 
-1) "Flashbangs" or similar blinding effects such as smoke must be reasonable. Don't include overtly loud noises or rapidly flashing colors and the like. Blinding effects may only last for 10 seconds and those that track avatars must be raycasted.
+1) "Flashbangs" or similar blinding effects such as smoke must be reasonable. Don't include excessively loud noises or rapidly flashing colors or the like. Blinding effects may only last for 10 seconds and those that track avatars must be raycasted.
 
 2) Grenades, Rockets, Etc...  
     2a) May not exceed a 5 meter radius.  
@@ -85,9 +85,9 @@ Infraction of these rules may result in immediate administrative action. This is
     
 14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots. Grenades which interfere with the intended function of interceptors are disallowed. Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose.
 
-15) Any lingering effect (smoke, gas, fire, flash, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affect target dies.
+15) Any lingering effect (smoke, gas, fire, flash, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affected target dies or enters a safe parcel.
 
-16) All deployables, including mines, are required to take LBA damage.
+16) All deployables, including mines or other manually placed explosives, are required to take LBA damage.
 
 ██████████████████████████████████████████████
 
@@ -108,7 +108,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 5) No absurdly excessive weaponry may be used in any vehicle - this is harder to quantify, so you will be informed if you need to tone things back. Use infantry guidelines as a benchmark for compliance.
 
-6) All health systems must have an open and public github page for references. You must be able to provide the sourcecode for your health system. Private systems will not be permitted.
+6) All health systems must have an open and public github page for reference. You must be able to provide the sourcecode for your health system. Private systems will not be permitted.
 
 7) All health systems must be at least 90% accurate regardless of region latency. Systems found to be throttling or repeatedly failing to take damage will be disallowed.
 
