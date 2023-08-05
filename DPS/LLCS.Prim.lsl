@@ -1,6 +1,12 @@
 vector tar(key id)
 {
-    return (vector)((string)llGetObjectDetails(id,[OBJECT_POS]));
+    vector pos=(vector)((string)llGetObjectDetails(id,[OBJECT_POS]));
+    if(llGetParcelFlags(pos)&PARCEL_FLAG_ALLOW_DAMAGE)return pos;
+    else //Trying to move to a parcel where damage is off, kill the prim
+    {
+        llDie();
+        return ZERO_VECTOR;
+    }
 }
 default
 {
@@ -28,14 +34,12 @@ default
                 llSetObjectName(llGetObjectName()+" ["+(string)((integer)dam)+" LLCS]");
                 if(llVecDist(o,llGetPos())<0.5)
                 {
-                    if(llVecMag((vector)((string)llGetObjectDetails(id,[OBJECT_VELOCITY])))>15.0)llSetScale(<4.0,4.0,4.0>);
+                    if(llVecMag((vector)((string)llGetObjectDetails(id,[OBJECT_VELOCITY])))>15.0)
+                        llSetScale(<5.0,5.0,5.0>);//Forces the prim to be bigger to hit fast moving avatars
                     //(ﾉ´･ω･)ﾉ ﾐ ┸━┸
                     llSetStatus(STATUS_PHANTOM,0);
                     llResetTime();
-                    while(llGetTime()<2.0)
-                    {
-                        llSetRegionPos(tar(id));
-                    }
+                    while(llGetTime()<4.0)llSetRegionPos(tar(id));
                     llSetStatus(STATUS_PHYSICS,1);
                     llSleep(0.2);
                 }
