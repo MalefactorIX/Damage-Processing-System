@@ -1,6 +1,5 @@
 //Settings
 string ver="Fugi v1.0";//Skill yourself
-string prim;//Damage Prim for DPS (Updated on boot but can be hardcoded here)
 float expose=1.25;//Damage multiplier for Exposed targets
 float resist=0.75;//Damage multiplier for Resisting targets
 float pen=0.5;//Armor Penetration (1.0 = No Penetration)
@@ -9,7 +8,7 @@ integer externalinput;//Does this weapon have an external component (ie. Grenade
 integer sync=-10283;//Channel weapopns listen to for syncing
 integer staticchan=-10284;//Channel meters listen to for syncing, Required to be set in parity for meter sync
 integer hitmarker=-1991;//Channel hitmarker listens to
-string url="https://raw.githubusercontent.com/MalefactorIX/Damage-Processing-System/master/DPS/VersionAuth/Series%20FI";//URL for version auth
+//string url="https://raw.githubusercontent.com/MalefactorIX/Damage-Processing-System/master/DPS/VersionAuth/Series%20FI";//URL for version auth
 //
 list agents;
 string aspect="mdsbeta";//Required to be set in parity for meter sync
@@ -171,17 +170,42 @@ default
     }
     state_entry()
     {
-        prim=llGetInventoryName(INVENTORY_OBJECT,0);
-        if(prim=="")prim="INVALID_NAME_NO_OBJECT";
-        //llOwnerSay("Damage prim set to '"+prim+"]' If this is incorrect, make sure there is only 1 object in the link this script is inside of and then reset this script");
         mychan=-1*llAbs((integer)("0x" + llGetSubString(llMD5String(o=llGetOwner(),0), 0, 5)));
         staticchan=-1*llAbs((integer)("0x" + llGetSubString(llMD5String(aspect,0),0,5))-staticchan);
         oname=llGetObjectName();
         auxdata=[];
-        llHTTPRequest(url, [HTTP_BODY_MAXLENGTH,6000], "");
+        llReadKeyValue("WeaponVersion_MDS");
+        //llHTTPRequest(url, [HTTP_BODY_MAXLENGTH,6000], "");//Fuck that, lmfao.
+        //Since the experience is a hard requirement to use the meter, we can version lock via that experince to avoid hitting the region with more HTTP requests.
 
     }
-    http_response(key request_id, integer status, list metadata, string body)
+    dataserver(key req, string data)
+    {
+        integer checksum=(integer)llGetSubString(data,0,0);
+        llSetObjectName("MDS Processor");
+        if(checksum)
+        {
+            checksum=llSubStringIndex(data,ver);
+            if(checksum>-1)
+            {
+                llOwnerSay("System is up to date. Starting up...");
+                boot();
+            }
+            else 
+            {
+                llOwnerSay("[MDS Failure] Please make sure you are using the most up-to-date version of this item.\nIf you continue to receive this error, please notify the distributor."); 
+                llSetObjectName(oname);
+                state inactive;
+            }
+        }
+        else 
+        {
+            llOwnerSay("[Experience Error] MDS not available due to an error ["+llGetSubString(data,2,-1)+"].\nPlease make sure you are in a DPS Experience-enabled region and try again.");
+            llSetObjectName(oname);
+            state inactive;
+        }
+    }
+    /*http_response(key request_id, integer status, list metadata, string body)
     {
         list parse=llCSV2List(body);
         body="";
@@ -207,7 +231,7 @@ default
             llOwnerSay("ERROR: Unable to communicate properly with version log. Forcing startup...");
             boot();//Failsafe
         }
-    }
+    }*/
     link_message(integer s, integer n, string data, key id)
     {
         //Data: (1)Currency,(2)EXP,(3)Rank,(4)Division,(5)STR,(6)PRC,(7)DEX,(8)FRT,(9)END,(10)RES
