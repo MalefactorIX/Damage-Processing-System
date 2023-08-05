@@ -5,13 +5,13 @@ float resist=0.75;//Damage multiplier for Resisting targets
 float pen=0.5;//Armor Penetration (1.0 = No Penetration)
 list auxdata;//Used for storing AUX usage
 integer externalinput;//Does this weapon have an external component (ie. Grenades)?
-integer sync=-10283;//Channel weapopns listen to for syncing
+string aspect="mdsbeta";//Required to be set in parity for meter sync
+integer sync=-10283;//Channel weapopns listen to for syncing. Required to be set in parity for meter sync
 integer staticchan=-10284;//Channel meters listen to for syncing, Required to be set in parity for meter sync
 integer hitmarker=-1991;//Channel hitmarker listens to
 //string url="https://raw.githubusercontent.com/MalefactorIX/Damage-Processing-System/master/DPS/VersionAuth/Series%20FI";//URL for version auth
 //
 list agents;
-string aspect="mdsbeta";//Required to be set in parity for meter sync
 float armorcheck(string parse)//Returns armor value for armored avatars
 {
     integer boot=llSubStringIndex(parse,"armor");
@@ -172,6 +172,7 @@ default
     {
         mychan=-1*llAbs((integer)("0x" + llGetSubString(llMD5String(o=llGetOwner(),0), 0, 5)));
         staticchan=-1*llAbs((integer)("0x" + llGetSubString(llMD5String(aspect,0),0,5))-staticchan);
+        sync=-1*llAbs((integer)("0x" + llGetSubString(llMD5String(aspect,0),0,5))-sync);
         oname=llGetObjectName();
         auxdata=[];
         llReadKeyValue("WeaponVersion_MDS");
@@ -191,14 +192,14 @@ default
                 llOwnerSay("System is up to date. Starting up...");
                 boot();
             }
-            else 
+            else
             {
-                llOwnerSay("[MDS Failure] Please make sure you are using the most up-to-date version of this item.\nIf you continue to receive this error, please notify the distributor."); 
+                llOwnerSay("[MDS Failure] Please make sure you are using the most up-to-date version of this item.\nIf you continue to receive this error, please notify the distributor.");
                 llSetObjectName(oname);
                 state inactive;
             }
         }
-        else 
+        else
         {
             llOwnerSay("[Experience Error] MDS not available due to an error ["+llGetSubString(data,2,-1)+"].\nPlease make sure you are in a DPS Experience-enabled region and try again.");
             llSetObjectName(oname);
@@ -269,7 +270,7 @@ default
             integer aux=llListFindList(auxdata,[oid]);//Owner_UUID Parameter
             if(aux<0)//Owner not found
             {
-                string ochan="0x"+llGetSubString(llMD5String((string)oid,0),0,3);
+                string ochan="-"+(string)((integer)("0x"+llGetSubString(llMD5String((string)oid+aspect,0),0,3)));
                 auxdata+=[oid,id,ochan];//New data: Written as Owner_ID,AUX_ID,AUX_Channel
                 if(oid==o)
                 {
