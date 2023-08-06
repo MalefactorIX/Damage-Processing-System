@@ -47,6 +47,7 @@ proc(string name, float damage, key id, integer head, integer ex)
         }
     }
     integer aux=llListFindList(auxdata,[id]);
+    //llSay(0,"Hit "+llKey2Name(id)+", AUX Value: "+(string)aux);
     if(aux>-1)//Aux processing
     {
         damage+=pdam;//Hey guys, remember when you could dump 50 points into Prowess and have 250 damage buckshot at any range? Yeah fuck that.
@@ -83,8 +84,8 @@ proc(string name, float damage, key id, integer head, integer ex)
             else
             {
                 if(armor)pretext="armor";
-                if(head)llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":expose:"+dur+":"+aspect);
-                else llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":"+aspect);
+                if(head)llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":stagger:"+dur+":Lightning");
+                else llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":Lightning");
                 text("armor",name,(string)llFloor(damage),head);
             }
             return;
@@ -97,8 +98,8 @@ proc(string name, float damage, key id, integer head, integer ex)
             else
             {
                 text("shield",name,(string)llFloor(damage),head);
-                if(head)llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":expose:"+dur+":"+aspect);//Pass damage to shield
-                else llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":"+aspect);//Pass damage to shield
+                if(head)llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":stagger:"+dur+":Lightning");//Pass damage to shield
+                else llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":Lightning");//Pass damage to shield
             }
             return;
         }
@@ -203,7 +204,8 @@ default
         {
             llOwnerSay("[Experience Error] MDS not available due to an error ["+llGetSubString(data,2,-1)+"].\nPlease make sure you are in a DPS Experience-enabled region and try again.");
             llSetObjectName(oname);
-            state inactive;
+            boot();//Force debug
+            //state inactive;
         }
     }
     /*http_response(key request_id, integer status, list metadata, string body)
@@ -270,24 +272,18 @@ default
             integer aux=llListFindList(auxdata,[oid]);//Owner_UUID Parameter
             if(aux<0)//Owner not found
             {
-                string ochan="-"+(string)((integer)("0x"+llGetSubString(llMD5String((string)oid+aspect,0),0,3)));
-                auxdata+=[oid,id,ochan];//New data: Written as Owner_ID,AUX_ID,AUX_Channel
-                if(oid==o)
-                {
-                    llRegionSay(staticchan,"stat");//Polls DPS stats for owner
-                    oaux=id;
-                }
+                //llSay(0,aspect);
+                integer auxchan=-1*llAbs((integer)("0x" + llGetSubString(llMD5String((string)oid+aspect,0), 0, 5)));
+                auxdata+=[oid,id,auxchan];//New data: Written as Owner_ID,AUX_ID,AUX_Channel
+                //llSay(0,"Received response from "+llKey2Name(oid)+" set to "+(string)auxchan);
+                if(oid==o)oaux=id;
                 //llSay(0, "Added "+llKey2Name(oid)+" with "+(string)((integer)ochan));
                 //llSay(0,llDumpList2String(auxdata," | "));
                 //llOwnerSay("AUX Data added for "+llKey2Name(oid));
             }
             else if(llList2Key(auxdata,aux+1)!=id)//Aux UUID does not match registered AUX ID (reattach or relog)
             {
-                if(oid==o)
-                {
-                    llRegionSay(staticchan,"stat");//Polls DPS stats for owner
-                    oaux=id;
-                }
+                if(oid==o)oaux=id;
                 auxdata=llListReplaceList(auxdata,[id],aux+1,aux+1);//Update data
                 //llOwnerSay("AUX Data updated for "+llKey2Name(oid)+" on channel "+(string)llList2Integer(auxdata,aux+2));
             }
