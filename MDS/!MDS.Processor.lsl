@@ -237,7 +237,7 @@ default
     link_message(integer s, integer n, string data, key id)
     {
         //Data: (1)Currency,(2)EXP,(3)Rank,(4)Division,(5)STR,(6)PRC,(7)DEX,(8)FRT,(9)END,(10)RES
-        if(id==(key)"stat")
+        if(id==(key)"stat")//Root script gets stats and passes them here (for now)
         {
             list stats=llCSV2List(data);
             float prc=(float)llList2String(stats,6);
@@ -304,18 +304,6 @@ default
                 //Target UUID is placed in event
                     proc(llList2String(parse,1),(float)llList2String(parse,2),llList2String(parse,3),0,1);
             }
-        }
-        else if(id==oaux)
-        {
-            //llList2CSV([prowess,durability,mobility,sustain,battery]));
-            llMessageLinked(LINK_ROOT,1,message,"stat");
-            list parse=llCSV2List(message);
-            float prow=(float)llList2String(parse,0);
-            if(prow>60)prow=60;
-            //float dura=1.0+(prow/100.0);
-            pdam=prow*0.25;
-            //aspect=llList2String(parse,-1);
-            //dur=(string)llFloor(basedur*dura);
         }
     }
     timer()
