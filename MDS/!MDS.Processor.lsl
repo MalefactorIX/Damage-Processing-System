@@ -51,7 +51,7 @@ proc(string name, float damage, key id, integer head, integer ex)
     if(aux>-1)//Aux processing
     {
         damage+=pdam;//Hey guys, remember when you could dump 50 points into Prowess and have 250 damage buckshot at any range? Yeah fuck that.
-        integer ochan=(integer)llList2String(auxdata,aux+2);
+        integer ochan=llList2Integer(auxdata,aux+2);
         //llSay(0,(string)ochan+" | "+llKey2Name(llList2String(auxdata,aux))+" | "+llKey2Name(llList2String(auxdata,aux+1))+" | "+llList2String(auxdata,aux+2));
         string aid=llList2String(auxdata,aux+1);
         string temp=llKey2Name(aid);
@@ -162,7 +162,6 @@ key oaux;
 float pdam=1.0;
 float basedur=2.0;
 string dur="2";
-integer dmode;
 default
 {
     on_rez(integer P)
@@ -254,7 +253,7 @@ default
                 if(desc=="")
                 {
                     oaux="";
-                    if(!dmode)return;
+                    return;
                 }
                 else if(check(desc,"stun"))return;
                 list parse=llCSV2List(data);
@@ -296,7 +295,7 @@ default
                 if(desc=="")
                 {
                     oaux="";
-                    if(!dmode)return;
+                    return;
                 }
                 list parse=llCSV2List(message);
                 //llSay(0,message);
@@ -306,29 +305,22 @@ default
                     proc(llList2String(parse,1),(float)llList2String(parse,2),llList2String(parse,3),0,1);
             }
         }
-        else
+        else if(id==oaux)
         {
             //llList2CSV([prowess,durability,mobility,sustain,battery]));
-            if(id==oaux)
-            {
-                llMessageLinked(LINK_ROOT,1,message,"stat");
-                list parse=llCSV2List(message);
-                float prow=(float)llList2String(parse,0);
-                if(prow>60)prow=60;
-                //float dura=1.0+(prow/100.0);
-                pdam=prow*0.25;
-                //aspect=llList2String(parse,-1);
-                //dur=(string)llFloor(basedur*dura);
-            }
+            llMessageLinked(LINK_ROOT,1,message,"stat");
+            list parse=llCSV2List(message);
+            float prow=(float)llList2String(parse,0);
+            if(prow>60)prow=60;
+            //float dura=1.0+(prow/100.0);
+            pdam=prow*0.25;
+            //aspect=llList2String(parse,-1);
+            //dur=(string)llFloor(basedur*dura);
         }
     }
     timer()
     {
-        if(llGetTime()>15.0)
-        {
-            cleanup();
-            dmode=llGetParcelFlags(<128.0,128.0,0.0>)&PARCEL_FLAG_ALLOW_DAMAGE;
-        }
+        if(llGetTime()>15.0)cleanup();
     }
 }
 state inactive
