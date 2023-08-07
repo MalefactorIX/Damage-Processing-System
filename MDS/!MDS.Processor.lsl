@@ -1,5 +1,5 @@
 //Settings
-string ver="Fugi v1.0";//Skill yourself
+string ver="Electro v1.0";//Skill yourself
 float expose=1.25;//Damage multiplier for Exposed targets
 float resist=0.75;//Damage multiplier for Resisting targets
 float pen=0.5;//Armor Penetration (1.0 = No Penetration)
@@ -42,7 +42,7 @@ proc(string name, float damage, key id, integer head, integer ex)
         float hit=llGetTimeOfDay();
         if(llFabs(hit-lhit)>0.5)
         {
-            damage*=2.0;
+            damage*=1.5;
             lhit=hit;
         }
     }
@@ -84,7 +84,7 @@ proc(string name, float damage, key id, integer head, integer ex)
             else
             {
                 if(armor)pretext="armor";
-                if(head)llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":stagger:"+dur+":Lightning");
+                if(head)llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":expose:"+dur+":Lightning");
                 else llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":Lightning");
                 text("armor",name,(string)llFloor(damage),head);
             }
@@ -98,7 +98,7 @@ proc(string name, float damage, key id, integer head, integer ex)
             else
             {
                 text("shield",name,(string)llFloor(damage),head);
-                if(head)llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":stagger:"+dur+":Lightning");//Pass damage to shield
+                if(head)llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":expose:"+dur+":Lightning");//Pass damage to shield
                 else llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":Lightning");//Pass damage to shield
             }
             return;
@@ -138,8 +138,10 @@ vector tar(key id)
     return av;
 }
 key o;
+integer on;
 boot()
 {
+    ++on;
     llSetObjectName(oname);
     if(externalinput)
     {
@@ -189,6 +191,7 @@ default
             checksum=llSubStringIndex(data,ver);
             if(checksum>-1)
             {
+                if(on)return;
                 llOwnerSay("System is up to date. Starting up...");
                 boot();
             }
@@ -203,8 +206,8 @@ default
         {
             llOwnerSay("[Experience Error] MDS not available due to an error ["+llGetSubString(data,2,-1)+"].\nPlease make sure you are in a DPS Experience-enabled region and try again.");
             llSetObjectName(oname);
-            boot();//Force debug
-            //state inactive;
+            //boot();//Force debug
+            state inactive;
         }
     }
     /*http_response(key request_id, integer status, list metadata, string body)
@@ -306,6 +309,10 @@ default
             }
         }
     }
+    changed(integer c)
+    {
+        if(c&CHANGED_REGION)llReadKeyValue("WeaponVersion_MDS");
+    }
     timer()
     {
         if(llGetTime()>15.0)cleanup();
@@ -316,5 +323,9 @@ state inactive
     on_rez(integer p)
     {
         llResetScript();
+    }
+    changed(integer c)
+    {
+        if(c&CHANGED_REGION)llResetScript();
     }
 }
