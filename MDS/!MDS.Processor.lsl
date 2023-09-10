@@ -1,170 +1,136 @@
-//Important Note: This should -NEVER- be used in excess of 600 RPM. It is too bloated to run any faster than that.
-//Most of the balancing for ranged weapons is contained within this script. Automatic, instant kill raycast with no strings attachs is dumb, stupid, and saying it's "semi-automatic" doesn't change that the fact you can instantly pop someone irregardless of distance in a single physics frame dipshit.
-//Note to self: Replace all references to llKey2Name(llGetOwnerKey(id)) with SLURL profile links instead.
-float rpm;
-boosh()
+//Settings
+string ver="Electro v1.0";//Skill yourself
+float expose=1.25;//Damage multiplier for Exposed targets
+float resist=0.75;//Damage multiplier for Resisting targets
+float pen=0.5;//Armor Penetration (1.0 = No Penetration)
+list auxdata;//Used for storing AUX usage
+integer externalinput;//Does this weapon have an external component (ie. Grenades)?
+string aspect="mdsbeta";//Required to be set in parity for meter sync
+integer sync=-10283;//Channel weapopns listen to for syncing. Required to be set in parity for meter sync
+integer staticchan=-10284;//Channel meters listen to for syncing, Required to be set in parity for meter sync
+integer hitmarker=-1991;//Channel hitmarker listens to
+//string url="https://raw.githubusercontent.com/MalefactorIX/Damage-Processing-System/master/DPS/VersionAuth/Series%20FI";//URL for version auth
+//
+list agents;
+float armorcheck(string parse)//Returns armor value for armored avatars
 {
-    rpm=llGetTimeOfDay();//Cannot use ResetTime since its used for weapon spread values
-    while(llGetColor(1)!=ZERO_VECTOR)
+    integer boot=llSubStringIndex(parse,"armor");
+    if(boot<0)return 0.0;
+    else return (float)llGetSubString(parse,boot+6,-1);
+}
+integer check(string parse, string text)//Checks AUX flags and status
+{
+    integer boot=llSubStringIndex(parse,text);
+    if(boot<0)return 0;
+    else return 1;
+}
+float lhit;
+proc(string name, float damage, key id, integer head, integer ex)
+{
+    if(tar(id)==ZERO_VECTOR)return;//Agent no longer in region. (Usually the result of a delayed hit)
+    if(llGetAgentInfo(id)&AGENT_SITTING)//Don't attempt to damage unkillable avatars (vehicles)
     {
-        float time=llGetTimeOfDay();
-        if(llFabs(time-rpm)>0.1)
+        key lid=(string)llGetObjectDetails(id,[OBJECT_ROOT]);
+        if(lid!=id)
         {
-            rpm=time;
-            //llSay(0,"fire");
-            fire();
+            if((integer)((string)llGetObjectDetails(lid,[OBJECT_PHANTOM])))return;
         }
     }
-}
-float base_damage=35.0;//Max damage
-float min_damage=15.0;//Min damage
-float falloff=-0.5;//Damage falloff (Negative Float)
-float range=20.0;//How many meters before falloff starts, applies to both damage and ranged inaccuracy
-float minbloom=0.5;//Roughly, how thick an avatar is with a little margin for error. Determines threshold for aiming inaccuracy.
-float maxbloom=1.0;//How large (radius in meters) the cone for spread can get at any distance.
-float distmod=0.5;///How much less accurate rounds are per meter from target (%)
-float recoil=1.0;//How much less accurate rounds are per shot (%)
-float recovery=3.0;//How long it takes for recoil to fully reset
-float move=2.5;//How less accurate you are per m/s. Example: Avatars run at 5.3 m/s, so at 5.0, this will result in a movement penalty of about 26%. Also nerfs the shit of pre-fire dashes. Git gud.
-float jumping=25.0;//Accuracy penalty for jumping or being in the air. Should always be higher than running at full speed.
-float maxspread=50.0;//Max penalty for recoil.
-proc(float damage, key id, integer head)
-{
-    if(damage<min_damage)damage=min_damage;
-    //llSay(0,"Hit "+llKey2Name(id));
-    llMessageLinked(mdscore,0,llKey2Name(id)+","+(string)damage+","+(string)head+",0",id);//MDS Damage
-
-}
-float spread;//Do not edit. How the script keeps track of current recoil inaccuracy.
-float bloommod;//Do not edit. Set in state_entry. Determines how quickly spread grows
-string lasthit;//Used for phantom detection
-float lhittime;//Used for phantom detection
-string dataname="MDSOver";
-float override(string id)
-{
-    list parse=llCSV2List(llLinksetDataRead(dataname));
-    integer n=llListFindList(parse,[id]);
-    if(n<0)return 0.0;
-    else
+    //
+    if(head)
     {
-        float h=(float)llList2String(parse,n+1);
-        llSay(0,(string)h);
-        return h;
-    }
-}
-fire()//SRS Firing Pattern
-{
-    if(spread>0.0)//This part handles recoil reduction
-    {
-        float time=llGetAndResetTime();
-        if(time>0.5)
+        float hit=llGetTimeOfDay();
+        if(llFabs(hit-lhit)>0.5)
         {
-            if(time>recovery)spread=0.0;
-            else spread-=spread*(time/recovery);
+            damage*=1.5;
+            lhit=hit;
         }
     }
-    list agents=llGetAgentList(AGENT_LIST_PARCEL,[]);//Only look for agents in the current parcel.
-    //Processor will convert the results into region if it determines a damage prim needs to be used.
-    rotation rot=llGetCameraRot();
-    vector gpos=llGetPos();
-    vector center=llGetCameraPos();
-    center.x=gpos.x;
-    center.y=gpos.y;
-    gpos.z+=ovh;
-    //Mixed-pos leads to more consistant shots and prevents shots from being lead around corners. Preferred method for raycast/hitscan weapons.
-    integer l=llGetListLength(agents);
-    float mod=llVecMag(llGetVel())*move;//Inaccuracy modifier
-    integer info=llGetAgentInfo(o);
-    if(info&AGENT_IN_AIR)mod=jumping;
-    else if(info&AGENT_CROUCHING)
+    integer aux=llListFindList(auxdata,[id]);
+    //llSay(0,"Hit "+llKey2Name(id)+", AUX Value: "+(string)aux);
+    if(aux>-1)//Aux processing
     {
-        gpos.z-=ovh;
-        mod=0.0;
-    }
-    mod+=spread;//Add recoil
-    mod*=1.0-(dex/200.0);//Remove dexility (stat system)
-    while(l--)
-    {
-        key id=llList2Key(agents,l);//i
-        if(id!=o)//Don't shoot yourself
+        damage+=pdam;//Hey guys, remember when you could dump 50 points into Prowess and have 250 damage buckshot at any range? Yeah fuck that.
+        integer ochan=llList2Integer(auxdata,aux+2);
+        //llSay(0,(string)ochan+" | "+llKey2Name(llList2String(auxdata,aux))+" | "+llKey2Name(llList2String(auxdata,aux+1))+" | "+llList2String(auxdata,aux+2));
+        string aid=llList2String(auxdata,aux+1);
+        string temp=llKey2Name(aid);
+        string desc=(string)llGetObjectDetails(aid,[OBJECT_DESC]);
+        //llSay(0,llDumpList2String(desc,":"));
+        if(check(desc,"dead"))return;//They're already dead
+        else if(check(desc,"invul")){text("invul",name,"0",0);return;}//Ignore invulnerable targets
+        else if(check(desc,"evad"))//Check for evasion status
         {
-            vector target=tar(id);
-            float dist=llVecDist(center,target);
-            float inacc=llFrand(100.0)-((dist-range)*distmod)-mod;
-            vector end=center+<dist,0.0,0.0>*rot;
-            if(inacc>0.0&&llVecDist(target,end)<5.0)//Filter out targets more than 5m away as invalid
+            if(~llGetAgentInfo(id)&AGENT_CROUCHING)
             {
-
-                vector vel=(vector)((string)llGetObjectDetails(id,[OBJECT_VELOCITY]));//Used for lag compensation
-                vector h=llGetAgentSize(id);
-                float avh=h.z*0.5;//Height modifier
-                avh+=override(id);//Checks and applies height overrides.
-                float spr=minbloom+(dist*bloommod);//Cone, or physical spread of the shots
-                if(dist>range)spr=maxbloom;//Maximum cone width
-                float hor=llVecDist(<end.x,end.y,0.0>,<target.x,target.y,0.0>);
-                if(hor>minbloom)inacc-=10.0*(hor-minbloom);//Reduces accuracy based on how far off target the aim is.
-                if(inacc>0.0//Checks to see if shot lands (accuracy)
-                    &&hor<spr+(llVecMag(<vel.x,vel.y,0.0>)*0.0134)//Checks to see if shot is within the X,Y cordinates (Lag Compensated)
-                    &&llVecDist(<0.0,0.0,end.z>,<0.0,0.0,target.z>)<avh+(0.5+(llFabs(vel.z)*0.0134)))//Checks to see if shot is within Z coordinates (Lag Compensated)
+                float vel=llVecMag((vector)((string)llGetObjectDetails(id,[OBJECT_VELOCITY])));
+                float er=10.0*vel;
+                if(llFrand(100.0)-er<0.0)//If true, roll miss.
                 {
-                    integer phantom;
-                    key pid;
-                    vector hit;//Cast me a ray
-                    if(llGetAgentInfo(id)&AGENT_CROUCHING)//Is the target crouching?
-                    {
-                        list ray=llCastRay(gpos,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
-                        hit=llList2Vector(ray,1);
-                        pid=llList2Key(ray,0);
-                        phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));
-                    }
-                    else //They are Standing
-                    {
-                        target.z+=avh;//Place their head around the actual head
-                        list ray=llCastRay(gpos,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
-                        hit=llList2Vector(ray,1);
-                        if(hit)//Did we strike something else?
-                        {
-                            target.z-=(avh*2.0)+0.3;//Can we see their feet?
-                            ray=llCastRay(center,target,[RC_REJECT_TYPES,RC_REJECT_AGENTS,RC_DATA_FLAGS,RC_GET_ROOT_KEY]);
-                            hit=llList2Vector(ray,1);
-                            phantom=(integer)((string)llGetObjectDetails(pid,[OBJECT_PHANTOM]));
-                        }
-                    }
-                    //llOwnerSay((string)phantom+":"+llKey2Name(pid));
-                    integer bypass=phantom;//Get fucked idiot.
-                    if(hit==ZERO_VECTOR||bypass)//Did we not hit anything?
-                    {
-                        float damage;
-                        if(dist<range)damage=base_damage;
-                        else damage=base_damage+((dist-range)*falloff);
-                        if(phantom)
-                        {
-                            string lhit=llKey2Name(pid);
-                            float time=llFrand(llFabs(llGetTimeOfDay()-lhittime));//So it doesn't spam us
-                            if(lhit!=lasthit||time>10.0)
-                            {
-                                lasthit=lhit;
-                                llOwnerSay("Phantom hit "+lasthit);
-                                lhittime=llGetTimeOfDay();
-                            }
-                            else if(time>3.0)
-                            {
-                                llTriggerSound("1c6981cf-8b14-0bf3-0f1e-6fce03705592",0.5);
-                                lhittime=llGetTimeOfDay();
-                            }
-                            //llRegionSayTo(id,0,"Cheeky comment about raycast blocker goes here");
-                            damage=100.0;//Sets damage to 100 as punishment, in addition to bypassing raycast checks
-                        }
-                        if(llVecDist(end,target)<0.35)proc(damage,id,1);
-                        else proc(damage,id,0);
-                        l=0;//Prevents a single shot from hitting multiple targets. Can be removed for your COD montages.
-                    }
+                    text("miss",name,"0",0);
+                    return;
                 }
             }
         }
+        if(check(desc,"expose"))damage*=expose;//If target is exposed, apply multiplier
+        else if(check(desc,"resist"))damage*=resist;//Same thing, but if they're resisting
+        if(temp=="[MDS]Health")//Target is not shielded
+        {
+            string pretext="health";
+            float armor=armorcheck(desc);
+            if(armor>0.0&&!head)damage-=armor*pen;
+            else if(check(desc,"block"))armor=1.0;
+            if(damage<1.0)text("armor",name,"0",0);
+            else
+            {
+                if(armor)pretext="armor";
+                if(head)llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":expose:"+dur+":Lightning");
+                else llRegionSayTo(aid,ochan,"dmg:"+(string)damage+":Lightning");
+                text("armor",name,(string)llFloor(damage),head);
+            }
+            return;
+        }
+        else if(temp=="[MDS]Shield")//Target is shielded. We have to discrimnate since certain weapons have damage variance based on whether or not they're hitting a shield
+        {
+            float armor=armorcheck(desc);
+            if(armor>0.0&&!head)damage-=armor*pen;
+            if(damage<1.0)text("armor",name,"0",0);
+            else
+            {
+                text("shield",name,(string)llFloor(damage),head);
+                if(head)llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":expose:"+dur+":Lightning");//Pass damage to shield
+                else llRegionSayTo(aid,ochan,"shdmg:"+(string)damage+":Lightning");//Pass damage to shield
+            }
+            return;
+        }
+        else //Invalid aux name or no name returned (detached)
+        {
+            auxdata=llDeleteSubList(auxdata,aux,aux+2);//AUX no longer valid, so remove from storage
+        }
     }
-    spread+=recoil;//Part that adds recoil
-    if(spread>maxspread)spread=maxspread;
+    else llRegionSayTo(id,staticchan,"ping");//Attempt to get their AUX to ping if they're wearing one.
+}
+text(string type, string name, string damage, integer head)
+{
+    if(head)llRegionSayTo(o,hitmarker,type+":"+name+":"+damage+" (Headshot)");
+    else llRegionSayTo(o,hitmarker,type+":"+name+":"+damage);
+}
+cleanup()
+{
+    integer l=llGetListLength(auxdata);
+    integer i;
+    while(i<l)
+    {
+        key id=llList2String(auxdata,i);
+        if(llGetAgentSize(id)!=ZERO_VECTOR&&tar(llList2String(auxdata,i+1))!=ZERO_VECTOR)i+=3;
+        else
+        {
+            if(id==o)oaux="";
+            l-=3;
+            auxdata=llDeleteSubList(auxdata,i,i+2);
+        }
+    }
+    //llSay(0,llDumpList2String(auxdata," | "));
 }
 vector tar(key id)
 {
@@ -172,104 +138,194 @@ vector tar(key id)
     return av;
 }
 key o;
-integer mdscore;//Prim DPS script is in
-float dex=-1;//Dex modifier, formally called "Mobility"
-float ovh;
-key checksum;
-check()
+integer on;
+boot()
 {
-    checksum=llReadKeyValue((string)o+"_MDS");
-}
-groupauth()//Rewrite this shit
-{
-    //Experience.exe
-    //DEX modifier goes here
-    //Key = Avatar UUID. Data: 0 Currency,1 EXP,2 Rank,3 Division,4 STR,5 PRC,6 DEX,7 FRT,8 END,9 RES
-    o=llGetOwner();
-    //check();
-    return;
-    if(llSameGroup("c01afc6c-c374-f61e-fe90-f84b13924095"))return;
-    else if(llSameGroup("5d7c52c7-bfda-d83b-5267-7ce3489b1655"))return;
-    else if(o=="ded1cc51-1d1f-4eee-b08e-f5d827b436d7")return;//Creator whitelist
-    //else {check(); return;}
-    if(llGetAttached())
+    ++on;
+    llSetObjectName(oname);
+    if(externalinput)
     {
-        llRequestPermissions(o,0x30);
-        llDetachFromAvatar();
+        exchan=mychan+externalinput;
+        llListen(exchan,"","","");
     }
-    else llDie();
+    llListen(mychan,"","","");
+    llListen(sync,"","","pong");
+    llSetTimerEvent(3.0);
+    llRegionSay(staticchan,"ping");
+    llRequestPermissions(o,0x4);
+    llTakeControls(CONTROL_ML_LBUTTON,1,1);
+    //llOwnerSay("System now online.");
 }
+string oname;
+integer mychan;
+integer exchan;
+key oaux;
+//Prowess Vars
+float pdam=1.0;
+float basedur=2.0;
+string dur="2";
 default
 {
-    on_rez(integer p)
+    on_rez(integer P)
     {
-        //groupauth();
+        llResetScript();
     }
     state_entry()
     {
-        bloommod=(maxbloom-minbloom)/range;
-        if(bloommod<=0.0)bloommod=0.01;
-        //Locates link the Processor is in. Otherwise, keeps default setting -2 or everything except what this script is in.
-        integer l=llGetNumberOfPrims()+1;
-        while(l--)
+        mychan=-1*llAbs((integer)("0x" + llGetSubString(llMD5String(o=llGetOwner(),0), 0, 5)));
+        staticchan=-1*llAbs((integer)("0x" + llGetSubString(llMD5String(aspect,0),0,5))-staticchan);
+        sync=-1*llAbs((integer)("0x" + llGetSubString(llMD5String(aspect,0),0,5))-sync);
+        oname=llGetObjectName();
+        auxdata=[];
+        llReadKeyValue("WeaponVersion_MDS");
+        //llHTTPRequest(url, [HTTP_BODY_MAXLENGTH,6000], "");//Fuck that, lmfao.
+        //Since the experience is a hard requirement to use the meter, we can version lock via that experince to avoid hitting the region with more HTTP requests.
+
+    }
+    dataserver(key req, string data)
+    {
+        integer checksum=(integer)llGetSubString(data,0,0);
+        llSetObjectName("MDS Processor");
+        if(checksum)
         {
-            string name=llGetLinkName(l);
-            if(name=="mds")mdscore=l;
-        }
-        llRequestPermissions(o=llGetOwner(),0x414);
-    }
-    attach(key id)
-    {
-        dex=-1;
-        if(id)llRequestPermissions(o=id,0x414);
-    }
-    run_time_permissions(integer p)
-    {
-        if(p)
-        {
-            check();
-            vector size=llGetAgentSize(o);
-            ovh=size.z*0.5;
-            llTakeControls(CONTROL_ML_LBUTTON,1,1);
-        }
-    }
-    link_message(integer s, integer n, string m, key id)
-    {
-        fire();
-    }
-    /*changed(integer c)//Looping fire
-    {
-        if(c&CHANGED_COLOR)boosh();
-    }*/
-    dataserver(key sum, string data)//Experience shit.
-    {
-        if (sum != checksum)return;
-        list parse=llCSV2List(data);
-        if((integer)llList2String(parse,0)>0)
-        {
-            //Data: (1)Currency,(2)EXP,(3)Rank,(4)Division,(5)STR,(6)PRC,(7)DEX,(8)FRT,(9)END,(10)RES
-            if(llGetListLength(parse)!=11)
+            checksum=llSubStringIndex(data,ver);
+            if(checksum>-1)
             {
-                 dex=0;
-                 llSetTimerEvent(0.0);
+                if(on)return;
+                llOwnerSay("System is up to date. Starting up...");
+                boot();
             }
-            else //if(dex!=(integer)llList2String(parse,7))
+            else
             {
-                llMessageLinked(mdscore,0,data,"stat");
-                integer new=(integer)llList2String(parse,7);
-                if(new!=dex)llOwnerSay("Your Dexterity is affecting this weapon...");
-                dex=new;
-                llSetTimerEvent(900.0);
+                llOwnerSay("[MDS Failure] Please make sure you are using the most up-to-date version of this item.\nIf you continue to receive this error, please notify the distributor.");
+                llSetObjectName(oname);
+                state inactive;
             }
         }
         else
         {
-            dex=0;
-            llSetTimerEvent(0.0);
+            llOwnerSay("[Experience Error] MDS not available due to an error ["+llGetSubString(data,2,-1)+"].\nPlease make sure you are in a DPS Experience-enabled region and try again.");
+            llSetObjectName(oname);
+            //boot();//Force debug
+            state inactive;
         }
+    }
+    /*http_response(key request_id, integer status, list metadata, string body)
+    {
+        list parse=llCSV2List(body);
+        body="";
+        //integer usable=16384-llStringLength(llList2String(parse,0));
+        llSetObjectName("DPS Processor");
+        if(llGetListLength(parse)>1)
+        {
+            integer p=llListFindList(parse,[ver]);
+            if(p>-1)
+            {
+                llOwnerSay("System is up to date. Starting up...");
+                boot();
+            }
+            else
+            {
+                llOwnerSay("ERROR: Version is out of date or no longer supported. Please grab the latest copy from a vendor. System start has been terminated");
+                llSetObjectName(oname);
+                state inactive;
+            }
+        }
+        else
+        {
+            llOwnerSay("ERROR: Unable to communicate properly with version log. Forcing startup...");
+            boot();//Failsafe
+        }
+    }*/
+    link_message(integer s, integer n, string data, key id)
+    {
+        //Data: (1)Currency,(2)EXP,(3)Rank,(4)Division,(5)STR,(6)PRC,(7)DEX,(8)FRT,(9)END,(10)RES
+        if(id==(key)"stat")//Root script gets stats and passes them here (for now)
+        {
+            list stats=llCSV2List(data);
+            float prc=(float)llList2String(stats,6);
+            if(prc>25)prc=25;//No seriously, fuck that shit
+            if(prc!=pdam)llOwnerSay("Your Precision is affecting this weapon...");
+            pdam=prc;
+        }
+        else if(id)
+        {
+            if(oaux)
+            {
+                string desc=(string)llGetObjectDetails(oaux,[OBJECT_DESC]);
+                if(desc=="")
+                {
+                    oaux="";
+                    return;
+                }
+                else if(check(desc,"stun"))return;
+                list parse=llCSV2List(data);
+                proc(llList2String(parse,0),(float)llList2String(parse,1),id,(integer)llList2String(parse,2),0);
+            }
+        }
+    }
+    listen(integer chan, string name, key id, string message)
+    {
+        if(message=="pong")
+        {
+            //llSay(0,name+" ["+llKey2Name(llGetOwnerKey(id))+"]: "+message);
+            key oid=llGetOwnerKey(id);
+            //if(id==oid||oid==o)return;
+            integer aux=llListFindList(auxdata,[oid]);//Owner_UUID Parameter
+            if(aux<0)//Owner not found
+            {
+                //llSay(0,aspect);
+                integer auxchan=-1*llAbs((integer)("0x" + llGetSubString(llMD5String((string)oid+aspect,0), 0, 5)));
+                auxdata+=[oid,id,auxchan];//New data: Written as Owner_ID,AUX_ID,AUX_Channel
+                //llSay(0,"Received response from "+llKey2Name(oid)+" set to "+(string)auxchan);
+                if(oid==o)oaux=id;
+                //llSay(0, "Added "+llKey2Name(oid)+" with "+(string)((integer)ochan));
+                //llSay(0,llDumpList2String(auxdata," | "));
+                //llOwnerSay("AUX Data added for "+llKey2Name(oid));
+            }
+            else if(llList2Key(auxdata,aux+1)!=id)//Aux UUID does not match registered AUX ID (reattach or relog)
+            {
+                if(oid==o)oaux=id;
+                auxdata=llListReplaceList(auxdata,[id],aux+1,aux+1);//Update data
+                //llOwnerSay("AUX Data updated for "+llKey2Name(oid)+" on channel "+(string)llList2Integer(auxdata,aux+2));
+            }
+        }
+        else if(chan==exchan)
+        {
+            if(oaux)
+            {
+                string desc=(string)llGetObjectDetails(oaux,[OBJECT_DESC]);
+                if(desc=="")
+                {
+                    oaux="";
+                    return;
+                }
+                list parse=llCSV2List(message);
+                //llSay(0,message);
+                if(llList2String(parse,0)=="dmg")
+                //Data is: Flag, Target NAME,Damage Dealt,TargetUUID
+                //Target UUID is placed in event
+                    proc(llList2String(parse,1),(float)llList2String(parse,2),llList2String(parse,3),0,1);
+            }
+        }
+    }
+    changed(integer c)
+    {
+        if(c&CHANGED_REGION)llReadKeyValue("WeaponVersion_MDS");
     }
     timer()
     {
-        check();
+        if(llGetTime()>15.0)cleanup();
+    }
+}
+state inactive
+{
+    on_rez(integer p)
+    {
+        llResetScript();
+    }
+    changed(integer c)
+    {
+        if(c&CHANGED_REGION)llResetScript();
     }
 }
