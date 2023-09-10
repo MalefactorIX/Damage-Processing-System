@@ -1,11 +1,10 @@
 //Important Note: This should -NEVER- be used in excess of 600 RPM. It is too bloated to run any faster than that.
 //Most of the balancing for ranged weapons is contained within this script. Automatic, instant kill raycast with no strings attachs is dumb, stupid, and saying it's "semi-automatic" doesn't change that the fact you can instantly pop someone irregardless of distance in a single physics frame dipshit.
 //Note to self: Replace all references to llKey2Name(llGetOwnerKey(id)) with SLURL profile links instead.
-integer dps=1;//Toggles between using MDS (1),RC (0), or DPS (-1)
 float rpm;
 boosh()
 {
-    rpm=llGetTimeOfDay();
+    rpm=llGetTimeOfDay();//Cannot use ResetTime since its used for weapon spread values
     while(llGetColor(1)!=ZERO_VECTOR)
     {
         float time=llGetTimeOfDay();
@@ -13,8 +12,7 @@ boosh()
         {
             rpm=time;
             //llSay(0,"fire");
-            if(dps)fire();
-            else rc();
+            fire();
         }
     }
 }
@@ -33,14 +31,27 @@ float maxspread=50.0;//Max penalty for recoil.
 proc(float damage, key id, integer head)
 {
     if(damage<min_damage)damage=min_damage;
-    if(dps>0)llMessageLinked(mdscore,0,llKey2Name(id)+","+(string)damage+","+(string)head+",0",id);//MDS Damage
-    else llMessageLinked(llcscore,0,llKey2Name(id)+","+(string)damage+","+(string)head+",0",id);//DPS/RC/LLCS Damage
+    //llSay(0,"Hit "+llKey2Name(id));
+    llMessageLinked(mdscore,0,llKey2Name(id)+","+(string)damage+","+(string)head+",0",id);//MDS Damage
 
 }
 float spread;//Do not edit. How the script keeps track of current recoil inaccuracy.
 float bloommod;//Do not edit. Set in state_entry. Determines how quickly spread grows
 string lasthit;//Used for phantom detection
 float lhittime;//Used for phantom detection
+string dataname="MDSOver";
+float override(string id)
+{
+    list parse=llCSV2List(llLinksetDataRead(dataname));
+    integer n=llListFindList(parse,[id]);
+    if(n<0)return 0.0;
+    else
+    {
+        float h=(float)llList2String(parse,n+1);
+        llSay(0,(string)h);
+        return h;
+    }
+}
 fire()//SRS Firing Pattern
 {
     if(spread>0.0)//This part handles recoil reduction
@@ -86,8 +97,8 @@ fire()//SRS Firing Pattern
 
                 vector vel=(vector)((string)llGetObjectDetails(id,[OBJECT_VELOCITY]));//Used for lag compensation
                 vector h=llGetAgentSize(id);
-                float avh=h.z*0.5;
-
+                float avh=h.z*0.5;//Height modifier
+                avh+=override(id);//Checks and applies height overrides.
                 float spr=minbloom+(dist*bloommod);//Cone, or physical spread of the shots
                 if(dist>range)spr=maxbloom;//Maximum cone width
                 float hor=llVecDist(<end.x,end.y,0.0>,<target.x,target.y,0.0>);
@@ -155,68 +166,13 @@ fire()//SRS Firing Pattern
     spread+=recoil;//Part that adds recoil
     if(spread>maxspread)spread=maxspread;
 }
-list params=[RC_REJECT_TYPES,RC_REJECT_PHYSICAL,RC_DATA_FLAGS,RC_GET_ROOT_KEY,RC_MAX_HITS,5];
-//Sometimes, simpler is better.
-rc()//Raycast Firing Pattern
-{
-    //Due to the nature and inconsistency of raycast, no inaccuracy modifiers are factored.
-    //All hits deal max damage.
-    rotation rot=llGetCameraRot();
-    vector gpos=llGetPos();
-    vector center=llGetCameraPos();
-    center.x=gpos.x;
-    center.y=gpos.y;
-    integer attempts=3;//RaYcAsT iS rElIaBlE gAiS, rEaLlY!
-    list offsets=[<500.0,0.75,0.0>,<500.0,-0.75,0.0>,<500.0,0.0,0.0>];
-    integer phantom;
-    while(attempts--)
-    {
-        list ray=llCastRay(center,center+llList2Vector(offsets,attempts)*rot,params);
-        if(llList2Integer(ray,-1)>0)//Did we hit anything?
-        {
-            integer l=llGetListLength(ray);
-            integer i;//Unlike agentlist, the order inwhich we process hits matters. So we start from 0.
-            while(i<l)
-            {
-                key id=llList2Key(ray,i);
-                if(id!=o)//Ownerguard
-                {
-                    if(llGetAgentSize(id))//Hit avatar
-                    {
-                        //if(phantom)damage=100.0;//Fuck 'em
-                        vector size=llGetAgentSize(id);
-                        vector end=llList2Vector(ray,i+1);
-                        vector target=tar(id);
-                        if(~llGetAgentInfo(id)&AGENT_CROUCHING)target.z+=size.z*0.5;//Adjusts head height for standing avatars
-                        if(llVecDist(end,target)<0.35)proc(base_damage,id,1);//hed
-                        else proc(base_damage,id,0);
-                        attempts=0;//Ends loop if a valid target is hit.
-                    }
-                    else//Hit object/land
-                    {
-                        if((integer)((string)llGetObjectDetails(id,[OBJECT_PHANTOM])))//Raycast Blocker
-                        {
-                            llOwnerSay("Hit raycast blocker ["+llKey2Name(id)+"] owned by "+llKey2Name(llGetOwnerKey(id)));
-                            ++phantom;//Sets all proceeding damage numbers to 100. Get fucked idiot.
-                            //To be fair, this is not as punishing as the agentlist method since the ray will still stop if it hits a valid obstruction.
-                        }
-                        else l=0;//Stopped by obstruction
-                    }
-                }
-                //else llOwnerSay("Hit owner");
-                if(l)i+=2;
-            }
-        }
-    }
-}
 vector tar(key id)
 {
     vector av=(vector)((string)llGetObjectDetails(id,[OBJECT_POS]));
     return av;
 }
 key o;
-integer mdscore=-2;//Prim DPS script is in
-integer llcscore;//Prim LLCS script is in
+integer mdscore;//Prim DPS script is in
 float dex=-1;//Dex modifier, formally called "Mobility"
 float ovh;
 key checksum;
@@ -259,7 +215,6 @@ default
         {
             string name=llGetLinkName(l);
             if(name=="mds")mdscore=l;
-            else if(name=="llcs")llcscore=l;
         }
         llRequestPermissions(o=llGetOwner(),0x414);
     }
@@ -280,15 +235,13 @@ default
     }
     link_message(integer s, integer n, string m, key id)
     {
-        if(id==(key)"dps")dps=n;
-        //if(n)fire();//If true, fires via completely fair and balanced agentlist.
-        //else rc();//If false, uses raycast only for target acquisition.
+        fire();
     }
-    changed(integer c)
+    /*changed(integer c)//Looping fire
     {
         if(c&CHANGED_COLOR)boosh();
-    }
-     dataserver(key sum, string data)//Experience shit.
+    }*/
+    dataserver(key sum, string data)//Experience shit.
     {
         if (sum != checksum)return;
         list parse=llCSV2List(data);
