@@ -22,7 +22,7 @@ Section 8) Escalation / Tiers.
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 1: I N T R O D U C T I O N
+### SECTION 1: INTRODUCTION
 
 This documentation will go over rules in detail for the Faust Infernium sim, as well as our weapon tiers. There are not many rules that will result in a ban, but many serves as our expectations for equipment balance in our region. While we will make an effort to avoid immediate administrative action, there are some offenses that will result in an unavoidable need for such a reaction. If you feel you have been unjustly banned, contact relevant high command within Faust in order to appeal.
 
@@ -30,7 +30,7 @@ Our primary enforcement method is Escalation. Usually, this is reciprocal - you 
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 2: G E N E R A L  R U L E S
+### SECTION 2: GENERAL RULES
 
 These rules govern the expected conduct of all participants.
 
@@ -50,7 +50,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 3: I N F A N T R Y  R U L E S
+### SECTION 3: INFANTRY RULES
 
 1) "Flashbangs" or similar blinding effects such as smoke must be reasonable. Don't include excessively loud noises or rapidly flashing colors or the like. Blinding effects may only last for 10 seconds and those that track avatars must be raycasted.
 
@@ -61,7 +61,7 @@ Infraction of these rules may result in immediate administrative action. This is
     2d) Explosives without a raycast check are NOT allowed.  
     2e) Must have a 5s cooldown per explosive fired or thrown.  
 
-3) Proximity fuses (detonates in proximity to player) are not allowed for infantry weapons.
+3) Proximity fuses (detonates in proximity to player) are not allowed for infantry weapons. Mines must have no more than 1 HP, must detonate or destroy nearby mines, and may not linger after detonation.
 
 4) Automatic weapons that fire explosives should not exceed a radius of 2.5 meters, RPM should not exceed 600, and explosions must deal reduced damage.
 
@@ -91,7 +91,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 4: V E H I C L E  R U L E S
+### SECTION 4: VEHICLE RULES
 
 1) You may have a maximum of 2 air vehicles, and 2 ground vehicles per side. Vehicles are consider Tier 2 equipment.
 
@@ -127,7 +127,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 5: R A I D  R U L E S
+### SECTION 5: RAID RULES
 
 1) There are no rules governing the declaration or prior announcement of a raid, nor are their any regulations limiting the amount of personnel you may deploy to the field. However, the attacker:defender ratio is considered when it determining the appropriate weapon tiers and types that are being deployed.
 
@@ -141,7 +141,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 6: B A N N E D  E Q U I P M E N T
+### SECTION 6: BANNED EQUIPMENT
 
 Below is a list of equipment that may not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
 
@@ -154,7 +154,7 @@ Commercial and Tkoi-related VelTech products are disallowed.
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 7: H I T S C A N  W E A P O N S / A G E N T L I S T
+### SECTION 7: HITSCAN WEAPONRY
 
 All closed-source, agentlist-based raycast weapons will be disallowed. This includes equipment which functions in a similar principle (widecast).
 They must follow all regulations which govern raycast weapons and will be subject to higher scrutiny.
@@ -165,14 +165,14 @@ Raycast weapons will also have the open-source review requirement in cases where
 Note: Hybrid Raycast rounds also must be compliant with these regulations in order to be permitted.
 
 [If you fail compliance]  
-If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment. If your weapon is considered non-compliant, you can request a review of the affected equipment and this section will be updated accordingly.
+If you believe your weapon(s) to be compliance, they can be approved by region moderation after review. Otherwise, weapons which fail to follow these guidelines will be treated similar to fully-automatic, 100% raycast weapons and use of an unsanctioned weapon will be treated as a T3 deployment of armaments. In extreme cases, it will be treated as a T4 deployment. If your weapon is considered non-compliant, you can request a review of the affected equipment and this section will be updated accordingly.
 
 You will be notified of any non-compliant equipment should it be deemed necessary.
 
 
 ██████████████████████████████████████████████
 
-### S E C T I O N 8: E S C A L A T I O N
+### SECTION 8: TIERING AND ESCALATION
 
 Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.  
 Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc.  Basic gruntwork.
