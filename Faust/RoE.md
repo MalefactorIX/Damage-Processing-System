@@ -146,11 +146,9 @@ Infraction of these rules may result in immediate administrative action. This is
 Below is a list of equipment that may not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
 
 All equipment from defunct military organizations (Coercion, 2142, etc) are disallowed.  
-All commercial CSF weapons are disallowed.  
 Any object that reflects damage of any type or retaliates in similar form is disallowed.  
 Any objects which restrict normal avatar movement or control are disallowed. This includes objects which stall or obstruct vehicle movement through targetted means.  
 Self-regenerating health systems are disallowed.  
-Commercial and Tkoi-related VelTech products are disallowed.  
 
 ██████████████████████████████████████████████
 
