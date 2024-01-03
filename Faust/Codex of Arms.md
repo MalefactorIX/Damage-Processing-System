@@ -141,7 +141,7 @@ All forms of visual assistance is disallowed. This includes but is not limited t
    - [DPM] Damage Per Minute. How much damage a weapon can put out within 60 seconds - This includes reloads or other forms of downtime and is a metric of a weapon's 'sustainable' damage output.
    - [DPS] 
         - [DAMAGE PER SECOND] Similar to DPM but over the course of a single second, typically used for calculating a weapon's damage output while disregarding any downtime. This is mostly used to calculate a weapon's 'burst' damage output.
-        - [DAMAGE PROCESSING SYSTEM] A script which calculates LLCS damage in weapons made by Tactical UwU. Most common used for raycast/hitscan functions.
+        - [DAMAGE PROCESSING SYSTEM] A script which calculates LLCS damage in weapons made by Tactical UwU. Most commonly used for raycast/hitscan functions and explosives.
    - [Tank] A ground vehicle that is relatively slow but features high burst damage and decent armor.
    - [Mech] A ground vehicle that is more maneuverable than a tank but is typically weaker defensively. They can be small or large.
    - [Fortified] Ignores LBA damage less than 5 and is immune to legacy AT. Typically associated with tanks and barricades.
