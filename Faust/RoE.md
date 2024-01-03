@@ -148,8 +148,11 @@ Infraction of these rules may result in immediate administrative action. This is
 Below is a list of equipment that should not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
 
 All equipment from defunct military organizations (Coercion, 2142, etc) are disallowed.  
+
 Any object that reflects damage of any type or retaliates in similar form is disallowed. This primarily applies to 'reflectors' or objects with their only method of removal triggering a retaliatory response.
+
 Any equipment which locks, pushes, or renders any physical vehicle inoperable are disallowed.
+
 Self-regenerating health systems are disallowed.  
 
 ██████████████████████████████████████████████
