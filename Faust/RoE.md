@@ -36,7 +36,7 @@ These rules govern the expected conduct of all participants.
 
 1) Excessive black-screening, intentional or otherwise, will not be tolerated. Going into the opposing designated spawn areas is prohibited.
 
-2) Excessive flaming and generally toxic behavior will not be tolerated. We're here to have fun and shoot each other. If you're getting too invested into this and becoming angry, take a step back. If you feel a fight has turned nasty, contact the OIC and talk about ways to fix it. Both sides of a conflict should be having fun, and if one or both is not, something needs to be fixed.
+2) Excessive flaming and generally toxic behavior will not be tolerated. We're here to have fun and shoot each other. If you're getting too invested into this and become angry, take a step back. If you feel a fight has turned nasty, contact the OIC and talk about ways to fix it. Both sides of a conflict should be having fun, and if one or both is not, something needs to be fixed.
 
 3) Use of features disable by region settings (ie. flight) is strictly prohibited.
 
@@ -58,12 +58,12 @@ Infraction of these rules may result in immediate administrative action. This is
     2a) May not exceed a 5 meter radius.  
     2b) May not deal more than a maximum of 50 LBA to targets on a direct impact.  
     2c) May not deal more than 25 proximity LBA damage.  
-    2d) Explosives without a raycast check are NOT allowed.  
+    2d) Explosives without a raycast check are NOT allowed. Breaches are allowed to blast through surfaces. 
     2e) Must have a 5s cooldown per explosive fired or thrown.  
 
 3) Proximity fuses (detonates in proximity to player) are not allowed for infantry weapons. Mines must have no more than 1 HP, must detonate or destroy nearby mines, and may not linger after detonation.
 
-4) Automatic weapons that fire explosives should not exceed a radius of 2.5 meters, RPM should not exceed 600, and explosions must deal reduced damage.
+4) Automatic weapons that fire explosives should not exceed a radius of 3 meters, RPM should not exceed 600, and explosions must deal reduced damage and that damage may not exceed 45 per projectile.
 
 5) Seekers must comply with these guidelines: https://github.com/MalefactorIX/SLMC-Seeker-2020 . Minimum lock-on time is 2 seconds.
 
@@ -79,32 +79,41 @@ Infraction of these rules may result in immediate administrative action. This is
 
 11) Enhancers or features that disable pre-jump or landing animations are disallowed. Dashes are allowed to break the landing state.
 
-12) Grapple hooks are allowed. Avatar velocity may not exceed 5m/s and range may not exceed 30m. 10s cooldown after disengaged.
+12) Grapple hooks are allowed. Avatar velocity may not exceed 5m/s and range may not exceed 30m. 10s cooldown after disengaged. Acceleration must be strictly vertical.
 
 13) Weapons, either intentionally or otherwise, that kill through physics/prims are not allowed, ie. "Penetrator" rounds, or non-raycast explosives and melee attacks.
     
-14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots. Grenades which interfere with the intended function of interceptors are disallowed. Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose.
+14) Interceptors must adhere to line-of-sight, must have a limited energy pool of no more than 15, and must have a reasonable recharge time for shots. Grenades which interfere with the intended function of interceptors are disallowed (ie. Chaff). Interceptors are to be a hard counter for grenades, having a grenade that removes that counter defeats the purpose.
 
-15) Any lingering effect (smoke, gas, fire, flash, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affected target dies or enters a safe parcel.
+15) Any lingering effect (smoke, gas, fire, flash, etc) may not exceed 10 seconds in duration. Lingering effects which have a duration that is drastically extended by region latency will be disallowed. These effects should cease if the affected target dies or enters a safe parcel. Effects which inhibit normal avatar movement may not last longer than 4 seconds.
 
 16) All deployables, including mines or other manually placed explosives, are required to take LBA damage.
 
+17) Raycast blockers in any shape or form are disallowed.
+
+18) LBA damage caps must be reasonable. This does not factor in modifiers such as LBAD or LBHD. As a general rule of thumb...
+  Barricades: Must be at least 50% of their total HP (Killable in 2 hits or less)
+  Interceptors: Must be at least 99% of their total HP. (Basic 1-shot protection)
+  Teleporters: Must not have a damage cap.
+
+20) All forms of LBA blacklisting is disallowed outside what is incorporated as part of the sim build. Report LBA grief or problematic LBA use to the OIC and offenders will be dealt with administratively.
+    
 ██████████████████████████████████████████████
 
 ### SECTION 4: VEHICLE RULES
 
-1) You may have a maximum of 2 air vehicles, and 2 ground vehicles per side. Vehicles are consider Tier 2 equipment.
+1) Vehicles of all types are consider Tier 2 equipment. They are permitted to field a heavier arsenal compared to infantry due to their limited mobility and size.
 
-2) All vehicles must be destructible by LBA. Tanks are permitted to ignore collision damage, or LBA damage that is 5 or less.
+2) All vehicles must be destructible via LBA. Tanks are permitted to ignore collision damage and LBA damage that is 5 or less.
 
-3) Ground armor may not exceed 250HP for heavily armored tanks or mechs, and 125 HP for light armored units. Anything in excess of these values will be considered Tier 3. Permitted until double the listed values
+3) Ground armor may not exceed 200HP for heavily armored tanks or mechs, and 100 HP for light armored units. Anything in excess of these values will be considered Tier 3 until double the listed values. Anything beyond that is considered Heavy Fleet (Tier 4).  
 
 4) Aerial vehicles should have the following HP Values:  
     4a) Light Craft (Fighters): Unarmored, or up to 25HP.  
-    4b) Medium Craft (Gunships): Up to 100HP.  
+    4b) Medium Craft (Gunships): Up to 125HP.  
     4c) Heavy Craft (Fleet): Up to 500HP.  
     4d) All armored aircraft may not exceed a top speed of 40m/s. Unarmored is allowed up to 80m/s.  
-    4e) Anything in excess of these values will be considered Tier 3. Permitted until double the listed values.  
+    4e) Anything in excess of these values will be considered Tier 3 until double the listed values. Anything beyond that is considered Heavy Fleet (Tier 4).  
 
 5) No absurdly excessive weaponry may be used in any vehicle - this is harder to quantify, so you will be informed if you need to tone things back. Use infantry guidelines as a benchmark for compliance.
 
@@ -114,14 +123,7 @@ Infraction of these rules may result in immediate administrative action. This is
 
 8) Maximum Combat Height for aerial vehicles is 1000m.
 
-9) Any explosive with a radius larger than 5m must deal partial damage. The lethal radius must be reduced by 1m per meter in excess of 5m. Maximum LBA damage must also be reduced by 10 per meter in excess of 5m.  
-    Easier to understand than it sounds:  
-        6m = 4m Lethal, 40 Max LBA.  
-        7m = 3m Lethal, 30 Max LBA.  
-        8m = 2m Lethal, 20 Max LBA.  
-        9m = 1m Lethal, 10 Max LBA.  
-        10m = Never Lethal, No LBA.  
-    Explosives larger than 10m are disallowed.  
+9) Standard explosive guidelines apply. LBA damage must fall off for explosives larger than 5m. Explosives larger than 10m are disallowed.  
     
 10) Unarmored aircraft must have a physical hitbox representative of their size and it must contain a valid LBA description.
 
@@ -143,11 +145,11 @@ Infraction of these rules may result in immediate administrative action. This is
 
 ### SECTION 6: BANNED EQUIPMENT
 
-Below is a list of equipment that may not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
+Below is a list of equipment that should not be used under any circumstances. Use of blacklisted equipment is considered a Tier 4 deployment.
 
 All equipment from defunct military organizations (Coercion, 2142, etc) are disallowed.  
-Any object that reflects damage of any type or retaliates in similar form is disallowed.  
-Any objects which restrict normal avatar movement or control are disallowed. This includes objects which stall or obstruct vehicle movement through targetted means.  
+Any object that reflects damage of any type or retaliates in similar form is disallowed. This primarily applies to 'reflectors' or objects with their only method of removal triggering a retaliatory response.
+Any equipment which locks, pushes, or renders any physical vehicle inoperable.
 Self-regenerating health systems are disallowed.  
 
 ██████████████████████████████████████████████
@@ -179,6 +181,6 @@ Tier 2: Advanced Technology - Raycast, Multi-Explosive Munitions, Vehicles, Ligh
 
 Tier 3: War Crimes - Turrets, Drones, Fleet, Large Explosives/Heavy Artillery, Bussian Rias (aka Heavy Vehicles), Etc.  Popcorn is sold out.
 
-Tier 4: Nukes, Estate Ban.
+Tier 4: Heavy Fleet, Nukes, Estate Ban.
 
 ██████████████████████████████████████████████
