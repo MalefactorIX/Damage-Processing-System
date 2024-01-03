@@ -148,7 +148,7 @@ All forms of visual assistance is disallowed. This includes but is not limited t
    - [Explosive Ammo] Distinct though very similar to traditional explosives, this classification refers to BULLETS which detonate in a small radius on impact.
    - [AP Ammo] This classification refers to BULLETS which deal LBA damage on impact.
 
-## **Tiering and Escalation***
+## **Tiering and Escalation**
 Escalation is broken down into 4 tiers. Only 3 of which are acceptable for combat.
 
 Tier 1: Basic Equipment - Rifles, Hand Grenades, Etc. Basic gruntwork.
