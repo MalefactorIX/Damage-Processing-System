@@ -100,7 +100,7 @@ Our primary enforcement method is Escalation. Usually, this is reciprocal - you 
 ####    [Vehicles]
 - Must be compliant with all LBA restrictions
 - Hitboxes must be reasonably accurate to the model. As a baseline, least 75% of the visual model must be represented physically.
-- Maximum LBA damage for any vehicle-mounted weapon is 300 DPM.
+- Maximum LBA damage for any vehicle-mounted weapon is 1250 DPM.
     - A heavy vehicle (200+ HP) may have up to 4 hardpoints (See Glossary for Details)
     - A light vehicle (100 or Less HP) may have up to 2 hard points.
     - A fleet vehicle may have up to 4 Pilot Hardpoints and 4 Auxillary Hardpoints (See Glossary).
