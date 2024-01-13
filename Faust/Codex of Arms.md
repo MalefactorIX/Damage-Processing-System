@@ -1,4 +1,4 @@
-## **Rules are broken into 3 categories**
+## **Rules are broken into 5 categories**
 1. Administration
 2. Weapons and Utilities
 3. Assists
@@ -6,7 +6,7 @@
 5. Tiering and Escalation
 
 ## **Administration**
-   All offenders should be notified and cited of their infractions. Depending on the severity of the offense, a citation may not arrive until after enforcement, if at all. No warnings will be issued for griefing offenses.
+   All offenders should be notified and cited of their infractions. Depending on the severity of the offense, a citation may not arrive until after enforcement, if at all. No warnings are required for griefing offenses, extreme cases of non-compliance, or other severe disruptions to the combat environment. Non-combative participents who intefere with either side of the combat arena will be subject to immediate removal. Varying parties of opposition are not permitted to each other and violators will be removed at the request of the affected parties. Raid priority is first come, first fought.
 
    Those who wish to oversee the actions of their members will be granted that opportunity, if deemed fit. As such, OiCs may not be immediately granted this status upon request and can be refused if they are found unfit for the role. In addition, individual offenders may not redirect administration during citations. They are to comply with any requests or they will be considered non-compliant and will be removed from the region.
 
@@ -99,12 +99,18 @@ Our primary enforcement method is Escalation. Usually, this is reciprocal - you 
 
 ####    [Vehicles]
 - Must be compliant with all LBA restrictions
-- Hitboxes must be reasonably accurate to the model.
+- Hitboxes must be reasonably accurate to the model. As a baseline, least 75% of the visual model must be represented physically.
 - Maximum LBA damage for any vehicle-mounted weapon is 300 DPM.
     - A heavy vehicle (200+ HP) may have up to 4 hardpoints (See Glossary for Details)
     - A light vehicle (100 or Less HP) may have up to 2 hard points.
+    - A fleet vehicle may have up to 4 Pilot Hardpoints and 4 Auxillary Hardpoints (See Glossary).
+- Non-fleet vehicles may not exceed 400 LBA. Fleet-class vehicles are permitted up to 2000 LBA.
+   - Fleet vehicle may increase their max HP by 250 per avatar operating it. If any operator dismounts, the max HP of the vehicle must drop to compensate.
+   - Non-fleet vehicles may increase their max HP by 50 per avatar operating it. If any operator dismounts, the max HP of the vehicle must drop to compensate.
+   - In both prior amendments, passangers are not treated as operators. Operators must be controlling some function of the vehicle whether it be an offensive or defensive hardpoint.
+   - Fleet vehicles must be roughly 20x10x10m in size or have a total surface area of 80m Squared. The math for this is 2 * ( X + Y + Z ).
 - (Optional) Ground Vehicles should have a description ending in ",VEH". This whitelists ground vehicles for anti-air munitions.
-- Tanks are permitted to be Fortified (See Glossary)
+- Tanks and Fleet are permitted to be Fortified (See Glossary)
 - (Optional) Air Vehicles should have a description ending in ",AIR". This allows us to better filter anti-air munitions to target them exclusively.
 - Air vehicles may not be fortified.
 
@@ -139,6 +145,10 @@ All forms of visual assistance is disallowed. This includes but is not limited t
    - [LBA HEX] Refers to v2 LBA format which has objects define a unique channel based on their object keys.
    - [LBA NON-HEX] Refers to v1 LBA format which uses a fixed channel.
    - [HARDPOINT] Weapon/Utility mount. Weapons and utilities such as flares, ADS, smoke launcher, etc consume a hardpoint slot.
+      - [PILOT/PRIMARY] Hardpoints controlled by the pilot of the vehicle or optionally by any operators on board.
+      - [AUXILLARY/SECONDARY] Hardpoints controlled exclusively by a non-piloting operator.
+      - [OFFENSIVE] Hardpoints which deal damage to agents, objects, or vehicles.
+      - [DEFENSIVE] Hardpoints which serve to obstruct, support, or protect the vehicle.
    - [DPM] Damage Per Minute. How much damage a weapon can put out within 60 seconds - This includes reloads or other forms of downtime and is a metric of a weapon's 'sustainable' damage output.
    - [DPS] 
         - [DAMAGE PER SECOND] Similar to DPM but over the course of a single second, typically used for calculating a weapon's damage output while disregarding any downtime. This is mostly used to calculate a weapon's 'burst' damage output.
