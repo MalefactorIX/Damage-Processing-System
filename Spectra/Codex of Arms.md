@@ -21,11 +21,11 @@
     - Some omissions may be made for explosive projectiles or vehicle rounds.
 
 #### [Raycast Weapons]
-- All raycast weapons are to be vetted by administration before they're permitted use. This is to make sure fair play is maintained between the varying types that may be present.
+- All raycast weapons are must have accurate documentation that is presented to administration before they're permitted use. This is to make sure fair play is maintained between the varying types that may be present.
 - Standard line-of-sight checks for things like melee weapons or explosives are regulated in the MELEE and EXPLOSIVES categories.
 - For automatic weapons, their LBA damage can be designed to trigger at set intervals instead of every round to prevent flooding LBA parsers with low damage values. 
     - For standard ROF automatics (600 RPM or lower), it will be every other round.
-    - Weapons exceeding 600 RPM will not be allowed deal LBA damage with their bullets.
+    - Raycast Weapons exceeding 600 RPM will not be allowed.
 
 ####    [Ammo]
 - Weapons with a rate of fire exceeding 900 RPM are limited to 30 rounds with a minimum of 3 seconds of reload.
@@ -36,21 +36,22 @@
 - Launched Rockets, Grenades, or similar may not exceed 100m/s
     - Tank shells are excluded from this rule.
 - Thrown Grenades may not exceed 50m/s, excluding gravity.
-- May not use collision-based (legacy) AT. All relevant objects are required to take LBA damage.
+- Explosions may not use collision-based (legacy) AT. All relevant objects are required to take LBA damage.
 - Lingering effects such as [Flashbangs, Caging Devices, etc] will not be permitted.
-- Lingering Damage effects such as flames, gas, etc must not be immediately lethal and must possess the potential of survival.
-   - Example 1: Fire should deal reduced damage to avatars that are standing still or crouching. The total damage for this should be less than 100 for the entire duration of the burning effect.
-   - Example 2: Gas DOTs should be limited ot the AOE of the actual blast and therefore non-lethal once an avatar exits the radius.
-   - For inquiry or other allowances, please contact an administrative proxy.
+- Lingering Damage effects such as flames, gas, etc must not be immediately lethal and have a minimum time-to-kill of 3 seconds.
+   - For inquiry or other allowances, please contact an administrator.
 - Explosive radius may not exceed 10 meters and must be raycasted from epicenter.
     - If explosion radius exceeds 5 meters, damage must be reduced by at least 10 per meter after 3 meters.
 - Minimum reload time for any explosive launcher is 5 second per projectile.
-- Proximity AT damage must fall off by at least 20% of the initial amount per meter from the center of the blast.
-- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [15 second] cooldown. If the explosive must be drawn before being fired/thrown, this is reduced to 5 seconds.
+- Proximity AT damage must fall off by at least 20% of the initial amount per meter from the center of the blast and therefore cannot exceed a 5m radius of effect.
+- Off-hand explosives capable of inflicting 100% damage which are gesture-activated, or otherwise not required to be drawn in place of a firearm, must have at least a [15 second] cooldown. If the explosive must be drawn before being fired/thrown, this is reduced to 5 seconds to match other dedicated explosive weapons.
 - Infantry-launched Explosives may not be immediately lethal either via damage reduction or by explosion type if their cooldown timer is less than 15 seconds. This applies strictly to LLCS damage. If the explosive must be drawn before being fired/thrown, this is reduced to 5 seconds.
 - Seeking Munitions must follow the guidelines ![here](https://github.com/MalefactorIX/SLMC-Seeker-2020)
     - They may not target infantry-class units.
-- You may stock up to 2 of any type of non-seeking explosive projectile. The minimum delay between each use must be 1 second. Cooldown must start/reset which each successful use of the weapon.
+- You may stock up to 2 of any type of non-seeking explosive projectile.
+   - The minimum reload between each stock-use must be 3 seconds.
+   - Cooldown must start/reset which each successful use of the weapon.
+   - Resupply is limited to 1 reload per resupply. Apply cooldown times as necessary (ie. 6 ammo / 30s for an RGL, 1 ammo / 5s for a RPG).
 
 ####    [Melee]
 - All melee weapons must perform line-of-sight checks.
@@ -94,7 +95,7 @@
 
 ## **Assists**
 ####    [Movement]
-All form of movement assistance is disallowed excluding those provided via the DPS system. This includes but is not limited to...
+All forms of movement assistance is generally disallowed outside what is officially provided. This includes but is not limited to...
    - Hard fall cancelling
    - Dashing/Dodgerolls
    - Jetpacks/Boostpacks/Boostpads
@@ -109,7 +110,6 @@ All forms of weapon assistance is disallowed. This includes but is not limited t
     
 ####    [Client]
 All forms of visual assistance is disallowed. This includes but is not limited to...
-- Sight HUDs/Nametag on hover
 - Hitboxes, ARC, Wireframe, or similar client-enabled features.
 - Weapons or devices which mark the position of an avatar.
     
