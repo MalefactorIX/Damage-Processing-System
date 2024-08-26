@@ -6,11 +6,11 @@
 ## **Administration**
    All offenders should be notified and cited of their infractions. Depending on the severity of the offense, a citation may not arrive until after enforcement, if at all.
 
-   Those who wish to oversee the actions of their members will be granted that opportunity, if deemed fit. As such, OiCs may not be immediately granted this status upon request and can be refused if they are found unfit for the role. In addition, individual offenders may not redirect administrative proxies during citations. They are to comply with any requests or they will be considered non-compliant and will be removed from the region.
+   Those who wish to oversee the actions of their members will be granted that opportunity, if deemed fit. As such, OiCs may not be immediately granted this status upon request and can be refused if they are found unfit for the role. In addition, individual offenders may not redirect administration during citations. They are to comply with any requests or they will be considered non-compliant and will be removed from the region.
 
    Participants should ask administration if they may use or test gear that may be outside the guidelines. Administration can opt to not enforce rules as long as participants agree to not be disruptive and other participants don't take issue with what is being used. Our goal is primarily to target disruptive behavior, as such these rules may not always be enforced as written. It's the spirit of the rule we seek to uphold, not so much the letter of it.
 
-   Rules are likely to change in response to developments within the region. However changes will not go into effect in the middle of any combat event.
+   Rules are likely to change in response to developments within the region. However changes will not go into effect in the middle of any combat event. You will be notified and given an opportunity to correct any problematic behavior as long as it is clear the offense is not intentional or malicious in nature. Translation: No, you will not get a warning for griefing the sim.
     
 ## **Weapons**
     
